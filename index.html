@@ -16,14 +16,14 @@
         background-color: #1a1a1a; /* Dark background color */
     }
     
-    /* 🌟 FIXED: DEDICATED BACKGROUND PATTERN DIV 🌟 */
+    /* DEDICATED BACKGROUND PATTERN DIV */
     #background-pattern {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: -1; /* Place behind all content */
+        z-index: -1; 
         
         /* Logo Background Setup - Paths are based on the latest file list */
         background-image: 
@@ -49,26 +49,23 @@
             400px, 
             330px;
         
-        /* Increased Opacity for visibility */
         opacity: 0.15; 
-        
-        /* Removed grayscale to see original logo color */
     }
 
-    /* 🚨 FINAL FIX: CONTAINER STYLES (Semi-Transparent) 🚨 */
+    /* 🚨 FINAL FIX: CONTAINER STYLES (Fully Transparent) 🚨 */
     .container {
         max-width: 1000px;
         margin: 40px auto;
-        /* Changed solid color to 90% opaque RGBA color */
-        background: rgba(34, 34, 34, 0.9); 
+        /* Set to fully transparent to allow logos to show through */
+        background: transparent; 
         padding: 30px 50px;
         border-radius: 4px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        box-shadow: none; /* Removed shadow since background is gone */
         position: relative; 
         z-index: 2;
     }
 
-    /* The rest of the styling remains the same... */
+    /* HEADER & LEAGUE LOGO */
     h1 {
         color: #ffffff;
         text-align: center;
@@ -100,6 +97,8 @@
         margin-top: 25px;
         font-size: 1.3em;
     }
+
+    /* INAUGURAL CHAMPION SECTION - GOLD BACKGROUND KEPT SOLID FOR POP */
     #champion-section {
         background-color: #ffd700;
         color: #1a1a1a;
@@ -123,11 +122,13 @@
         font-weight: 700;
         margin-top: 10px;
     }
+
+    /* TABLES - USING TRANSPARENT/SEMI-TRANSPARENT BACKGROUNDS */
     table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 20px;
-        background-color: #333333;
+        background-color: transparent; /* Table background is now transparent */
     }
     th, td {
         border: 1px solid #444444;
@@ -135,20 +136,23 @@
         text-align: left;
     }
     th {
-        background-color: #4a4a4a;
+        /* Semi-transparent black background for header to ensure contrast */
+        background-color: rgba(0, 0, 0, 0.5); 
         color: #ffd700;
         font-weight: 700;
         text-transform: uppercase;
         font-size: 0.9em;
     }
     tr:nth-child(even) {
-        background-color: #2b2b2b;
+        /* Semi-transparent dark background for zebra striping */
+        background-color: rgba(43, 43, 43, 0.7); 
     }
     .winner {
         font-weight: 700;
         color: #ffd700;
     }
     
+    /* STANDINGS & NOTES */
     ol {
         padding-left: 20px;
         font-size: 1.1em;
@@ -156,6 +160,10 @@
     ol li {
         margin-bottom: 10px;
         color: #ffffff;
+        /* Adding a subtle background to the list items for contrast */
+        background-color: rgba(0, 0, 0, 0.3);
+        padding-left: 10px;
+        margin-left: -10px;
     }
     .champion-list-item {
         font-weight: 700;
