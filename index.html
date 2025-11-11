@@ -10,13 +10,48 @@
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 0;
+            padding-top: 50px; /* IMPORTANT: Add padding equal to the navbar height */
             color: #f0f0f0;
             line-height: 1.6;
             background-color: #1a1a1a;
         }
         
-        /* DEDICATED BACKGROUND PATTERN DIV - FIXES: OPACITY AND PATHS */
+        /* 🌟 NEW: FIXED NAVIGATION BAR 🌟 */
+        #top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000; /* Solid Black Background */
+            color: #ffffff;
+            z-index: 100; /* Ensure it's on top of everything */
+            border-bottom: 2px solid #ffd700;
+        }
+        #top-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0 50px; /* Padding to match the container */
+            display: flex;
+            justify-content: flex-end; /* Push links to the right */
+            height: 48px; /* Set a fixed height */
+            align-items: center;
+        }
+        #top-nav li {
+            margin-left: 20px;
+        }
+        #top-nav li a {
+            text-decoration: none;
+            color: #ffd700;
+            font-weight: bold;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+        #top-nav li a:hover {
+            color: #ffffff;
+        }
+
+
+        /* DEDICATED BACKGROUND PATTERN DIV */
         #background-pattern {
             position: fixed;
             top: 0;
@@ -25,7 +60,6 @@
             height: 100%;
             z-index: -1; 
             
-            /* Logo Background Setup - FIX: MERKLEY IS .jpg, all others are .png */
             background-image: 
                 url('merkley_logo.jpg'), 
                 url('edwards_logo.png'), 
@@ -49,14 +83,13 @@
                 400px, 
                 330px;
             
-            /* FIX: Increased Opacity for visibility */
             opacity: 0.15; 
         }
 
-        /* CONTAINER STYLES - FIX: FULLY TRANSPARENT */
+        /* CONTAINER STYLES */
         .container {
             max-width: 1000px;
-            margin: 40px auto;
+            margin: 0 auto 40px; /* Removed top margin, added bottom margin */
             background: transparent; 
             padding: 30px 50px;
             border-radius: 4px;
@@ -65,7 +98,7 @@
             z-index: 2;
         }
 
-        /* HEADER & LEAGUE LOGO - FIX: wgof_logo.png path */
+        /* HEADER & LEAGUE LOGO */
         h1 {
             color: #ffffff;
             text-align: center;
@@ -109,6 +142,7 @@
             margin: 30px 0;
             border: 3px solid #ffffff;
             box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
+            position: relative; 
         }
         #champion-section h3 {
             margin: 0;
@@ -124,7 +158,37 @@
             margin-top: 10px;
         }
 
-        /* TABLES - Using semi-transparent backgrounds for contrast */
+        /* FLOATING BANNER CSS - Adjusted 'top' value to be below the fixed navbar */
+        #floating-banner {
+            background-color: rgba(18, 18, 18, 0.95); 
+            border-bottom: 3px solid #ffd700;
+            padding: 10px 0;
+            margin-bottom: 25px;
+            z-index: 9; /* Lower than top-nav */
+            position: sticky;
+            top: 50px; /* Sticks 50px down (below the navbar) */
+        }
+        #floating-banner h2 {
+            margin-top: 0;
+            padding: 0 50px 5px; 
+            border-bottom: none;
+            font-size: 1.4em;
+        }
+        #floating-banner ol {
+            display: flex;
+            justify-content: space-around;
+            padding: 0 50px 5px; 
+            list-style: none; 
+        }
+        #floating-banner ol li {
+            font-size: 1em;
+            margin: 0;
+            background-color: transparent; 
+            padding: 0;
+        }
+
+
+        /* TABLES */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -137,7 +201,6 @@
             text-align: left;
         }
         th {
-            /* Semi-transparent black background for header to ensure contrast */
             background-color: rgba(0, 0, 0, 0.5); 
             color: #ffd700;
             font-weight: 700;
@@ -145,7 +208,6 @@
             font-size: 0.9em;
         }
         tr:nth-child(even) {
-            /* Semi-transparent dark background for zebra striping */
             background-color: rgba(43, 43, 43, 0.7); 
         }
         .winner {
@@ -153,20 +215,14 @@
             color: #ffd700;
         }
         
-        /* STANDINGS & NOTES */
+        /* CHALLENGE LINKS (Removed from here as they are now in the top navbar) */
         ul { padding-left: 20px; }
+        .challenge-links { display: none; } /* HIDE the old challenge links */
+
+        /* General List Styling */
         ol { padding-left: 20px; font-size: 1.1em; }
-        ol li {
-            margin-bottom: 10px;
-            color: #ffffff;
-            /* Adding a subtle background to the list items for contrast */
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 5px 10px;
-            margin: 5px 0;
-            border-radius: 3px;
-        }
         ul li { margin-bottom: 10px; }
-        .challenge-links a { text-decoration: none; }
+
         .champion-list-item {
             font-weight: 700;
             color: #ffd700;
@@ -190,7 +246,14 @@
 <body>
     
     <div id="background-pattern"></div>
-
+    
+    <nav id="top-nav">
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="token_challenge.html">TOKEN CHALLENGE</a></li>
+            <li><a href="hole_in_one.html">HOLE-IN-ONE</a></li>
+        </ul>
+    </nav>
     <div class="container">
         
         <h1>
@@ -241,32 +304,20 @@
             </tbody>
         </table>
 
-        <h2>Final 2025 Order of Merit</h2>
-        <ol>
-            <li class="champion-list-item">Keith Flynn</li>
-            <li>Kyle Merkley</li>
-            <li>Ryan Edwards</li>
-            <li>Sterling Weed</li>
-            <li>Devon Jarvis</li>
-        </ol>
+        <div id="floating-banner">
+            <h2>Final 2025 Order of Merit</h2>
+            <ol>
+                <li class="champion-list-item">1. Keith Flynn</li>
+                <li>2. Kyle Merkley</li>
+                <li>3. Ryan Edwards</li>
+                <li>4. Sterling Weed</li>
+                <li>5. Devon Jarvis</li>
+            </ol>
+        </div>
         
         <p class="schedule-note" style="text-align: center;">
             *Kyle Merkley holds the league record with 3 Major wins in a single season.*
         </p>
-        
-        <h2 style="margin-top: 60px;">⚔️ Challenges</h2>
-        <ul class="challenge-links">
-            <li>
-                <a href="token_challenge.html" style="color: #ffd700; font-weight: bold;">
-                    Birdie Token Challenge: The 18-Hole Battle
-                </a>
-            </li>
-            <li>
-                <a href="hole_in_one.html" style="color: #ffd700; font-weight: bold;">
-                    Hole-in-One Challenge: Current Pot $100
-                </a>
-            </li>
-        </ul>
         
         <h2>Proposed 2026 Season Schedule</h2>
         
