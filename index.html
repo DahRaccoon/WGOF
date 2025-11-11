@@ -6,56 +6,57 @@
     <title>WGOF League - We Golf on Friday</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* BASE STYLES - DARK MODE WITH LOGO PATTERN */
+        /* BASE STYLES - FIXED */
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            color: #f0f0f0; 
+            color: #f0f0f0;
             line-height: 1.6;
-
-            /* 🌟 NEW FLOATING LOGO BACKGROUND 🌟 */
             background-color: #1a1a1a; /* Dark background color */
+        }
+        
+        /* 🌟 FIXED: DEDICATED BACKGROUND PATTERN DIV 🌟 */
+        #background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place behind all content */
             
-            /* Layer all five logos as separate background images with random-like positioning */
+            /* Logo Background Setup - ONLY LOGOS ARE AFFECTED BY OPACITY */
             background-image: 
-                /* Merkley Logo - Top Left */
                 url('merkley_logo.png'), 
-                /* Edwards Logo - Center Right */
                 url('edwards_logo.png'), 
-                /* Jarvis Logo - Bottom Left */
                 url('jarvis_logo.png'), 
-                /* Flynn Logo - Top Right */
                 url('flynn_logo.png'), 
-                /* Weed Logo - Center Left */
                 url('weed_logo.png');
             
-            /* Set the position for each logo to scatter them */
             background-position: 
-                10% 10%, /* Merkley */
-                90% 40%, /* Edwards */
-                30% 85%, /* Jarvis */
-                70% 20%, /* Flynn */
-                20% 60%;  /* Weed */
-
-            /* Ensure each logo only appears once */
+                10% 10%, 
+                90% 40%, 
+                30% 85%, 
+                70% 20%, 
+                20% 60%;
+            
             background-repeat: no-repeat;
             
-            /* Set size and opacity for a subtle, large background effect */
             background-size: 
-                250px, /* Merkley size */
-                300px, /* Edwards size */
-                200px, /* Jarvis size */
-                350px, /* Flynn size */
-                280px; /* Weed size */
+                250px, 
+                300px, 
+                200px, 
+                350px, 
+                280px;
             
-            /* A common trick to control logo opacity without affecting text is using filter: opacity, but for simplicity here we assume the logo files are semi-transparent or we rely on the container's opacity.
-               If logos are solid, we can use an overlay: */
-            background-blend-mode: luminosity; 
-            opacity: 0.1; 
+            /* Apply Opacity to the entire DIV, which only contains the logos */
+            opacity: 0.05; /* Very subtle opacity */
+            
+            /* Optional: Make logos grayscale for an even sleeker look */
+            filter: grayscale(100%); 
         }
 
-        /* Override the body opacity for the main content container */
+        /* CONTAINER STYLES (No Opacity Issue) */
         .container {
             max-width: 1000px;
             margin: 40px auto;
@@ -64,12 +65,10 @@
             border-radius: 4px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             position: relative; 
-            z-index: 2; /* Ensure content is on top of background */
-            opacity: 1; /* Reset opacity for the main content */
+            z-index: 2;
         }
-        
-        /* The rest of your existing stylish CSS remains here... */
-        
+
+        /* The rest of the styling remains the same */
         h1 {
             color: #ffffff;
             text-align: center;
@@ -108,4 +107,193 @@
             text-align: center;
             margin: 30px 0;
             border: 3px solid #ffffff;
-            box-shadow: 0 6px 15px rgba(255, 215,
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
+        }
+        #champion-section h3 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        #champion-section p {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #333333;
+        }
+        th, td {
+            border: 1px solid #444444;
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #4a4a4a;
+            color: #ffd700;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        tr:nth-child(even) {
+            background-color: #2b2b2b;
+        }
+        .winner {
+            font-weight: 700;
+            color: #ffd700;
+        }
+        ol {
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+        ol li {
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .champion-list-item {
+            font-weight: 700;
+            color: #ffd700;
+        }
+        .schedule-note {
+            font-style: italic;
+            color: #aaaaaa;
+            display: block;
+            margin-top: 5px;
+            font-size: 0.85em;
+        }
+        .footer-note {
+            text-align: center; 
+            margin-top: 40px; 
+            border-top: 1px solid #333333; 
+            padding-top: 20px; 
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="background-pattern"></div>
+    <div class="container">
+        
+        <h1>
+            <img src="wgof_logo.png" alt="WGOF League Logo" class="logo">
+            WGOF LEAGUE
+        </h1>
+
+        <div id="champion-section">
+            <h3>Inaugural WGOF Champion</h3>
+            <p>🏆 KEITH FLYNN 🏆</p>
+        </div>
+
+        <h2>2025 Inaugural Season - Major Tournament Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tournament</th>
+                    <th>Course</th>
+                    <th>Champion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Merkley Invitational</td>
+                    <td>Deer Lake</td>
+                    <td><span class="winner">Kyle Merkley</span></td>
+                </tr>
+                <tr>
+                    <td>Edwards Invitational</td>
+                    <td>Island Green</td>
+                    <td><span class="winner">Kyle Merkley</span></td>
+                </tr>
+                <tr>
+                    <td>Jarvis Open</td>
+                    <td>Par 3</td>
+                    <td><span class="winner">Keith Flynn</span></td>
+                </tr>
+                <tr>
+                    <td>Flynn Championship</td>
+                    <td>Green Hills</td>
+                    <td><span class="winner">Kyle Merkley</span></td>
+                </tr>
+                <tr>
+                    <td>Weed WGOF Championship</td>
+                    <td>Branson Hills</td>
+                    <td><span class="winner">Keith Flynn</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Final 2025 Order of Merit</h2>
+        <ol>
+            <li class="champion-list-item">Keith Flynn</li>
+            <li>Kyle Merkley</li>
+            <li>Ryan Edwards</li>
+            <li>Sterling Weed</li>
+            <li>Devon Jarvis</li>
+        </ol>
+        
+        <p class="schedule-note" style="text-align: center;">
+            *Kyle Merkley holds the league record with 3 Major wins in a single season.*
+        </p>
+
+        <h2>Proposed 2026 Season Schedule</h2>
+        
+        <h3>Major Tournaments</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Tournament</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>April 11</td>
+                    <td>Weed Championship</td>
+                </tr>
+                <tr>
+                    <td>May 2</td>
+                    <td>Jarvis Open</td>
+                </tr>
+                <tr>
+                    <td>June 1</td>
+                    <td>Flynnvitational 
+                        <span class="schedule-note">
+                            (Contingent on everyone potentially taking the day off following Stake Conference on May 30/31)
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>August 8</td>
+                    <td>Edwards Invitational</td>
+                </tr>
+                <tr>
+                    <td>November 9</td>
+                    <td>Merkley WGOF Championship 
+                        <span class="schedule-note">
+                            (Contingent on taking the day off following Stake Conference)
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Minor Tournaments & Events</h3>
+        <ul>
+            <li>**Minor Tournaments** are planned for Great Life courses in **March, September, and October**.</li>
+            <li>A potential **Par 3 Minor** is scheduled for **July**.</li>
+            <li>The league is actively planning the long-discussed **scramble trip to Osage** or a **Ryder Cup tournament** to fill the gap between the August and November majors.</li>
+        </ul>
+
+        <p class="footer-note">
+            WGOF League: We Golf on Friday. | For all rule and format discussions, please attend the annual WGOF lunch (date TBD).
+        </p>
+    </div>
+
+</body>
+</html>
