@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WGOF League - We Golf on Friday</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-   <style>
+<style>
     /* BASE STYLES - FIXED */
     body {
         font-family: 'Montserrat', sans-serif;
@@ -25,7 +25,7 @@
         height: 100%;
         z-index: -1; /* Place behind all content */
         
-        /* Logo Background Setup - NOTE THE CORRECTED EXTENSION FOR MERKLEY */
+        /* Logo Background Setup - Paths are based on the latest file list */
         background-image: 
             url('merkley_logo.jpg'), 
             url('edwards_logo.png'), 
@@ -42,35 +42,33 @@
         
         background-repeat: no-repeat;
         
-        /* Increased Size for better visibility */
         background-size: 
-            300px, /* Merkley size */
-            350px, /* Edwards size */
-            250px, /* Jarvis size */
-            400px, /* Flynn size */
-            330px; /* Weed size */
+            300px, 
+            350px, 
+            250px, 
+            400px, 
+            330px;
         
-        /* FIXED: Increased Opacity from 0.05 to 0.15 */
+        /* Increased Opacity for visibility */
         opacity: 0.15; 
         
-        /* FIXED: Removed filter: grayscale(100%); rule */
+        /* Removed grayscale to see original logo color */
     }
 
-    /* CONTAINER STYLES (No Opacity Issue) */
+    /* 🚨 FINAL FIX: CONTAINER STYLES (Semi-Transparent) 🚨 */
     .container {
         max-width: 1000px;
         margin: 40px auto;
-        background: #222222;
+        /* Changed solid color to 90% opaque RGBA color */
+        background: rgba(34, 34, 34, 0.9); 
         padding: 30px 50px;
         border-radius: 4px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         position: relative; 
         z-index: 2;
     }
-    
+
     /* The rest of the styling remains the same... */
-    /* ... (All other CSS rules below are unchanged) */
-    
     h1 {
         color: #ffffff;
         text-align: center;
@@ -87,8 +85,96 @@
         vertical-align: middle;
         margin-right: 15px;
     }
-    /* ... (All other CSS rules for h2, tables, champion-section, etc.) ... */
-
+    
+    h2 {
+        color: #ffffff;
+        margin-top: 40px;
+        padding: 10px 0;
+        border-bottom: 2px solid #ffd700;
+        font-size: 1.6em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    h3 {
+        color: #e0e0e0;
+        margin-top: 25px;
+        font-size: 1.3em;
+    }
+    #champion-section {
+        background-color: #ffd700;
+        color: #1a1a1a;
+        padding: 30px;
+        border-radius: 4px;
+        text-align: center;
+        margin: 30px 0;
+        border: 3px solid #ffffff;
+        box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
+    }
+    #champion-section h3 {
+        margin: 0;
+        font-size: 2.5em;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #1a1a1a;
+    }
+    #champion-section p {
+        font-size: 1.8em;
+        font-weight: 700;
+        margin-top: 10px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #333333;
+    }
+    th, td {
+        border: 1px solid #444444;
+        padding: 15px;
+        text-align: left;
+    }
+    th {
+        background-color: #4a4a4a;
+        color: #ffd700;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9em;
+    }
+    tr:nth-child(even) {
+        background-color: #2b2b2b;
+    }
+    .winner {
+        font-weight: 700;
+        color: #ffd700;
+    }
+    
+    ol {
+        padding-left: 20px;
+        font-size: 1.1em;
+    }
+    ol li {
+        margin-bottom: 10px;
+        color: #ffffff;
+    }
+    .champion-list-item {
+        font-weight: 700;
+        color: #ffd700;
+    }
+    .schedule-note {
+        font-style: italic;
+        color: #aaaaaa;
+        display: block;
+        margin-top: 5px;
+        font-size: 0.85em;
+    }
+    .footer-note {
+        text-align: center; 
+        margin-top: 40px; 
+        border-top: 1px solid #333333; 
+        padding-top: 20px; 
+        color: #888888;
+    }
 </style>
 <body>
     
