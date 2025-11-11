@@ -25,9 +25,9 @@
             height: 100%;
             z-index: -1; /* Place behind all content */
             
-            /* Logo Background Setup - ONLY LOGOS ARE AFFECTED BY OPACITY */
+            /* Logo Background Setup - NOTE THE CORRECTED EXTENSION FOR MERKLEY */
             background-image: 
-                url('merkley_logo.png'), 
+                url('merkley_logo.jpg'), /* FIXED: JPG Extension */
                 url('edwards_logo.png'), 
                 url('jarvis_logo.png'), 
                 url('flynn_logo.png'), 
@@ -49,10 +49,7 @@
                 350px, 
                 280px;
             
-            /* Apply Opacity to the entire DIV, which only contains the logos */
-            opacity: 0.05; /* Very subtle opacity */
-            
-            /* Optional: Make logos grayscale for an even sleeker look */
+            opacity: 0.05; 
             filter: grayscale(100%); 
         }
 
@@ -68,7 +65,7 @@
             z-index: 2;
         }
 
-        /* The rest of the styling remains the same */
+        /* HEADER & LEAGUE LOGO */
         h1 {
             color: #ffffff;
             text-align: center;
@@ -85,6 +82,8 @@
             vertical-align: middle;
             margin-right: 15px;
         }
+        
+        /* SECTION HEADERS */
         h2 {
             color: #ffffff;
             margin-top: 40px;
@@ -99,6 +98,8 @@
             margin-top: 25px;
             font-size: 1.3em;
         }
+
+        /* INAUGURAL CHAMPION SECTION - CELEBRATED GOLD BLOCK */
         #champion-section {
             background-color: #ffd700;
             color: #1a1a1a;
@@ -122,6 +123,8 @@
             font-weight: 700;
             margin-top: 10px;
         }
+
+        /* TABLES */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -147,6 +150,8 @@
             font-weight: 700;
             color: #ffd700;
         }
+        
+        /* STANDINGS & NOTES */
         ol {
             padding-left: 20px;
             font-size: 1.1em;
@@ -178,6 +183,7 @@
 <body>
     
     <div id="background-pattern"></div>
+
     <div class="container">
         
         <h1>
