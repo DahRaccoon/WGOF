@@ -3,120 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WGOF Hole-in-One Challenge</title>
+    <title>WGOF Hole-in-One Tracker</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Shared Dark Theme Styles */
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 0;
+            padding-top: 50px; 
             color: #f0f0f0;
             line-height: 1.6;
             background-color: #1a1a1a;
         }
-        #background-pattern { 
+        
+        /* Fixed Navbar Style */
+        #top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            color: #ffffff;
+            z-index: 100;
+            border-bottom: 2px solid #ffd700;
+        }
+        #top-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0 50px;
+            display: flex;
+            justify-content: flex-start;
+            height: 48px;
+            align-items: center;
+        }
+        #top-nav li {
+            margin-right: 20px;
+        }
+        #top-nav li a {
+            text-decoration: none;
+            color: #b0b0b0; /* Softer link color */
+            font-weight: bold;
+            padding: 10px 0;
+            transition: color 0.3s;
+        }
+        #top-nav li a:hover {
+            color: #ffffff; /* White on hover */
+        }
+
+        /* Background Pattern (Keeping it consistent with index.html) */
+        #background-pattern {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            /* FIX: Logo paths and opacity are included for a consistent look */
             background-image: url('merkley_logo.jpg'), url('edwards_logo.png'), url('jarvis_logo.png'), url('flynn_logo.png'), url('weed_logo.png');
             background-position: 10% 10%, 90% 40%, 30% 85%, 70% 20%, 20% 60%;
             background-repeat: no-repeat;
             background-size: 300px, 350px, 250px, 400px, 330px;
             opacity: 0.15;
         }
+
+        /* Container and Header Styles */
         .container {
             max-width: 1000px;
-            margin: 40px auto;
-            background: rgba(34, 34, 34, 0.9); /* Semi-transparent container for readability on this page */
+            margin: 0 auto 40px;
+            background: transparent;
             padding: 30px 50px;
-            border-radius: 4px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             position: relative; z-index: 2;
         }
-        h1 { color: #ffd700; text-align: center; padding: 15px 0; border-bottom: 2px solid #ffd700; font-size: 2.2em; }
-        h2 { color: #ffffff; margin-top: 40px; padding-bottom: 5px; border-bottom: 1px solid #333333; font-size: 1.6em; }
-        .back-link { display: block; margin-bottom: 20px; text-decoration: none; color: #ffd700; font-weight: bold; }
-
-        /* Challenge Specific Styles */
-        .pot-box {
-            background-color: #ffd700;
-            color: #1a1a1a;
-            padding: 25px;
-            border-radius: 4px;
-            text-align: center;
-            margin: 30px 0;
+        h1 { 
+            color: #ffd700; 
+            text-align: center; 
+            padding: 15px 0; 
+            border-bottom: 2px solid #ffd700; 
+            font-size: 2.5em; 
+            margin-bottom: 30px; 
         }
-        .pot-box h3 { margin: 0; font-size: 1.5em; }
-        .pot-box p { font-size: 3em; font-weight: bold; margin: 10px 0 0; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #444444; padding: 12px; text-align: left; }
-        th { background-color: #4a4a4a; color: #ffd700; font-weight: bold; text-transform: uppercase; }
-        tr:nth-child(even) { background-color: #2b2b2b; }
-        .miss-distance { font-weight: bold; color: #f0f0f0; }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgba(34, 34, 34, 0.9);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+        }
+        th, td {
+            border: 1px solid #444444;
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #000000;
+            color: #ffd700;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(43, 43, 43, 0.7);
+        }
+        .ace {
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #38761d; /* Dark green for the ultimate achievement */
+        }
+        .example-entry {
+            font-style: italic;
+            color: #b0b0b0;
+        }
     </style>
 </head>
 <body>
     <div id="background-pattern"></div>
+    
+    <nav id="top-nav">
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="token_challenge.html">TOKEN CHALLENGE</a></li>
+            <li><a href="hole_in_one.html">HOLE-IN-ONE</a></li>
+            <li><a href="profiles.html">PROFILES</a></li>
+        </ul>
+    </nav>
     <div class="container">
-        <a href="index.html" class="back-link">← Back to Home Page</a>
 
-        <h1>🔥 Hole-in-One Challenge</h1>
-
-        <div class="pot-box">
-            <h3>Current Hole-in-One Pot:</h3>
-            <p>$100.00</p>
-        </div>
-
-        <h2>Challenge Summary</h2>
-        <div class="challenge-summary">
-            <p>The WGOF Hole-in-One Challenge is simple: a yearly buy-in creates a large pot of cash, and the first member to sink an ace wins the entire pot!</p>
-            <ul>
-                <li>**The Buy-In:** <span style="color:#ffd700; font-weight:bold;">$20.00</span> per player each year.</li>
-                <li>**The Prize:** The entire pool goes to the first WGOF member to score a Hole-in-One during any sanctioned round played with a WGOF member.</li>
-                <li>**Carryover:** If the pot is not won, it rolls over to the next year, increasing the jackpot!</li>
-            </ul>
-        </div>
-
-        <h2>Near Misses of the Season</h2>
-        <p>The golf gods haven't smiled on us yet, but we've had a few heartbreakers. All near misses must be witnessed and documented by a WGOF member!</p>
+        <h1>🎯 WGOF League: Hole-in-One Tracker</h1>
 
         <table>
             <thead>
                 <tr>
-                    <th>Player</th>
-                    <th>Course/Hole</th>
-                    <th>Distance Away</th>
+                    <th>Golfer</th>
+                    <th>Date</th>
+                    <th>Course</th>
+                    <th>Hole #</th>
+                    <th>Yards</th>
+                    <th>Club</th>
+                    <th>Notes</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Devon Jarvis</td>
-                    <td>Green Hills #14</td>
-                    <td><span class="miss-distance">2 Inches</span></td>
+                <tr class="example-entry">
+                    <td>**Kyle Merkley**</td>
+                    <td>2025-07-25</td>
+                    <td>Par 3 Minor</td>
+                    <td>14</td>
+                    <td>135</td>
+                    <td>8-Iron</td>
+                    <td>Tournament Ace! Witnesses: Flynn, Edwards.</td>
                 </tr>
                 <tr>
-                    <td>Ryan Edwards</td>
-                    <td>Deer Lake #6</td>
-                    <td><span class="miss-distance">4 Inches</span></td>
-                </tr>
-                <tr>
-                    <td>Keith Flynn</td>
-                    <td>Island Green #17</td>
-                    <td><span class="miss-distance">10 Inches</span></td>
-                </tr>
-                <tr>
-                    <td>Sterling Weed</td>
-                    <td>Branson Hills #8</td>
-                    <td><span class="miss-distance">2 Feet</span></td>
-                </tr>
-                <tr>
-                    <td>Kyle Merkley</td>
-                    <td>Par 3 #5</td>
-                    <td><span class="miss-distance">3 Feet</span></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
+        <p style="text-align: center; margin-top: 20px; font-style: italic; color: #aaa;">
+            *Record the next legendary ace here.*
+        </p>
 
     </div>
 </body>
