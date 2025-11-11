@@ -31,6 +31,12 @@
             letter-spacing: 1.5px;
             font-size: 2.5em;
         }
+        .logo {
+            height: 60px; /* Adjust the height of the logo */
+            vertical-align: middle;
+            margin-right: 15px;
+        }
+        
         h2 {
             color: #1565c0; /* Stronger Blue for Sections */
             margin-top: 35px;
@@ -38,6 +44,28 @@
             border-bottom: 2px solid #1565c0; /* Blue underline */
             font-size: 1.8em;
         }
+        /* Style for the Champion Section */
+        #champion-section {
+            background-color: #ffd700; /* Gold background */
+            color: #1b5e20; /* Dark Green text */
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #champion-section h3 {
+            margin: 0;
+            font-size: 2.2em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        #champion-section p {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -73,16 +101,9 @@
         ol li {
             margin-bottom: 8px;
         }
-        .champion-badge {
+        .champion-list-item {
             font-weight: bold;
-            color: #ffffff;
-            background-color: #ffd700; /* True Gold */
-            padding: 5px 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            display: inline-block;
-            margin-left: 5px;
-            letter-spacing: 0.5px;
+            color: #1b5e20;
         }
         .schedule-note {
             font-style: italic;
@@ -96,8 +117,16 @@
 <body>
 
     <div class="container">
-        <h1>WGOF League - Official Site ⛳</h1>
+        
+        <h1>
+            <img src="wgof_logo.png" alt="WGOF League Logo" class="logo">
+            WGOF League - Official Site ⛳
+        </h1>
 
+        <div id="champion-section">
+            <h3>Congratulations to the Inaugural Champion!</h3>
+            <p>🏅 KEITH FLYNN 🏅</p>
+        </div>
         <h2>🏆 2025 Inaugural Season - Major Tournament Results</h2>
         <table>
             <thead>
@@ -130,15 +159,15 @@
                 </tr>
                 <tr>
                     <td>Weed WGOF Championship</td>
-                    <td>Branson Hills</td>
+                    <td>**Branson Hills**</td>
                     <td><span class="winner">Keith Flynn</span></td>
                 </tr>
             </tbody>
         </table>
 
-        <h2>🥇 2025 Final Standings</h2>
+        <h2>🥇 2025 Final Standings (Order of Merit)</h2>
         <ol>
-            <li>Keith Flynn <span class="champion-badge">INAUGURAL CHAMPION</span></li>
+            <li class="champion-list-item">Keith Flynn</li>
             <li>Kyle Merkley</li>
             <li>Ryan Edwards</li>
             <li>Sterling Weed</li>
