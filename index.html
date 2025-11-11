@@ -16,7 +16,7 @@
             background-color: #1a1a1a;
         }
         
-        /* FIXED NAVIGATION BAR */
+        /* FIXED NAVIGATION BAR - ADJUSTED POSITIONING AND COLORS */
         #top-nav {
             position: fixed;
             top: 0;
@@ -32,22 +32,23 @@
             margin: 0;
             padding: 0 50px;
             display: flex;
-            justify-content: flex-end;
+            justify-content: flex-start; /* NEW: Align links to the left */
             height: 48px;
             align-items: center;
         }
         #top-nav li {
-            margin-left: 20px;
+            margin-right: 20px; /* NEW: Margin to the right for left-aligned links */
+            margin-left: 0; /* Reset default */
         }
         #top-nav li a {
             text-decoration: none;
-            color: #ffd700;
+            color: #b0b0b0; /* NEW: Softer gold/grey color */
             font-weight: bold;
             padding: 10px 0;
             transition: color 0.3s;
         }
         #top-nav li a:hover {
-            color: #ffffff;
+            color: #ffffff; /* NEW: White on hover */
         }
 
 
@@ -389,9 +390,4 @@
         </ul>
 
         <p class="footer-note">
-            WGOF League: We Golf on Friday. | For all rule and format discussions, please attend the annual WGOF lunch (date TBD).
-        </p>
-    </div>
-
-</body>
-</html>
+            WGOF
