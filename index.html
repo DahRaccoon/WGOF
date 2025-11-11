@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WGOF Tour - We Golf on Friday</title>
+    <title>WGOF League - We Golf on Friday</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* BASE STYLES - DARK MODE */
@@ -24,7 +24,7 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* HEADER & LOGO */
+        /* HEADER & LEAGUE LOGO */
         h1 {
             color: #ffffff;
             text-align: center;
@@ -40,8 +40,6 @@
             height: 60px;
             vertical-align: middle;
             margin-right: 15px;
-            /* Optional: Add a subtle glow to the logo if it's white/light */
-            /* filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); */
         }
         
         /* SECTION HEADERS */
@@ -90,7 +88,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            background-color: #333333; /* Dark background for table rows */
+            background-color: #333333;
         }
         th, td {
             border: 1px solid #444444;
@@ -98,18 +96,24 @@
             text-align: left;
         }
         th {
-            background-color: #4a4a4a; /* Slightly lighter header */
-            color: #ffd700; /* Gold text for headers */
+            background-color: #4a4a4a;
+            color: #ffd700;
             font-weight: 700;
             text-transform: uppercase;
             font-size: 0.9em;
         }
         tr:nth-child(even) {
-            background-color: #2b2b2b; /* Subtle zebra striping */
+            background-color: #2b2b2b;
         }
         .winner {
             font-weight: 700;
-            color: #ffd700; /* Gold text for winners */
+            color: #ffd700;
+        }
+        /* New styling for individual tournament logos */
+        .tournament-logo {
+            height: 25px; /* Adjust size as needed */
+            vertical-align: middle;
+            margin-right: 8px;
         }
 
         /* STANDINGS & NOTES */
@@ -123,7 +127,7 @@
         }
         .champion-list-item {
             font-weight: 700;
-            color: #ffd700; /* Gold text for the champion in the list */
+            color: #ffd700;
         }
         .schedule-note {
             font-style: italic;
@@ -147,13 +151,14 @@
         
         <h1>
             <img src="wgof_logo.png" alt="WGOF League Logo" class="logo">
-            WGOF Tour
+            WGOF LEAGUE
         </h1>
 
         <div id="champion-section">
-            <h3>Inaugural WGOF Tour Champion</h3>
+            <h3>Inaugural WGOF Champion</h3>
             <p>🏆 KEITH FLYNN 🏆</p>
         </div>
+
         <h2>2025 Inaugural Season - Major Tournament Results</h2>
         <table>
             <thead>
@@ -167,27 +172,42 @@
                 <tr>
                     <td>Merkley Invitational</td>
                     <td>Deer Lake</td>
-                    <td><span class="winner">Kyle Merkley</span></td>
+                    <td>
+                        <img src="merkley_logo.png" alt="Merkley Logo" class="tournament-logo">
+                        <span class="winner">Kyle Merkley</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Edwards Invitational</td>
                     <td>Island Green</td>
-                    <td><span class="winner">Kyle Merkley</span></td>
+                    <td>
+                        <img src="edwards_logo.png" alt="Edwards Logo" class="tournament-logo">
+                        <span class="winner">Kyle Merkley</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Jarvis Open</td>
                     <td>Par 3</td>
-                    <td><span class="winner">Keith Flynn</span></td>
+                    <td>
+                        <img src="jarvis_logo.png" alt="Jarvis Logo" class="tournament-logo">
+                        <span class="winner">Keith Flynn</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Flynn Championship</td>
                     <td>Green Hills</td>
-                    <td><span class="winner">Kyle Merkley</span></td>
+                    <td>
+                        <img src="flynn_logo.png" alt="Flynn Logo" class="tournament-logo">
+                        <span class="winner">Kyle Merkley</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>Weed WGOF Championship</td>
-                    <td>**Branson Hills**</td>
-                    <td><span class="winner">Keith Flynn</span></td>
+                    <td>Branson Hills</td>
+                    <td>
+                        <img src="weed_logo.png" alt="Weed Logo" class="tournament-logo">
+                        <span class="winner">Keith Flynn</span>
+                    </td>
                 </tr>
             </tbody>
         </table>
