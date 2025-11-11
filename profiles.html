@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WGOF Golfer Profiles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Shared Dark Theme Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding-top: 50px; 
+            color: #f0f0f0;
+            line-height: 1.6;
+            background-color: #1a1a1a;
+        }
+        
+        /* Fixed Navbar Style (Copied for consistency) */
+        #top-nav {
+            position: fixed; top: 0; left: 0; width: 100%; background-color: #000000; color: #ffffff; z-index: 100; border-bottom: 2px solid #ffd700;
+        }
+        #top-nav ul {
+            list-style: none; margin: 0; padding: 0 50px; display: flex; justify-content: flex-end; height: 48px; align-items: center;
+        }
+        #top-nav li { margin-left: 20px; }
+        #top-nav li a {
+            text-decoration: none; color: #ffd700; font-weight: bold; padding: 10px 0; transition: color 0.3s;
+        }
+        #top-nav li a:hover { color: #ffffff; }
+
+        #background-pattern { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
+            background-image: url('merkley_logo.jpg'), url('edwards_logo.png'), url('jarvis_logo.png'), url('flynn_logo.png'), url('weed_logo.png');
+            background-position: 10% 10%, 90% 40%, 30% 85%, 70% 20%, 20% 60%;
+            background-repeat: no-repeat;
+            background-size: 300px, 350px, 250px, 400px, 330px;
+            opacity: 0.15;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            background: transparent;
+            padding: 30px 50px;
+            position: relative; z-index: 2;
+        }
+        h1 { color: #ffd700; text-align: center; padding: 15px 0; border-bottom: 2px solid #ffd700; font-size: 2.5em; margin-bottom: 30px; }
+        
+        /* 🌟 NEW: Profile Picture Styling 🌟 */
+        .profile-pic {
+            width: 100px; /* Set a specific size */
+            height: 100px;
+            border-radius: 50%; /* Make it round */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            border: 3px solid #ffd700; /* Gold border */
+            margin-bottom: 10px;
+        }
+        /* ---------------------------------- */
+
+
+        /* Profile Grid Styles */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .profile-card {
+            background-color: rgba(34, 34, 34, 0.9);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-top: 5px solid #ffd700;
+        }
+        .profile-header {
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #444444;
+            margin-bottom: 15px;
+        }
+        .profile-header h2 {
+            font-size: 1.8em;
+            color: #ffffff;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .profile-stats ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .profile-stats li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #333333;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95em;
+        }
+        .profile-stats li:last-child {
+            border-bottom: none;
+        }
+        .profile-stats .label {
+            color: #aaa;
+        }
+        .profile-stats .value {
+            font-weight: bold;
+            color: #f0f0f0;
+        }
+        .profile-stats .major-count, .profile-stats .champ-count {
+            color: #1a1a1a;
+            background-color: #ffd700;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .profile-stats .champ-count {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="background-pattern"></div>
+    
+    <nav id="top-nav">
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="token_challenge.html">TOKEN CHALLENGE</a></li>
+            <li><a href="hole_in_one.html">HOLE-IN-ONE</a></li>
+            <li><a href="profiles.html">PROFILES</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+
+        <h1>⭐ WGOF Golfer Profiles</h1>
+
+        <div class="profile-grid">
+
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="keith_image.png" alt="Keith Flynn Profile Picture" class="profile-pic">
+                    <h2>Keith Flynn</h2>
+                </div>
+                <div class="profile-stats">
+                    <ul>
+                        <li><span class="label">Age:</span> <span class="value">34</span></li>
+                        <li><span class="label">College:</span> <span class="value">Missouri State</span></li>
+                        <li><span class="label">Minor Wins:</span> <span class="value">0</span></li>
+                        <li><span class="label">Major Wins:</span> <span class="major-count">2</span></li>
+                        <li><span class="label">WGOF Championships:</span> <span class="champ-count">1</span></li>
+                        <li style="margin-top: 10px; border-top: 1px solid #444444;"><span class="label">Strength:</span> <span class="value">Nicer Courses</span></li>
+                        <li><span class="label">Typical Miss:</span> <span class="value">Slice</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="kyle_image.png" alt="Kyle Merkley Profile Picture" class="profile-pic">
+                    <h2>Kyle Merkley</h2>
+                </div>
+                <div class="profile-stats">
+                    <ul>
+                        <li><span class="label">Age:</span> <span class="value">38</span></li>
+                        <li><span class="label">College:</span> <span class="value">BYU Idaho</span></li>
+                        <li><span class="label">Minor Wins:</span> <span class="value">0</span></li>
+                        <li><span class="label">Major Wins:</span> <span class="major-count">3</span></li>
+                        <li><span class="label">WGOF Championships:</span> <span class="champ-count">0</span></li>
+                        <li style="margin-top: 10px; border-top: 1px solid #444444;"><span class="label">Strength:</span> <span class="value">All Around; Competitiveness</span></li>
+                        <li><span class="label">Typical Miss:</span> <span class="value">Chunks and 2-Foot Putts</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="ryan_image.png" alt="Ryan Edwards Profile Picture" class="profile-pic">
+                    <h2>Ryan Edwards</h2>
+                </div>
+                <div class="profile-stats">
+                    <ul>
+                        <li><span class="label">Age:</span> <span class="value">43</span></li>
+                        <li><span class="label">College:</span> <span class="value">Mizzou</span></li>
+                        <li><span class="label">Minor Wins:</span> <span class="value">0</span></li>
+                        <li><span class="label">Major Wins:</span> <span class="major-count">0</span></li>
+                        <li><span class="label">WGOF Championships:</span> <span class="champ-count">0</span></li>
+                        <li style="margin-top: 10px; border-top: 1px solid #444444;"><span class="label">Strength:</span> <span class="value">Power and Performing under Pressure</span></li>
+                        <li><span class="label">Typical Miss:</span> <span class="value">Sky Rockets 🚀</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="devon_image.png" alt="Devon Jarvis Profile Picture" class="profile-pic">
+                    <h2>Devon Jarvis</h2>
+                </div>
+                <div class="profile-stats">
+                    <ul>
+                        <li><span class="label">Age:</span> <span class="value">50</span></li>
+                        <li><span class="label">College:</span> <span class="value">BYU & The Ohio State University</span></li>
+                        <li><span class="label">Minor Wins:</span> <span class="value">0</span></li>
+                        <li><span class="label">Major Wins:</span> <span class="major-count">0</span></li>
+                        <li><span class="label">WGOF Championships:</span> <span class="champ-count">0</span></li>
+                        <li style="margin-top: 10px; border-top: 1px solid #444444;"><span class="label">Strength:</span> <span class="value">Short Game & Staying in Play</span></li>
+                        <li><span class="label">Typical Miss:</span> <span class="value">Dive Bombing Hooks</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="sterling_image.png" alt="Sterling Weed Profile Picture" class="profile-pic">
+                    <h2>Sterling Weed</h2>
+                </div>
+                <div class="profile-stats">
+                    <ul>
+                        <li><span class="label">Age:</span> <span class="value">39</span></li>
+                        <li><span class="label">College:</span> <span class="value">BYU</span></li>
+                        <li><span class="label">Minor Wins:</span> <span class="value">0</span></li>
+                        <li><span class="label">Major Wins:</span> <span class="major-count">0</span></li>
+                        <li><span class="label">WGOF Championships:</span> <span class="champ-count">0</span></li>
+                        <li style="margin-top: 10px; border-top: 1px solid #444444;"><span class="label">Strength:</span> <span class="value">Steady, calm, 105-yard shots</span></li>
+                        <li><span class="label">Typical Miss:</span> <span class="value">The Banana Slice</span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
