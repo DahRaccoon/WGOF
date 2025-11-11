@@ -5,55 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WGOF League - We Golf on Friday</title>
     <style>
-        /* Basic Styling for readability */
+        /* CSS Enhancements */
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f5e9; /* Light Golf Green Background */
             color: #333;
+            line-height: 1.6;
         }
         .container {
             max-width: 900px;
-            margin: auto;
-            background: #fff;
-            padding: 20px 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Lifted Shadow */
         }
         h1 {
-            color: #006400; /* Dark Green */
+            color: #1b5e20; /* Darker Golf Green */
             text-align: center;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
+            padding: 15px 0;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #c8e6c9; /* Light separator line */
+            letter-spacing: 1.5px;
+            font-size: 2.5em;
         }
         h2 {
-            color: #4682B4; /* Steel Blue */
-            margin-top: 30px;
-            border-left: 5px solid #4682B4;
-            padding-left: 10px;
+            color: #1565c0; /* Stronger Blue for Sections */
+            margin-top: 35px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #1565c0; /* Blue underline */
+            font-size: 1.8em;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
+            border: 1px solid #e0e0e0;
+            padding: 12px;
             text-align: left;
         }
         th {
-            background-color: #e9e9e9;
+            background-color: #c8e6c9; /* Light green header */
+            color: #1b5e20;
             font-weight: bold;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Subtle zebra striping */
         }
         .winner {
             font-weight: bold;
-            color: #006400;
+            color: #ff6f00; /* Gold-like color */
+            background-color: #fff3e0;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+        /* Championship Standings Styling */
+        ol {
+            padding-left: 20px;
+            font-size: 1.1em;
+        }
+        ol li {
+            margin-bottom: 8px;
+        }
+        .champion-badge {
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #ffd700; /* True Gold */
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            margin-left: 5px;
+            letter-spacing: 0.5px;
         }
         .schedule-note {
             font-style: italic;
-            color: #888;
-            margin-top: 10px;
+            color: #757575;
+            display: block;
+            margin-top: 5px;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -75,42 +111,42 @@
                 <tr>
                     <td>Merkley Invitational</td>
                     <td>Deer Lake</td>
-                    <td class="winner">Kyle Merkley</td>
+                    <td><span class="winner">Kyle Merkley</span></td>
                 </tr>
                 <tr>
                     <td>Edwards Invitational</td>
                     <td>Island Green</td>
-                    <td class="winner">Kyle Merkley</td>
+                    <td><span class="winner">Kyle Merkley</span></td>
                 </tr>
                 <tr>
                     <td>Jarvis Open</td>
                     <td>Par 3</td>
-                    <td class="winner">Keith Flynn</td>
+                    <td><span class="winner">Keith Flynn</span></td>
                 </tr>
                 <tr>
                     <td>Flynn Championship</td>
                     <td>Green Hills</td>
-                    <td class="winner">Kyle Merkley</td>
+                    <td><span class="winner">Kyle Merkley</span></td>
                 </tr>
                 <tr>
                     <td>Weed WGOF Championship</td>
                     <td>Branson Hills</td>
-                    <td class="winner">Keith Flynn</td>
+                    <td><span class="winner">Keith Flynn</span></td>
                 </tr>
             </tbody>
         </table>
 
         <h2>🥇 2025 Final Standings</h2>
         <ol>
-            <li><strong class="winner">Keith Flynn (Inaugural WGOF Champion)</strong></li>
+            <li>Keith Flynn <span class="champion-badge">INAUGURAL CHAMPION</span></li>
             <li>Kyle Merkley</li>
             <li>Ryan Edwards</li>
             <li>Sterling Weed</li>
             <li>Devon Jarvis</li>
         </ol>
         
-        <p class="schedule-note">
-            *A special note of congratulations to **Kyle Merkley** for setting the league record with 3 Major wins in a single season!*
+        <p class="schedule-note" style="text-align: center;">
+            *Congratulations to Kyle Merkley for setting the league record with 3 Major wins in a single season!*
         </p>
 
         <h2>📅 Proposed 2026 Season Schedule</h2>
@@ -162,7 +198,7 @@
             <li>The league is actively planning the long-discussed **scramble trip to Osage** or a **Ryder Cup tournament** to fill the gap between the August and November majors.</li>
         </ul>
 
-        <p style="text-align: center; margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px;">
+        <p style="text-align: center; margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px; color: #555;">
             For all rule and format discussions, please attend the annual WGOF lunch (date TBD).
         </p>
     </div>
