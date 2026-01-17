@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WGOF Scramble Records</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding-top: 50px;
+      color: #f0f0f0;
+      line-height: 1.6;
+      background-color: #1a1a1a;
+    }
+
+    /* Fixed nav (matches your site) */
+    #top-nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background-color: #000000;
+      color: #ffffff;
+      z-index: 100;
+      border-bottom: 2px solid #ffd700;
+    }
+    #top-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0 50px;
+      display: flex;
+      justify-content: flex-start;
+      height: 48px;
+      align-items: center;
+    }
+    #top-nav li { margin-right: 20px; }
+    #top-nav li a {
+      text-decoration: none;
+      color: #b0b0b0;
+      font-weight: bold;
+      padding: 10px 0;
+      transition: color 0.3s;
+    }
+    #top-nav li a:hover { color: #ffffff; }
+
+    /* Background pattern */
+    #background-pattern {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      background-image:
+        url('merkley_logo.jpg'),
+        url('edwards_logo.png'),
+        url('jarvis_logo.png'),
+        url('flynn_logo.png'),
+        url('weed_logo.png');
+      background-position:
+        10% 10%,
+        90% 40%,
+        30% 85%,
+        70% 20%,
+        20% 60%;
+      background-repeat: no-repeat;
+      background-size: 300px, 350px, 250px, 400px, 330px;
+      opacity: 0.15;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: rgba(34, 34, 34, 0.9);
+      padding: 30px 50px;
+      border-radius: 4px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ffd700;
+      text-align: center;
+      padding: 15px 0;
+      border-bottom: 2px solid #ffd700;
+      font-size: 2.2em;
+      margin: 0 0 25px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      color: #ffffff;
+      margin-top: 35px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #333333;
+      font-size: 1.5em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .highlight-box {
+      background-color: #ffd700;
+      color: #1a1a1a;
+      padding: 18px 20px;
+      border-radius: 4px;
+      margin: 22px 0 10px;
+      border: 2px solid #ffffff;
+      text-align: center;
+    }
+    .highlight-box .big {
+      font-size: 2.4em;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+    .muted {
+      color: #bdbdbd;
+      font-size: 0.95em;
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    /* VS card */
+    .vs-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #000000;
+      border: 2px solid #ffd700;
+      border-radius: 6px;
+      padding: 25px;
+      margin: 28px 0;
+    }
+    .side {
+      width: 40%;
+      text-align: center;
+    }
+    .side .name {
+      font-size: 1.15em;
+      font-weight: 700;
+      margin: 0;
+    }
+    .side .partner {
+      margin: 6px 0 0;
+      font-weight: 400;
+      color: #e5e5e5;
+    }
+    .vs {
+      width: 20%;
+      text-align: center;
+      font-size: 2.6em;
+      font-weight: 800;
+      color: #ffd700;
+      letter-spacing: 2px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+    th, td {
+      border: 1px solid #444444;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    th {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #ffd700;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.9em;
+      letter-spacing: 0.5px;
+    }
+    tr:nth-child(even) {
+      background-color: rgba(43, 43, 43, 0.7);
+    }
+
+    .result {
+      font-weight: 700;
+      color: #ffd700;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 35px;
+      border-top: 1px solid #333333;
+      padding-top: 18px;
+      color: #888888;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div id="background-pattern"></div>
+
+  <nav id="top-nav">
+    <ul>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="token_challenge.html">TOKEN CHALLENGE</a></li>
+      <li><a href="hole_in_one.html">HOLE-IN-ONE</a></li>
+      <li><a href="scramble_records.html">SCRAMBLE RECORDS</a></li>
+      <li><a href="profiles.html">PROFILES</a></li>
+      <li><a href="group_photos.html">GROUP PHOTOS</a></li>
+    </ul>
+  </nav>
+
+  <div class="container" style="margin-top: 80px;">
+    <h1>⛳ Scramble Records</h1>
+
+    <div class="highlight-box">
+      <div><strong>2026 Head-to-Head Record</strong></div>
+      <div class="big">0 – 0 – 1</div>
+      <div style="font-size: 0.95em; margin-top: 6px;">(Wins – Losses – Ties)</div>
+    </div>
+    <div class="muted">Sanctioned events only. This page tracks the rivalry matchup and yearly champions.</div>
+
+    <h2>Head-to-Head</h2>
+
+    <div class="vs-card">
+      <div class="side">
+        <p class="name">Devon Jarvis</p>
+        <p class="partner">Ryan Edwards</p>
+      </div>
+      <div class="vs">VS</div>
+      <div class="side">
+        <p class="name">Keith Flynn</p>
+        <p class="partner">Kyle Merkley</p>
+      </div>
+    </div>
+
+    <h2>Match History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Course</th>
+          <th>Format</th>
+          <th>Matchup</th>
+          <th>Result</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2026-01-09</td>
+          <td>Green Hills</td>
+          <td>2-Man Scramble</td>
+          <td>Devon/Ryan vs Keith/Kyle</td>
+          <td class="result">TIE</td>
+          <td>Season opener</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>🏆 Historical Scramble Champions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Champions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>2025</strong></td><td>Devon Jarvis &amp; Ryan Edwards</td></tr>
+        <tr><td><strong>2024</strong></td><td>Keith Flynn &amp; Kyle Merkley</td></tr>
+        <tr><td><strong>2023</strong></td><td>Keith Flynn &amp; Kyle Merkley</td></tr>
+        <tr><td><strong>2022</strong></td><td>Keith Flynn &amp; Kyle Merkley</td></tr>
+        <tr><td><strong>2021</strong></td><td>Devon Jarvis &amp; Ryan Edwards</td></tr>
+        <tr><td><strong>2020</strong></td><td>Devon Jarvis &amp; Ryan Edwards</td></tr>
+      </tbody>
+    </table>
+
+    <div class="footer-note">
+      WGOF League: We Golf on Friday. | Update tip: add a new row after each sanctioned scramble.
+    </div>
+  </div>
+</body>
+</html>
