@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WGOF | 2025 Season Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pga-blue: #002d62;
+            --masters-green: #006747;
+            --neutral-gray: #f8f9fa;
+            --border-color: #e2e8f0;
+            --text-main: #1a202c;
+            --text-muted: #718096;
+            --gold-accent: #b39a5f;
+        }
+
+        /* BASE STYLES */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding-top: 80px; 
+            color: var(--text-main);
+            line-height: 1.8;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* PGA STYLE NAVIGATION */
+        #top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        #top-nav .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            padding: 0 20px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+        /* UPDATED: Referral to wgof_logo.png */
+        .logo-img {
+            height: 45px;
+            width: auto;
+            display: block;
+        }
+        .logo-text {
+            color: var(--pga-blue);
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 2px;
+        }
+
+        #top-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        #top-nav li {
+            margin-left: 30px;
+            position: relative;
+        }
+        #top-nav li a {
+            text-decoration: none;
+            color: var(--pga-blue); 
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 24px 0;
+            transition: color 0.3s ease;
+            font-size: 0.8em;
+            text-transform: uppercase;
+        }
+        #top-nav li a:hover {
+            color: var(--masters-green); 
+        }
+
+        /* DROPDOWN MENU */
+        .dropdown-content {
+            display: none; 
+            position: absolute;
+            top: 100%; 
+            right: 0;
+            min-width: 180px;
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            list-style: none;
+            padding: 10px 0;
+            margin: 0;
+            z-index: 200;
+        }
+        .dropdown-content li {
+            margin: 0; 
+            width: 100%;
+        }
+        .dropdown-content li a {
+            padding: 12px 20px;
+            display: block; 
+            font-weight: 500;
+            text-align: left;
+            color: var(--text-main);
+        }
+        .dropdown-content li a:hover {
+            background-color: var(--neutral-gray);
+            color: var(--masters-green);
+        }
+        li.has-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* 3D Background */
+        #threejs-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f2f5 100%);
+        }
+
+        /* Championship Pennant */
+        .stadium-banner {
+            position: relative;
+            z-index: 10;
+            width: 160px;
+            height: 240px;
+            background: var(--masters-green);
+            margin: 40px auto;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 50% 100%, 0% 90%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,60,40,0.15);
+            animation: sway 5s ease-in-out infinite;
+            transform-origin: top center;
+        }
+        @keyframes sway {
+            0%, 100% { transform: rotate(-1.2deg); }
+            50% { transform: rotate(1.2deg); }
+        }
+        .stadium-banner .year { font-weight: 600; font-size: 0.9em; color: rgba(255,255,255,0.9); letter-spacing: 4px; }
+        .stadium-banner .champ-label { font-size: 0.55em; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 10px; }
+        .stadium-banner .name { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.5em; 
+            color: #fff; 
+            margin-top: 5px;
+            line-height: 1.1;
+        }
+
+        /* Content Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto 100px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.04);
+            padding: 60px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        h1 { 
+            color: var(--pga-blue); 
+            text-align: center; 
+            padding-bottom: 25px; 
+            border-bottom: 2px solid var(--masters-green); 
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--masters-green);
+            margin-top: 50px;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-align: left;
+            border-left: 4px solid var(--pga-blue);
+            padding-left: 15px;
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        }
+        th, td { 
+            padding: 18px 10px; 
+            text-align: left; 
+            border-bottom: 1px solid var(--border-color);
+        }
+        th { 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            font-size: 0.65em;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+        td {
+            font-size: 0.95em;
+            font-weight: 400;
+        }
+        .winner-cell { 
+            color: var(--pga-blue); 
+            font-weight: 600; 
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-note {
+            text-align: center; 
+            margin-top: 80px; 
+            color: var(--text-muted);
+            font-size: 0.7em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="threejs-container"></div>
+
+    <nav id="top-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo-area">
+                <!-- Using your actual logo file -->
+                <img src="wgof_logo.png" alt="WGOF" class="logo-img" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex';">
+                <div id="logo-fallback" style="display:none; width:40px; height:40px; background:var(--pga-blue); border-radius:4px; align-items:center; justify-content:center; color:#fff; font-weight:700;">W</div>
+                <div class="logo-text">WGOF</div>
+            </a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="has-dropdown">
+                    <a href="#">Seasons</a>
+                    <ul class="dropdown-content">
+                        <li><a href="index.html">2026 Season</a></li>
+                        <li><a href="seasons_2025.html">2025 Season</a></li>
+                    </ul>
+                </li>
+                <li><a href="token_challenge.html">Tokens</a></li>
+                <li><a href="hole_in_one.html">Hole-In-One</a></li>
+                <li><a href="profiles.html">Profiles</a></li>
+                <li><a href="scramble_records.html">Records</a></li>
+                <li><a href="group_photos.html">Gallery</a></li> 
+            </ul>
+        </div>
+    </nav>
+
+    <div class="stadium-banner">
+        <div class="year">2025</div>
+        <div class="champ-label">Order of Merit</div>
+        <div class="name">Keith<br>Flynn</div>
+    </div>
+
+    <div class="container">
+        <h1>Historical Record</h1>
+        
+        <h2>2025 Tournament Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tournament</th>
+                    <th>Venue</th>
+                    <th>Champion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Merkley Invitational</td>
+                    <td>Deer Lake</td>
+                    <td><span class="winner-cell">Kyle Merkley</span></td>
+                </tr>
+                <tr>
+                    <td>Edwards Invitational</td>
+                    <td>Island Green</td>
+                    <td><span class="winner-cell">Kyle Merkley</span></td>
+                </tr>
+                <tr>
+                    <td>Jarvis Open</td>
+                    <td>Par 3</td>
+                    <td><span class="winner-cell">Keith Flynn</span></td>
+                </tr>
+                <tr>
+                    <td>Flynn Championship</td>
+                    <td>Green Hills</td>
+                    <td><span class="winner-cell">Kyle Merkley</span></td>
+                </tr>
+                <tr>
+                    <td>Weed WGOF Championship</td>
+                    <td>Branson Hills</td>
+                    <td><span class="winner-cell">Keith Flynn</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Final Season Standings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Position</th>
+                    <th>Player</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="winner-cell">1</td>
+                    <td class="winner-cell">Keith Flynn</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Kyle Merkley</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Ryan Edwards</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Sterling Weed</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Devon Jarvis</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="footer-note">
+            WGOF: Professionalism • Competition • Fellowship
+        </p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        let scene, camera, renderer, trophy;
+
+        function init() {
+            const container = document.getElementById('threejs-container');
+            scene = new THREE.Scene();
+
+            camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 12;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+
+            const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+            keyLight.position.set(5, 10, 5);
+            scene.add(keyLight);
+
+            const fillLight = new THREE.PointLight(0x4477ff, 0.5);
+            fillLight.position.set(-5, 2, 2);
+            scene.add(fillLight);
+
+            trophy = new THREE.Group();
+
+            // Creating a "Raku" styled material to match the photo's metallic oil-slick look
+            const rakuMaterial = new THREE.MeshStandardMaterial({ 
+                color: 0x222222, 
+                metalness: 0.9, 
+                roughness: 0.3,
+                flatShading: false
+            });
+
+            // Base - Flared out like the photo
+            const baseGeo = new THREE.CylinderGeometry(1.2, 1.8, 1.5, 64);
+            const base = new THREE.Mesh(baseGeo, rakuMaterial);
+            base.position.y = -2.8;
+            trophy.add(base);
+
+            // Tapered "waist" section
+            const waistGeo = new THREE.CylinderGeometry(0.5, 1.2, 1.2, 64);
+            const waist = new THREE.Mesh(waistGeo, rakuMaterial);
+            waist.position.y = -1.5;
+            trophy.add(waist);
+
+            // Cup - Widens at the top
+            const cupGeo = new THREE.CylinderGeometry(2.0, 0.5, 3.5, 64);
+            const cup = new THREE.Mesh(cupGeo, rakuMaterial);
+            cup.position.y = 0.8;
+            trophy.add(cup);
+
+            // Large, Curved Horizontal Handles - matching the photo
+            const handleCurve = new THREE.EllipseCurve(
+                0, 0,            // ax, ay
+                1.4, 0.8,        // xRadius, yRadius
+                0, 2 * Math.PI,  // aStartAngle, aEndAngle
+                false,           // aClockwise
+                0                // aRotation
+            );
+            const points = handleCurve.getPoints(50);
+            const handleShape = new THREE.LatheGeometry(
+                points.map(p => new THREE.Vector2(p.x, p.y)),
+                32
+            );
+
+            // Left Handle
+            const handleL = new THREE.Mesh(new THREE.TorusGeometry(1.1, 0.15, 16, 100, Math.PI), rakuMaterial);
+            handleL.position.set(-1.8, 1.8, 0);
+            handleL.rotation.z = Math.PI / 2;
+            handleL.scale.x = 0.6; // Flatten them horizontally
+            trophy.add(handleL);
+
+            // Right Handle
+            const handleR = new THREE.Mesh(new THREE.TorusGeometry(1.1, 0.15, 16, 100, Math.PI), rakuMaterial);
+            handleR.position.set(1.8, 1.8, 0);
+            handleR.rotation.z = -Math.PI / 2;
+            handleR.scale.x = 0.6;
+            trophy.add(handleR);
+
+            // Name Band on the base
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = 1024;
+            canvas.height = 128;
+            ctx.fillStyle = '#0a0a0a';
+            ctx.fillRect(0, 0, 1024, 128);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 50px Montserrat';
+            ctx.textAlign = 'center';
+            ctx.fillText('2025 CHAMPION: KEITH FLYNN', 512, 80);
+            
+            const textTexture = new THREE.CanvasTexture(canvas);
+            const textGeo = new THREE.CylinderGeometry(1.81, 1.81, 0.6, 64, 1, true);
+            const textMesh = new THREE.Mesh(textGeo, new THREE.MeshBasicMaterial({ map: textTexture, transparent: true }));
+            textMesh.position.y = -3.2;
+            trophy.add(textMesh);
+
+            scene.add(trophy);
+            animate();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if (trophy) {
+                trophy.rotation.y += 0.006;
+                trophy.position.y = Math.sin(Date.now() * 0.001) * 0.15;
+            }
+            renderer.render(scene, camera);
+        }
+
+        window.onload = init;
+        window.onresize = () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        };
+    </script>
+</body>
+</html>
