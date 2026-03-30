@@ -9,96 +9,121 @@
         :root {
             --pga-blue: #002d62;
             --masters-green: #006747;
-            --neutral-bg: #f4f7f9;
+            --neutral-bg: rgba(244, 247, 249, 0.9);
             --border-light: #e2e8f0;
             --text-dark: #1a202c;
-            --gold: #b39a5f;
+            --gold: #ffd700;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0; padding-top: 70px;
-            background-color: #ffffff;
-            color: var(--text-dark);
+            background-color: #1a1a1a; /* Kept your dark theme base */
+            color: #f0f0f0;
+        }
+
+        /* LOGO BACKGROUND PATTERN */
+        #background-pattern {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
+            background-image: url('merkley_logo.jpg'), url('edwards_logo.png'), url('jarvis_logo.png'), url('flynn_logo.png'), url('weed_logo.png');
+            background-position: 10% 10%, 90% 40%, 30% 85%, 70% 20%, 20% 60%;
+            background-repeat: no-repeat;
+            background-size: 300px, 350px, 250px, 400px, 330px;
+            opacity: 0.15;
         }
 
         /* NAVIGATION */
         #top-nav {
             position: fixed; top: 0; left: 0; width: 100%;
-            background: #fff; z-index: 1000;
-            border-bottom: 1px solid var(--border-light);
+            background: #000; z-index: 1000;
+            border-bottom: 2px solid var(--gold);
         }
         .nav-container {
             max-width: 1200px; margin: 0 auto;
             display: flex; align-items: center; justify-content: space-between;
             height: 70px; padding: 0 20px;
         }
-        .logo-text { color: var(--pga-blue); font-weight: 700; letter-spacing: 2px; text-decoration: none; font-size: 1.2rem; }
+        .logo-text { color: #fff; font-weight: 700; letter-spacing: 2px; text-decoration: none; font-size: 1.2rem; }
         
         #top-nav ul { list-style: none; display: flex; margin: 0; padding: 0; align-items: center; }
         #top-nav li { margin-left: 20px; position: relative; }
-        #top-nav li a { text-decoration: none; color: var(--pga-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 25px 0; display: block; }
+        #top-nav li a { text-decoration: none; color: #b0b0b0; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 25px 0; display: block; }
+        #top-nav li a:hover { color: #fff; }
 
         /* SEASONS DROPDOWN */
         .dropdown-content {
             display: none; position: absolute; top: 100%; right: 0;
-            min-width: 160px; background-color: #ffffff;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            border: 1px solid var(--border-light); z-index: 1001;
+            min-width: 160px; background-color: #000;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            border: 1px solid var(--gold); z-index: 1001;
         }
         li.has-dropdown:hover .dropdown-content { display: block; }
-        .dropdown-content li { margin: 0; width: 100%; border-bottom: 1px solid var(--border-light); }
-        .dropdown-content li:last-child { border-bottom: none; }
-        .dropdown-content li a { padding: 12px 20px; display: block; text-transform: none; font-size: 0.85rem; font-weight: 500; color: var(--text-dark); }
-        .dropdown-content li a:hover { background-color: var(--neutral-bg); color: var(--pga-blue); }
+        .dropdown-content li { margin: 0; width: 100%; border-bottom: 1px solid #333; }
+        .dropdown-content li a { padding: 12px 20px; display: block; text-transform: none; color: #fff; }
+        .dropdown-content li a:hover { background-color: #222; color: var(--gold); }
+
+        /* MARQUEE BANNER */
+        #floating-banner {
+            background-color: rgba(0, 0, 0, 0.9); 
+            border-bottom: 2px solid var(--gold);
+            padding: 10px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .marquee-content {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 25s linear infinite;
+        }
+        .marquee-content h2 { display: inline; color: var(--gold); font-size: 1.2rem; margin-right: 20px; text-transform: uppercase; }
+        .marquee-content span { margin-right: 40px; font-weight: 600; font-size: 1.1rem; }
+        @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
 
         /* MAIN LAYOUT */
         .grid-container {
             max-width: 1200px; margin: 0 auto;
             display: grid; grid-template-columns: 1fr 350px;
-            gap: 40px; padding: 40px 20px 80px;
+            gap: 40px; padding: 20px 20px 80px;
+            position: relative; z-index: 2;
         }
 
         /* PGA STYLE NEWS GRID */
-        .featured-story { margin-bottom: 40px; border-bottom: 1px solid var(--border-light); padding-bottom: 30px; }
-        .featured-img { width: 100%; height: 400px; background: #eee; object-fit: cover; border-radius: 4px; margin-bottom: 20px; }
-        .featured-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--pga-blue); margin: 10px 0; line-height: 1.1; text-decoration: none; display: block; }
+        .news-section { background: rgba(34, 34, 34, 0.8); padding: 30px; border-radius: 8px; }
+        .featured-story { margin-bottom: 40px; border-bottom: 1px solid #444; padding-bottom: 30px; }
+        .featured-img { width: 100%; height: auto; border-radius: 4px; margin-bottom: 20px; border: 1px solid #555; }
+        .featured-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin: 10px 0; line-height: 1.1; text-decoration: none; display: block; }
         
         .news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .news-item { border-bottom: 1px solid var(--border-light); padding-bottom: 20px; }
-        .news-thumb { width: 100%; height: 180px; background: #f0f0f0; object-fit: cover; border-radius: 4px; margin-bottom: 15px; }
-        .news-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--pga-blue); text-decoration: none; font-weight: 700; line-height: 1.3; display: block; }
-        .story-tag { font-size: 0.65rem; font-weight: 700; color: var(--masters-green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+        .news-item { border-bottom: 1px solid #444; padding-bottom: 20px; }
+        .news-thumb { width: 100%; height: 180px; object-fit: cover; border-radius: 4px; margin-bottom: 15px; border: 1px solid #555; }
+        .news-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #fff; text-decoration: none; font-weight: 700; display: block; }
+        .story-tag { font-size: 0.65rem; font-weight: 700; color: var(--masters-green); text-transform: uppercase; margin-bottom: 8px; display: block; }
 
-        /* SIDEBAR COMPONENTS */
-        .sidebar-box { background: #fff; border: 1px solid var(--border-light); border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
-        .lb-header { background: var(--masters-green); color: white; padding: 20px; text-align: center; }
-        .lb-header h4 { margin: 0; font-family: 'Playfair Display', serif; font-size: 1.3rem; }
-        .lb-row { border-bottom: 1px solid var(--border-light); display: flex; align-items: center; padding: 12px 15px; }
-        .lb-pos { width: 35px; font-weight: 700; font-size: 0.8rem; color: #718096; }
-        .lb-img { width: 40px; height: 40px; border-radius: 50%; background: #edf2f7; object-fit: cover; margin-right: 12px; border: 1px solid var(--border-light); }
+        /* SIDEBAR */
+        .sidebar-box { background: rgba(0, 0, 0, 0.7); border: 1px solid #444; border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
+        .lb-header { background: var(--masters-green); color: white; padding: 15px; text-align: center; }
+        .lb-header h4 { margin: 0; font-family: 'Playfair Display', serif; }
+        .lb-row { border-bottom: 1px solid #333; display: flex; align-items: center; padding: 12px 15px; }
+        .lb-pos { width: 35px; font-weight: 700; color: #888; }
+        .lb-img { width: 40px; height: 40px; border-radius: 50%; margin-right: 12px; border: 1px solid #555; }
         .lb-name { flex-grow: 1; font-weight: 600; font-size: 0.85rem; }
-        .lb-score { font-weight: 700; font-size: 0.85rem; color: var(--masters-green); }
+        .lb-score { font-weight: 700; color: var(--gold); }
         
-        .rankings-header { background: var(--pga-blue); color: white; padding: 15px; text-align: center; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
-        .ai-note { font-size: 0.6rem; color: #a0aec0; text-align: center; padding: 10px; font-style: italic; background: #fcfcfc; }
+        .rankings-header { background: var(--pga-blue); color: white; padding: 12px; text-align: center; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-        /* TITLEIST AD */
-        .sidebar-ad { background: #f8f9fa; padding: 30px; border-radius: 4px; text-align: center; border: 1px solid var(--border-light); }
-        .ad-brand { font-weight: 900; font-size: 1.2rem; letter-spacing: -1px; margin-bottom: 5px; color: #000; }
-        .ad-product { color: #d00; font-weight: 700; font-size: 1.5rem; margin-bottom: 15px; }
-        .ad-cta { background: #000; color: #fff; padding: 12px 25px; text-decoration: none; font-weight: 700; font-size: 0.7rem; border-radius: 0; display: inline-block; }
+        /* ADS */
+        .sidebar-ad { background: #000; padding: 30px; border-radius: 4px; text-align: center; border: 2px solid #333; }
+        .ad-brand { font-weight: 900; font-size: 1.2rem; color: #fff; }
+        .ad-product { color: #d00; font-weight: 700; font-size: 1.5rem; }
+        .ad-cta { background: #fff; color: #000; padding: 10px 20px; text-decoration: none; font-weight: 700; font-size: 0.7rem; display: inline-block; margin-top: 15px; }
 
-        /* GALLERY */
-        .gallery-section { max-width: 1200px; margin: 0 auto; padding: 40px 20px 80px; border-top: 1px solid var(--border-light); }
-        .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .photo-card img { width: 100%; height: 250px; object-fit: cover; border-radius: 4px; }
-        .photo-label { padding: 15px 0; font-weight: 700; font-size: 0.75rem; color: var(--pga-blue); text-transform: uppercase; }
-
-        footer { background: #fff; border-top: 1px solid var(--border-light); padding: 40px 0; text-align: center; font-size: 0.7rem; color: #718096; }
+        footer { border-top: 1px solid #333; padding: 40px 0; text-align: center; font-size: 0.7rem; color: #888; position: relative; z-index: 2; }
     </style>
 </head>
 <body>
+
+<div id="background-pattern"></div>
 
 <nav id="top-nav">
     <div class="nav-container">
@@ -119,14 +144,31 @@
     </div>
 </nav>
 
+<div id="floating-banner">
+    <div class="marquee-content">
+        <h2>Projected 2026 Standings</h2>
+        <span>1. Kyle Merkley (550 pts)</span>
+        <span>2. Keith Flynn (490 pts)</span>
+        <span>3. Devon Jarvis (310 pts)</span>
+        <span>4. Sterling Weed (280 pts)</span>
+        <span>5. Ryan Edwards (245 pts)</span>
+        <h2>Projected 2026 Standings</h2>
+        <span>1. Kyle Merkley (550 pts)</span>
+        <span>2. Keith Flynn (490 pts)</span>
+        <span>3. Devon Jarvis (310 pts)</span>
+        <span>4. Sterling Weed (280 pts)</span>
+        <span>5. Ryan Edwards (245 pts)</span>
+    </div>
+</div>
+
 <div class="grid-container">
     
     <main class="news-section">
         <section class="featured-story">
-            <img src="group_2025.png" class="featured-img">
+            <img src="image_7.png" class="featured-img" alt="Sterling Weed hosting The Weed Championship">
             <span class="story-tag">Tour News</span>
             <a href="#" class="featured-title">Sterling Weed Set to Host WGOF's Masters Weekend</a>
-            <p style="color: #4a5568;">The 2026 season officially kicks off with a nod to tradition as Sterling Weed takes the hosting reigns for the highly anticipated April major.</p>
+            <p style="color: #ccc;">The 2026 season officially kicks off with a nod to tradition as Sterling Weed takes the hosting reigns for the highly anticipated April major, The Weed Championship.</p>
         </section>
 
         <div class="news-grid">
@@ -167,34 +209,15 @@
             <div class="lb-row"><div class="lb-pos">T1</div><img src="sterling_image.png" class="lb-img"><div class="lb-name">Sterling Weed</div><div class="lb-score">E</div></div>
         </div>
 
-        <div class="sidebar-box">
-            <div class="rankings-header">Projected 2026 Standings</div>
-            <div class="lb-row"><div class="lb-pos">1</div><div class="lb-name">Kyle Merkley</div><div class="lb-score">550 pts</div></div>
-            <div class="lb-row"><div class="lb-pos">2</div><div class="lb-name">Keith Flynn</div><div class="lb-score">490 pts</div></div>
-            <div class="lb-row"><div class="lb-pos">3</div><div class="lb-name">Devon Jarvis</div><div class="lb-score">310 pts</div></div>
-            <div class="lb-row"><div class="lb-pos">4</div><div class="lb-name">Sterling Weed</div><div class="lb-score">280 pts</div></div>
-            <div class="lb-row"><div class="lb-pos">5</div><div class="lb-name">Ryan Edwards</div><div class="lb-score">245 pts</div></div>
-            <div class="ai-note">Powered by WGOF AI Prediction Models</div>
-        </div>
-
         <div class="sidebar-ad">
             <span class="ad-label" style="font-size: 0.5rem; letter-spacing: 2px; color: #888; margin-bottom: 10px; display: block;">SPONSORED</span>
             <div class="ad-brand">Titleist</div>
             <div class="ad-product">T250</div>
-            <p style="font-size: 0.75rem; margin-bottom: 20px; font-weight: 500;">Precision distance for the dedicated player.</p>
+            <p style="font-size: 0.75rem; margin-bottom: 10px; color: #888;">Ryan...it is time. Buy some new irons.</p>
             <a href="#" class="ad-cta">UPGRADE NOW</a>
         </div>
     </aside>
 </div>
-
-<section class="gallery-section">
-    <h3 style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: var(--masters-green); margin-bottom: 30px; border-bottom: 2px solid var(--masters-green); display: inline-block;">Tour Gallery</h3>
-    <div class="photo-grid">
-        <div class="photo-card"><img src="group_2025.png"><div class="photo-label">2025 Season Archive</div></div>
-        <div class="photo-card"><img src="group_2024.png"><div class="photo-label">2024 Historical Highlights</div></div>
-        <div class="photo-card"><img src="group_2023.png"><div class="photo-label">The 2023 Collection</div></div>
-    </div>
-</section>
 
 <footer>
     <p>&copy; 2026 WGOF | THE OFFICIAL TOUR SITE</p>
