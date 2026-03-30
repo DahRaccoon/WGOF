@@ -6,7 +6,6 @@
     <title>2026 Season | WGOF TOUR</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        /* CSS Variables imported from index (27).html */
         :root {
             --pga-blue: #002d62;
             --masters-green: #006747;
@@ -23,7 +22,7 @@
             color: var(--text-dark);
         }
 
-        /* NAVIGATION - MATCHES INDEX */
+        /* NAVIGATION - RESTORED FROM INDEX */
         #top-nav {
             position: fixed; top: 0; left: 0; width: 100%;
             background: #fff; z-index: 1000;
@@ -34,104 +33,78 @@
             display: flex; align-items: center; justify-content: space-between;
             height: 70px; padding: 0 20px;
         }
-        .logo-text { color: var(--pga-blue); font-weight: 700; letter-spacing: 2px; text-decoration: none; font-size: 1.2rem; }
-        #top-nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
-        #top-nav li { margin-left: 20px; }
-        #top-nav li a { text-decoration: none; color: var(--pga-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        .logo-img { height: 40px; display: block; }
+        
+        #top-nav ul { list-style: none; display: flex; margin: 0; padding: 0; align-items: center; }
+        #top-nav li { margin-left: 20px; position: relative; }
+        #top-nav li a { text-decoration: none; color: var(--pga-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 25px 0; display: block; }
 
-        /* MASTERS THEME BANNER - Current Tournament Feature */
+        /* MASTERS THEME BANNER */
         .masters-banner {
             background-color: var(--masters-green);
             color: white;
-            padding: 80px 20px;
+            padding: 60px 20px;
             text-align: center;
             border-bottom: 8px solid var(--gold);
         }
-        .masters-banner .tagline {
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-        .masters-banner h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin: 0;
-            font-weight: 700;
-        }
-        .masters-banner .sub-heading {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-top: 10px;
-        }
-
-        /* TOURNAMENT LETTER BUTTON & REDACTION STYLE */
+        .masters-banner .tagline { text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; margin-bottom: 10px; display: block; }
+        .masters-banner h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 0; }
+        
         .btn-letter {
-            margin-top: 30px;
-            padding: 15px 30px;
+            margin-top: 25px;
+            padding: 12px 25px;
             background: transparent;
             color: white;
             border: 2px solid white;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
             cursor: pointer;
             transition: 0.3s;
         }
         .btn-letter:hover { background: white; color: var(--masters-green); }
 
+        /* REDACTED LETTER CONTENT */
         .letter-container {
             max-width: 800px;
-            margin: 40px auto;
-            background: #fff;
-            padding: 50px;
+            margin: 20px auto;
+            background: #fffdf6;
+            padding: 40px;
             border: 1px solid var(--border-light);
-            display: none; /* Hidden until clicked */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: none;
+            text-align: left;
+            line-height: 1.6;
+            color: #2d3748;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
-        .redacted {
-            background: #1a202c;
-            color: #1a202c;
-            display: inline-block;
-            min-width: 60px;
-            height: 1.2em;
-            vertical-align: middle;
-        }
+        .redacted { background: #000; color: #000; padding: 0 5px; }
 
-        /* TABLES - Using standard WGOF styling */
-        .content-container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        /* TABLES */
+        .content-container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
         .section-header {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: var(--pga-blue);
-            margin-bottom: 30px;
+            margin: 40px 0 20px;
             border-bottom: 2px solid var(--masters-green);
-            padding-bottom: 10px;
-            display: inline-block;
+            padding-bottom: 5px;
         }
         
         .tour-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
+            font-size: 0.9rem;
         }
         .tour-table th {
             text-align: left;
             background: var(--neutral-bg);
-            padding: 15px;
-            font-size: 0.7rem;
+            padding: 12px;
             text-transform: uppercase;
+            font-size: 0.7rem;
             letter-spacing: 1px;
             border-bottom: 2px solid var(--border-light);
         }
-        .tour-table td {
-            padding: 15px;
-            border-bottom: 1px solid var(--border-light);
-            font-size: 0.9rem;
-        }
+        .tour-table td { padding: 12px; border-bottom: 1px solid var(--border-light); }
         .pts-cell { font-weight: 700; color: var(--masters-green); }
 
         footer { padding: 40px 0; text-align: center; font-size: 0.7rem; color: #718096; border-top: 1px solid var(--border-light); }
@@ -141,10 +114,13 @@
 
 <nav id="top-nav">
     <div class="nav-container">
-        <a href="index.html" class="logo-text">WGOF TOUR</a>
+        <a href="index.html"><img src="wgof_logo.png" class="logo-img" alt="WGOF Logo"></a>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="profiles.html">Profiles</a></li>
+            <li><a href="scramble_records.html">Scrambles</a></li>
+            <li><a href="token_challenge.html">Tokens</a></li>
+            <li><a href="hole_in_one.html">Hole In One</a></li>
             <li><a href="seasons_2025.html">2025 Season</a></li>
             <li><a href="seasons_2026.html" style="color: var(--masters-green);">2026 Season</a></li>
         </ul>
@@ -154,4 +130,98 @@
 <header class="masters-banner">
     <span class="tagline">A Tradition Unlike Any Other</span>
     <h1>The Second Annual Weed Championship</h1>
-    <p class="sub-heading">A Tournament of Skill, Luck & Questionable Life Choices</
+    <button class="btn-letter" onclick="toggleLetter()">Read Tournament Letter</button>
+</header>
+
+<div id="tournament-letter" class="letter-container">
+    <p>Dear WGOF Member,</p>
+    <p>It is with pride that we invite you to this year's tournament.</p>
+    <p>It seems like only yesterday that we wrapped up the WGOF season at the infuriatingly fun, Branson Hills Golf Club. Last season featured many memorable moments such as Ryan throwing his wedge into the trees on Hole 15 at Deer Lake, Devon shanking the opening tee shot in front of the wives, or Keith thinking that rule 9.4 doesn't apply to his practice swings.</p>
+    <p>I am sure that we are all eager to start a new, fresh season full of hope and possibilities (Kyle is probably the most eager judging by the fact that he wants to punch Keith in the face everytime he mentions the last championship).</p>
+    <p>The Weed Championship will be held at <span class="redacted">REDACTED</span>. Located in <span class="redacted">REDACTED</span>, the <span class="redacted">REDACTED</span> is a <span class="redacted">REDACTED</span> yard par <span class="redacted">REDACTED</span>.</p>
+    <hr>
+    <p><strong>Rule Modifications:</strong></p>
+    <ul>
+        <li>Your drive finds a bare spot of grass in the fairway -- Improved lies are allowed</li>
+        <li>You want to fluff the lie of your chip -- Fluff away</li>
+        <li>You want to line up your putt on the fringe -- Line that ball up</li>
+        <li>You want a breakfast ball -- Hit that breakfast ball. In fact let's hit another on 10</li>
+    </ul>
+    <p><em>*If you have an Android phone, assume the ruling is a one stroke penalty and move on.</em></p>
+</div>
+
+<div class="content-container">
+    <h2 class="section-header">Weed Championship Standings</h2>
+    <table class="tour-table">
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Front 9</th>
+                <th>Back 9</th>
+                <th>Full 18</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Keith Flynn</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>Kyle Merkley</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>Ryan Edwards</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>Devon Jarvis</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>Sterling Weed</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+        </tbody>
+    </table>
+
+    <h2 class="section-header">2026 Full Season Standings</h2>
+    <table class="tour-table">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Player</th>
+                <th>Events</th>
+                <th class="pts-cell">Total Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Kyle Merkley</td><td>0</td><td class="pts-cell">0</td></tr>
+            <tr><td>2</td><td>Keith Flynn</td><td>0</td><td class="pts-cell">0</td></tr>
+            <tr><td>3</td><td>Devon Jarvis</td><td>0</td><td class="pts-cell">0</td></tr>
+            <tr><td>4</td><td>Sterling Weed</td><td>0</td><td class="pts-cell">0</td></tr>
+            <tr><td>5</td><td>Ryan Edwards</td><td>0</td><td class="pts-cell">0</td></tr>
+        </tbody>
+    </table>
+
+    <h2 class="section-header">2026 Season Schedule</h2>
+    <table class="tour-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Tournament</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>April 11</td><td>Weed Championship</td></tr>
+            <tr><td>May 2</td><td>Jarvis Open</td></tr>
+            <tr><td>June 1</td><td>Flynnvitational</td></tr>
+            <tr><td>August 8</td><td>Edwards Invitational</td></tr>
+            <tr><td>November 9</td><td>WGOF Championship</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <p>&copy; 2026 WGOF | THE OFFICIAL TOUR SITE</p>
+</footer>
+
+<script>
+    function toggleLetter() {
+        var letter = document.getElementById("tournament-letter");
+        if (letter.style.display === "none" || letter.style.display === "") {
+            letter.style.display = "block";
+        } else {
+            letter.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
