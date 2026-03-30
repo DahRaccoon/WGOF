@@ -73,6 +73,20 @@
             font-size: 0.85em; letter-spacing: 2px; margin: 50px 0 20px;
         }
 
+        /* SEASON RECORD BOX */
+        .season-record-box {
+            background-color: var(--pga-blue);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,45,98,0.2);
+        }
+        .record-title { text-transform: uppercase; letter-spacing: 2px; font-size: 0.85em; opacity: 0.9; }
+        .record-score { font-family: 'Playfair Display', serif; font-size: 3em; margin: 10px 0; }
+        .record-leader { font-weight: 600; font-size: 1.1em; color: var(--gold-accent); }
+
         table { width: 100%; border-collapse: collapse; background: white; margin-bottom: 30px; }
         th {
             background-color: var(--neutral-gray); color: var(--text-muted);
@@ -83,7 +97,7 @@
         td { padding: 15px; border-bottom: 1px solid var(--border-color); font-size: 0.9em; }
         
         .result-cell { font-weight: 600; color: var(--pga-blue); }
-        .winner-name { font-weight: 600; color: var(--masters-green); }
+        .winner-name { font-weight: 600; color: var(--pga-blue); }
         .note-cell { font-style: italic; color: var(--text-muted); font-size: 0.85em; }
         
         @media (max-width: 768px) {
@@ -119,7 +133,13 @@
 <div class="container">
     <h1>Scramble Records</h1>
 
-    <h2>Current 2026 Season Standings</h2>
+    <div class="season-record-box">
+        <div class="record-title">2026 Season Series Record</div>
+        <div class="record-score">2 - 0 - 1</div>
+        <div class="record-leader">In Favor of Kyle & Keith</div>
+    </div>
+
+    <h2>2026 Match Results</h2>
     <table>
         <thead>
             <tr>
@@ -160,7 +180,6 @@
     </table>
 
     <h2>🏆 Historical Scramble Champions</h2>
-    <p style="color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px;">The annual title for the winningest duo of the calendar year.</p>
     <table>
         <thead>
             <tr>
