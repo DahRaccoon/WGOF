@@ -95,12 +95,15 @@
             flex-wrap: wrap;
             gap: 20px;
         }
-        .ticker-logo-circle {
-            width: 110px; height: 110px; border-radius: 50%;
-            border: 1px solid var(--border-light);
-            display: flex; justify-content: center; align-items: center;
-            background: #fff; overflow: hidden;
-        }
+       .ticker-logo-circle {
+    width: 100px; 
+    height: 100px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    background: transparent; /* Removes the white background */
+    border: none;             /* Removes the gray outer ring */
+}
         .ticker-logo-circle img { width: 95%; height: auto; display: block; }
         
         .official-tag {
