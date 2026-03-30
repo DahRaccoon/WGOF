@@ -33,7 +33,7 @@
             display: flex; align-items: center; justify-content: space-between;
             height: 70px; padding: 0 20px;
         }
-        .logo-text { color: var(--pga-blue); font-weight: 700; letter-spacing: 2px; text-decoration: none; font-size: 1.2rem; }
+        .logo-img { height: 40px; display: block; }
         
         #top-nav ul { list-style: none; display: flex; margin: 0; padding: 0; align-items: center; }
         #top-nav li { margin-left: 20px; position: relative; }
@@ -48,9 +48,7 @@
         }
         li.has-dropdown:hover .dropdown-content { display: block; }
         .dropdown-content li { margin: 0; width: 100%; border-bottom: 1px solid var(--border-light); }
-        .dropdown-content li:last-child { border-bottom: none; }
         .dropdown-content li a { padding: 12px 20px; display: block; text-transform: none; font-size: 0.85rem; font-weight: 500; color: var(--text-dark); }
-        .dropdown-content li a:hover { background-color: var(--neutral-bg); color: var(--pga-blue); }
 
         /* MAIN LAYOUT */
         .grid-container {
@@ -81,10 +79,14 @@
         .lb-score { font-weight: 700; font-size: 0.85rem; color: var(--masters-green); }
         
         .rankings-header { background: var(--pga-blue); color: white; padding: 15px; text-align: center; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
-        .ai-note { font-size: 0.6rem; color: #a0aec0; text-align: center; padding: 10px; font-style: italic; background: #fcfcfc; }
+        
+        /* SCHEDULE TABLE (SMALL) */
+        .schedule-mini { width: 100%; border-collapse: collapse; font-size: 0.7rem; }
+        .schedule-mini td { padding: 8px 15px; border-bottom: 1px solid var(--border-light); }
+        .schedule-mini .date-col { font-weight: 700; color: #718096; width: 60px; }
 
         /* TITLEIST AD */
-        .sidebar-ad { background: #f8f9fa; padding: 30px; border-radius: 4px; text-align: center; border: 1px solid var(--border-light); }
+        .sidebar-ad { background: #f8f9fa; padding: 30px; border-radius: 4px; text-align: center; border: 1px solid var(--border-light); margin-bottom: 30px; }
         .ad-brand { font-weight: 900; font-size: 1.2rem; letter-spacing: -1px; margin-bottom: 5px; color: #000; }
         .ad-product { color: #d00; font-weight: 700; font-size: 1.5rem; margin-bottom: 15px; }
         .ad-cta { background: #000; color: #fff; padding: 12px 25px; text-decoration: none; font-weight: 700; font-size: 0.7rem; border-radius: 0; display: inline-block; }
@@ -102,17 +104,16 @@
 
 <nav id="top-nav">
     <div class="nav-container">
-        <a href="index.html" class="logo-text">WGOF TOUR</a>
+        <a href="index.html"><img src="wgof_logo.png" class="logo-img" alt="WGOF Logo"></a>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="profiles.html">Profiles</a></li>
-            <li><a href="scramble_records.html">Scrambles</a></li> <li><a href="token_challenge.html">Tokens</a></li>
-            <li><a href="hole_in_one.html">Hole In One</a></li>
+            <li><a href="scramble_records.html">Scrambles</a></li>
             <li class="has-dropdown">
                 <a href="#">Seasons ▾</a>
                 <ul class="dropdown-content">
                     <li><a href="seasons_2025.html">2025 Season</a></li>
-                    <li><a href="#">2026 Season</a></li>
+                    <li><a href="seasons_2026.html">2026 Season</a></li>
                 </ul>
             </li>
         </ul>
@@ -123,9 +124,11 @@
     
     <main class="news-section">
         <section class="featured-story">
-            <img src="images/image_11.png" class="featured-img" alt="Sterling Weed hosting The Weed Championship">
+            <a href="seasons_2026.html">
+                <img src="images/image_11.png" class="featured-img" alt="Sterling Weed hosting The Weed Championship">
+            </a>
             <span class="story-tag">Tour News</span>
-            <a href="#" class="featured-title">Sterling Weed Set to Host WGOF's Masters Weekend</a>
+            <a href="seasons_2026.html" class="featured-title">Sterling Weed Set to Host WGOF's Masters Weekend</a>
             <p style="color: #4a5568;">The 2026 season officially kicks off with a nod to tradition as Sterling Weed takes the hosting reigns for the highly anticipated April major.</p>
         </section>
 
@@ -140,16 +143,6 @@
                 <span class="story-tag">2026 Favorite?</span>
                 <a href="#" class="news-title">Will Kyle Merkley Overcome Heartbreaking Defeat?</a>
             </div>
-            <div class="news-item">
-                <img src="images/image_22.png" class="news-thumb" alt="Keith Flynn Defending Champion">
-                <span class="story-tag">Back 2 Back?</span>
-                <a href="#" class="news-title">Can Keith Flynn Repeat as Champion?</a>
-            </div>
-            <div class="news-item">
-                <img src="images/image_23.png" class="news-thumb" alt="Devon Jarvis Player Watch">
-                <span class="story-tag">Senior Tour Bound?</span>
-                <a href="#" class="news-title">Will Devon's Newfound Consistency Off the Tee Flip the Standings?</a>
-            </div>
         </div>
     </main>
 
@@ -162,19 +155,6 @@
             </div>
             <div class="lb-row"><div class="lb-pos">T1</div><img src="keith_image.png" class="lb-img"><div class="lb-name">Keith Flynn</div><div class="lb-score">E</div></div>
             <div class="lb-row"><div class="lb-pos">T1</div><img src="kyle_image.png" class="lb-img"><div class="lb-name">Kyle Merkley</div><div class="lb-score">E</div></div>
-            <div class="lb-row"><div class="lb-pos">T1</div><img src="ryan_image.png" class="lb-img"><div class="lb-name">Ryan Edwards</div><div class="lb-score">E</div></div>
-            <div class="lb-row"><div class="lb-pos">T1</div><img src="devon_image.png" class="lb-img"><div class="lb-name">Devon Jarvis</div><div class="lb-score">E</div></div>
-            <div class="lb-row"><div class="lb-pos">T1</div><img src="sterling_image.png" class="lb-img"><div class="lb-name">Sterling Weed</div><div class="lb-score">E</div></div>
-        </div>
-
-        <div class="sidebar-box">
-            <div class="rankings-header">Projected 2026 Standings</div>
-            <div class="lb-row"><div class="lb-pos">1</div><div class="lb-name">Kyle Merkley</div><div class="lb-score">550 pts</div></div>
-            <div class="lb-row"><div class="lb-pos">2</div><div class="lb-name">Keith Flynn</div><div class="lb-score">490 pts</div></div>
-            <div class="lb-row"><div class="lb-pos">3</div><div class="lb-name">Devon Jarvis</div><div class="lb-score">310 pts</div></div>
-            <div class="lb-row"><div class="lb-pos">4</div><div class="lb-name">Sterling Weed</div><div class="lb-score">280 pts</div></div>
-            <div class="lb-row"><div class="lb-pos">5</div><div class="lb-name">Ryan Edwards</div><div class="lb-score">245 pts</div></div>
-            <div class="ai-note">Powered by WGOF AI Prediction Models</div>
         </div>
 
         <div class="sidebar-ad">
@@ -184,17 +164,19 @@
             <p style="font-size: 0.75rem; margin-bottom: 20px; font-weight: 500;">It is time for Ryan to buy new irons.</p>
             <a href="#" class="ad-cta">UPGRADE NOW</a>
         </div>
+
+        <div class="sidebar-box">
+            <div class="rankings-header">2026 Season Schedule</div>
+            <table class="schedule-mini">
+                <tr><td class="date-col">Apr 11</td><td>Weed Championship</td></tr>
+                <tr><td class="date-col">May 2</td><td>Jarvis Open</td></tr>
+                <tr><td class="date-col">Jun 1</td><td>Flynnvitational</td></tr>
+                <tr><td class="date-col">Aug 8</td><td>Edwards Invitational</td></tr>
+                <tr><td class="date-col">Nov 9</td><td>WGOF Championship</td></tr>
+            </table>
+        </div>
     </aside>
 </div>
-
-<section class="gallery-section">
-    <h3 style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: var(--masters-green); margin-bottom: 30px; border-bottom: 2px solid var(--masters-green); display: inline-block;">Tour Gallery</h3>
-    <div class="photo-grid">
-        <div class="photo-card"><img src="group_2025.png"><div class="photo-label">2025 Season Archive</div></div>
-        <div class="photo-card"><img src="group_2024.png"><div class="photo-label">2024 Historical Highlights</div></div>
-        <div class="photo-card"><img src="group_2023.png"><div class="photo-label">The 2023 Collection</div></div>
-    </div>
-</section>
 
 <footer>
     <p>&copy; 2026 WGOF | THE OFFICIAL TOUR SITE</p>
