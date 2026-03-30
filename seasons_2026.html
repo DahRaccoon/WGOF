@@ -96,15 +96,15 @@
             gap: 20px;
         }
      .ticker-logo-circle {
+    width: 120px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 0;       /* Shrinks the container to nothing */
-    height: 0;      /* Shrinks the container to nothing */
-    border: none;   /* Guaranteed no border */
-    background: none; 
-    margin-right: 60px; /* Pushes the text away from the floating logo */
-    position: relative;
+    background-color: #ffffff; /* Matches the ticker background perfectly */
+    border: none;              /* Removes the gray ring entirely */
+    margin-right: 15px;
+    flex-shrink: 0;            /* Prevents the logo from getting squished on mobile */
 }
         .ticker-logo-circle img { width: 95%; height: auto; display: block; }
         
@@ -260,7 +260,7 @@
     <div class="wgoftour-ticker-container">
      <div class="ticker-logo-circle">
     <img src="images/weed-championship-logo.png" alt="WGOF Logo" 
-         style="position: absolute; height: 130px; width: auto; max-width: none; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));">
+         style="max-width: 95%; height: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));">
 </div>
         <div style="flex: 1; min-width: 300px;">
             <div class="official-tag">Official</div>
