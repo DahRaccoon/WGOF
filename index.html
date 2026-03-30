@@ -58,16 +58,36 @@
         }
 
         /* PGA STYLE NEWS GRID */
-        .featured-story { margin-bottom: 40px; border-bottom: 1px solid var(--border-light); padding-bottom: 30px; }
-        .featured-img { width: 100%; height: 400px; background: #eee; object-fit: cover; border-radius: 4px; margin-bottom: 20px; }
-        .featured-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--pga-blue); margin: 10px 0; line-height: 1.1; text-decoration: none; display: block; }
-        
-        .news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .news-item { border-bottom: 1px solid var(--border-light); padding-bottom: 20px; }
-        .news-thumb { width: 100%; height: 180px; background: #f0f0f0; object-fit: cover; border-radius: 4px; margin-bottom: 15px; }
-        .news-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--pga-blue); text-decoration: none; font-weight: 700; line-height: 1.3; display: block; }
-        .story-tag { font-size: 0.65rem; font-weight: 700; color: var(--masters-green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+        <div class="news-grid">
+    <div class="news-item">
+        <img src="images/image_13.png" class="news-thumb" alt="Ryan Edwards Equipment Focus">
+        <span class="story-tag">In the Lab</span>
+        <a href="https://www.tiktok.com/@noahpgapro/video/7563254251636510007" class="news-title">Will Ryan Edwards' New Grip be the Difference?</a>
+    </div>
+    <div class="news-item">
+        <img src="images/image_17.png" class="news-thumb" alt="Kyle Merkley Analysis">
+        <span class="story-tag">2026 Favorite?</span>
+        <a href="https://www.tiktok.com/@golfoncbs/video/7518917038308379959" class="news-title">Will Kyle Merkley Overcome Heartbreaking Defeat?</a>
+    </div>
+    <div class="news-item">
+        <img src="images/image_22.png" class="news-thumb" alt="Keith Flynn Defending Champion">
+        <span class="story-tag">Back 2 Back?</span>
+        <a href="#" class="news-title">Can Keith Flynn Repeat as Champion?</a>
+    </div>
+    <div class="news-item">
+        <img src="images/image_23.png" class="news-thumb" alt="Devon Jarvis Player Watch">
+        <span class="story-tag">Senior Tour Bound?</span>
+        <a href="#" class="news-title">Will Devon's Newfound Consistency Off the Tee Flip the Standings?</a>
+    </div>
+</div>
 
+<div class="sidebar-ad">
+    <span class="ad-label" style="font-size: 0.5rem; letter-spacing: 2px; color: #888; margin-bottom: 10px; display: block;">SPONSORED</span>
+    <div class="ad-brand">Titleist</div>
+    <div class="ad-product">T250</div>
+    <p style="font-size: 0.75rem; margin-bottom: 20px; font-weight: 500;">It is time for Ryan to buy new irons.</p>
+    <a href="https://www.titleist.com" class="ad-cta">UPGRADE NOW</a>
+</div>
         /* SIDEBAR COMPONENTS */
         .sidebar-box { background: #fff; border: 1px solid var(--border-light); border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
         .lb-header { background: var(--masters-green); color: white; padding: 20px; text-align: center; }
@@ -86,11 +106,13 @@
         .schedule-mini .date-col { font-weight: 700; color: #718096; width: 60px; }
 
         /* TITLEIST AD */
-        .sidebar-ad { background: #f8f9fa; padding: 30px; border-radius: 4px; text-align: center; border: 1px solid var(--border-light); margin-bottom: 30px; }
-        .ad-brand { font-weight: 900; font-size: 1.2rem; letter-spacing: -1px; margin-bottom: 5px; color: #000; }
-        .ad-product { color: #d00; font-weight: 700; font-size: 1.5rem; margin-bottom: 15px; }
-        .ad-cta { background: #000; color: #fff; padding: 12px 25px; text-decoration: none; font-weight: 700; font-size: 0.7rem; border-radius: 0; display: inline-block; }
-
+       <div class="sidebar-ad">
+    <span class="ad-label" style="font-size: 0.5rem; letter-spacing: 2px; color: #888; margin-bottom: 10px; display: block;">SPONSORED</span>
+    <div class="ad-brand">Titleist</div>
+    <div class="ad-product">T250</div>
+    <p style="font-size: 0.75rem; margin-bottom: 20px; font-weight: 500;">It is time for Ryan to buy new irons.</p>
+    <a href="https://www.titleist.com" class="ad-cta">UPGRADE NOW</a>
+</div>
         /* GALLERY */
         .gallery-section { max-width: 1200px; margin: 0 auto; padding: 40px 20px 80px; border-top: 1px solid var(--border-light); }
         .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
