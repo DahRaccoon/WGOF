@@ -3,200 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WGOF | Official Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <title>WGOF | The Official Home of the Tour</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --pga-blue: #002d62;
             --masters-green: #006747;
-            --neutral-gray: #f8f9fa;
-            --border-color: #e2e8f0;
-            --text-main: #1a202c;
-            --text-muted: #718096;
-            --gold-accent: #b39a5f;
+            --neutral-bg: #f4f7f9;
+            --border-light: #e2e8f0;
+            --text-dark: #1a202c;
+            --gold: #b39a5f;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding-top: 70px; 
-            color: var(--text-main);
-            line-height: 1.6;
-            background-color: #ffffff;
+            margin: 0; padding-top: 70px;
+            background-color: var(--neutral-bg);
+            color: var(--text-dark);
         }
 
         /* NAVIGATION */
         #top-nav {
             position: fixed; top: 0; left: 0; width: 100%;
-            background-color: #ffffff; z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: #fff; z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
         }
         .nav-container {
             max-width: 1200px; margin: 0 auto;
             display: flex; align-items: center; justify-content: space-between;
             height: 70px; padding: 0 20px;
         }
-        .logo-area { display: flex; align-items: center; text-decoration: none; gap: 12px; }
-        .logo-img { height: 45px; width: auto; }
-        .logo-text { color: var(--pga-blue); font-weight: 700; font-size: 18px; letter-spacing: 2px; }
+        .logo-text { color: var(--pga-blue); font-weight: 700; letter-spacing: 2px; text-decoration: none; }
+        
+        #top-nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+        #top-nav li { margin-left: 20px; position: relative; }
+        #top-nav a { text-decoration: none; color: var(--pga-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-        #top-nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
-        #top-nav li { margin-left: 25px; position: relative; }
-        #top-nav li a {
-            text-decoration: none; color: var(--pga-blue);
-            font-weight: 600; font-size: 0.75em;
-            text-transform: uppercase; letter-spacing: 0.5px;
-            padding: 24px 0; display: block;
+        /* HERO AREA */
+        .hero-banner {
+            background: #fff; border-bottom: 1px solid var(--border-light);
+            padding: 40px 0; margin-bottom: 40px;
         }
+        .hero-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .main-headline { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--pga-blue); margin: 0; line-height: 1.1; }
 
-        /* DROPDOWN */
-        .dropdown-content {
-            display: none; position: absolute; top: 100%; right: 0;
-            min-width: 180px; background-color: #ffffff;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 1px solid var(--border-color); padding: 10px 0;
-        }
-        li.has-dropdown:hover .dropdown-content { display: block; }
-        .dropdown-content li { margin: 0; width: 100%; }
-        .dropdown-content li a { padding: 10px 20px; display: block; text-transform: none; font-size: 0.9em; }
-
-        /* HERO SECTION */
-        .hero {
-            height: 35vh;
-            background: linear-gradient(rgba(0, 45, 98, 0.8), rgba(0, 45, 98, 0.8)), url('hero_golf_bg.jpg');
-            background-size: cover; background-position: center;
-            display: flex; align-items: center; justify-content: center;
-            color: white; text-align: center;
-        }
-        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 3.5em; margin: 0; letter-spacing: 2px; }
-
-        /* CONTENT LAYOUT */
-        .main-layout {
+        /* LAYOUT */
+        .grid-container {
             max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 320px;
-            gap: 40px; padding: 60px 20px;
+            display: grid; grid-template-columns: 1fr 350px;
+            gap: 40px; padding: 0 20px 80px;
         }
 
-        /* ARTICLE STYLES */
-        .article-card { margin-bottom: 60px; border-bottom: 1px solid var(--border-color); padding-bottom: 40px; }
-        .article-card h2 { font-family: 'Playfair Display', serif; font-size: 2.2em; color: var(--pga-blue); margin-bottom: 20px; }
-        .champ-img-container { margin: 20px 0; border: 1px solid var(--border-color); padding: 10px; background: var(--neutral-gray); text-align: center; }
-        .champ-img { max-width: 100%; height: auto; border-radius: 4px; }
-        .article-meta { font-size: 0.8em; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        /* NEWS CARDS */
+        .news-section h3 { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: var(--masters-green); border-bottom: 2px solid var(--masters-green); display: inline-block; margin-bottom: 30px; }
+        .story-card { background: #fff; border-radius: 4px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border-light); }
+        .story-content { padding: 25px; }
+        .story-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--pga-blue); margin: 0 0 10px; text-decoration: none; display: block; }
+        .story-tag { font-size: 0.7rem; font-weight: 700; color: var(--text-dark); opacity: 0.6; text-transform: uppercase; margin-bottom: 8px; display: block; }
 
-        /* LEADERBOARD (MASTERS THEME) */
-        .sidebar-box {
-            background-color: var(--masters-green);
-            color: white; border-radius: 8px; overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-bottom: 30px;
-        }
-        .sidebar-header { background: #004d35; padding: 20px; text-align: center; }
-        .sidebar-header h3 { margin: 0; font-family: 'Playfair Display', serif; letter-spacing: 1px; }
-        .sidebar-header p { font-size: 0.7em; margin: 5px 0 0; text-transform: uppercase; opacity: 0.8; }
-        .leaderboard-row {
-            display: flex; justify-content: space-between;
-            padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9em; font-weight: 500;
-        }
-        .leaderboard-row:last-child { border-bottom: none; }
-        .score-box { background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 4px; font-weight: 700; }
+        /* LEADERBOARD (PGA STYLE) */
+        .leaderboard-wrap { background: #fff; border: 1px solid var(--border-light); border-radius: 4px; position: sticky; top: 100px; }
+        .lb-header { background: var(--masters-green); color: white; padding: 20px; text-align: center; }
+        .lb-header h4 { margin: 0; font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+        .lb-table { width: 100%; border-collapse: collapse; }
+        .lb-row { border-bottom: 1px solid var(--border-light); display: flex; align-items: center; padding: 10px 15px; }
+        .lb-pos { width: 30px; font-weight: 700; font-size: 0.8rem; color: #718096; }
+        .lb-img { width: 45px; height: 45px; border-radius: 50%; background: #edf2f7; object-fit: cover; margin-right: 15px; border: 1px solid var(--border-light); }
+        .lb-name { flex-grow: 1; font-weight: 600; font-size: 0.9rem; }
+        .lb-score { font-weight: 700; font-size: 0.9rem; color: var(--masters-green); }
 
-        /* ADVERTISEMENT */
-        .fun-ad {
-            background: linear-gradient(135deg, #222, #444);
-            color: white; padding: 25px; border-radius: 8px;
-            text-align: center; position: relative;
-        }
-        .ad-tag { position: absolute; top: 10px; left: 10px; font-size: 10px; color: #888; border: 1px solid #555; padding: 2px 5px; }
-        .ad-title { font-weight: 800; font-size: 1.2em; color: var(--gold-accent); margin-bottom: 10px; }
-        .ad-target { font-style: italic; font-size: 0.85em; display: block; margin-bottom: 15px; }
+        /* AD BOX */
+        .sidebar-ad { background: #1a202c; color: #fff; padding: 30px; margin-top: 30px; border-radius: 4px; text-align: center; }
+        .ad-label { font-size: 0.6rem; color: #718096; letter-spacing: 1px; margin-bottom: 15px; display: block; }
+        .ad-cta { background: var(--gold); color: #000; padding: 10px 20px; text-decoration: none; font-weight: 700; font-size: 0.7rem; border-radius: 2px; }
 
-        footer { background-color: var(--pga-blue); color: white; padding: 40px 20px; text-align: center; font-size: 0.8em; }
+        footer { background: #fff; border-top: 1px solid var(--border-light); padding: 40px 0; text-align: center; font-size: 0.7rem; color: #718096; }
     </style>
 </head>
 <body>
 
 <nav id="top-nav">
     <div class="nav-container">
-        <a href="index.html" class="logo-area">
-            <img src="wgof_logo.png" alt="WGOF" class="logo-img">
-            <span class="logo-text">WGOF</span>
-        </a>
+        <a href="index.html" class="logo-text">WGOF TOUR</a>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="profiles.html">Profiles</a></li>
-            <li><a href="scramble_records.html">Scramble</a></li>
             <li><a href="token_challenge.html">Tokens</a></li>
             <li><a href="hole_in_one.html">Hole In One</a></li>
-            <li class="has-dropdown">
-                <a href="#">Seasons ▾</a>
-                <ul class="dropdown-content">
-                    <li><a href="seasons_2025.html">2025 Season</a></li>
-                    <li><a href="#">2026 Season</a></li>
-                </ul>
-            </li>
+            <li><a href="seasons_2025.html">Season Archive</a></li>
         </ul>
     </div>
 </nav>
 
-<section class="hero">
-    <div class="hero-content">
-        <h1>The WGOF Tour</h1>
+<header class="hero-banner">
+    <div class="hero-container">
+        <div class="story-tag">Main Story</div>
+        <h1 class="main-headline">Sterling Weed Set to Host<br>WGOF's Masters Weekend</h1>
     </div>
-</section>
+</header>
 
-<main class="main-layout">
-    
-    <div class="content-area">
+<div class="grid-container">
+    <section class="news-section">
+        <h3>The Latest</h3>
         
-        <article class="article-card">
-            <div class="article-meta">News | November 2025</div>
-            <h2>Keith Flynn: The Reigning King of the Friday Tour</h2>
-            <div class="champ-img-container">
-                <img src="image_984021.jpg" alt="Keith Flynn 2025 Champion" class="champ-img">
-                <p style="font-size: 0.8em; color: var(--text-muted); margin-top: 10px;">Keith Flynn hoisting the trophy after the 2025 Merkley WGOF Championship.</p>
+        <div class="story-card">
+            <div class="story-content">
+                <span class="story-tag">Equipment</span>
+                <a href="#" class="story-title">Will Ryan Edwards' new grip be the difference?</a>
             </div>
-            <p>After a grueling season of "We Golf on Friday" competition, Keith Flynn solidified his legacy by taking home the 2025 WGOF Championship. Known for his ability to scramble out of the Willard woods and drain high-pressure putts, Keith managed to hold off the field in the final major of the year.</p>
-        </article>
-
-        <article class="article-card">
-            <div class="article-meta">Season Analysis | 2025 Recap</div>
-            <h2>The Merkley Paradox: Most Wins, No Trophy</h2>
-            <p>If you look purely at the volume of victories, 2025 belonged to Kyle Merkley. With more match wins and skin captures than any other golfer on the tour, Kyle was the statistical favorite heading into the championship weekend. However, the "Merkley Magic" seemed to hit a wall when it mattered most.</p>
-            <p>Despite a dominant regular season, Kyle finished as the runner-up in the championship, sparking debates in the WGOF group chat about whether he is the "best player to have never won a November major" in the current era. As we head into 2026, the question remains: Can Kyle translate weekly dominance into a career-defining title?</p>
-        </article>
-
-    </div>
-
-    <aside class="sidebar-area">
-        
-        <div class="sidebar-box">
-            <div class="sidebar-header">
-                <p>Upcoming Tournament</p>
-                <h3>The Weed Championship</h3>
-                <p>April 11 | Masters Weekend | Course: TBD</p>
-            </div>
-            <div class="leaderboard-row"><span>1. Keith Flynn</span> <span class="score-box">E</span></div>
-            <div class="leaderboard-row"><span>2. Kyle Merkley</span> <span class="score-box">E</span></div>
-            <div class="leaderboard-row"><span>3. Ryan Edwards</span> <span class="score-box">E</span></div>
-            <div class="leaderboard-row"><span>4. Devon Jarvis</span> <span class="score-box">E</span></div>
-            <div class="leaderboard-row"><span>5. Sterling Weed</span> <span class="score-box">E</span></div>
         </div>
 
-        <div class="fun-ad">
-            <span class="ad-tag">SPONSORED AD</span>
-            <div class="ad-title">"The Hole-Finder 5000"</div>
-            <span class="ad-target">Exclusively marketed to Ryan E.</span>
-            <p style="font-size: 0.8em; line-height: 1.4;">Hey Ryan, tired of those irons feeling a bit... light? These custom blades are weighted specifically to prevent that 'accidental' 10-yard chunk on par 3s. Buy now and stop blaming the wind!</p>
-            <button style="background: var(--gold-accent); border: none; padding: 8px 15px; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.7em;">ORDER FOR RYAN</button>
+        <div class="story-card">
+            <div class="story-content">
+                <span class="story-tag">Analysis</span>
+                <a href="#" class="story-title">Will Kyle Merkley overcome heartbreaking defeat?</a>
+            </div>
         </div>
 
+        <div class="story-card">
+            <div class="story-content">
+                <span class="story-tag">Defending Champion</span>
+                <a href="#" class="story-title">Can Keith Flynn repeat as champion?</a>
+            </div>
+        </div>
+
+        <div class="story-card">
+            <div class="story-content">
+                <span class="story-tag">Player Watch</span>
+                <a href="#" class="story-title">Will Devon's newfound consistency off the tee flip the standings?</a>
+            </div>
+        </div>
+    </section>
+
+    <aside class="sidebar">
+        <div class="leaderboard-wrap">
+            <div class="lb-header">
+                <p style="font-size: 0.6rem; text-transform: uppercase; margin: 0 0 5px; opacity: 0.8;">Next Event</p>
+                <h4>The Weed Championship</h4>
+                <p style="font-size: 0.7rem; margin-top: 5px;">April 11 | TBD</p>
+            </div>
+            
+            <div class="lb-row">
+                <div class="lb-pos">1</div>
+                <img src="keith_image.png" class="lb-img">
+                <div class="lb-name">Keith Flynn</div>
+                <div class="lb-score">E</div>
+            </div>
+            <div class="lb-row">
+                <div class="lb-pos">1</div>
+                <img src="kyle_image.png" class="lb-img">
+                <div class="lb-name">Kyle Merkley</div>
+                <div class="lb-score">E</div>
+            </div>
+            <div class="lb-row">
+                <div class="lb-pos">1</div>
+                <img src="ryan_image.png" class="lb-img">
+                <div class="lb-name">Ryan Edwards</div>
+                <div class="lb-score">E</div>
+            </div>
+            <div class="lb-row">
+                <div class="lb-pos">1</div>
+                <img src="devon_image.png" class="lb-img">
+                <div class="lb-name">Devon Jarvis</div>
+                <div class="lb-score">E</div>
+            </div>
+            <div class="lb-row">
+                <div class="lb-pos">1</div>
+                <img src="sterling_image.png" class="lb-img">
+                <div class="lb-name">Sterling Weed</div>
+                <div class="lb-score">E</div>
+            </div>
+        </div>
+
+        <div class="sidebar-ad">
+            <span class="ad-label">SPONSORED BY THE HOLE-FINDER 5000</span>
+            <p style="font-weight: 600; margin-bottom: 20px;">Ryan, stop thinning your approach shots.</p>
+            <a href="#" class="ad-cta">UPGRADE RYAN'S IRONS</a>
+        </div>
     </aside>
-</main>
+</div>
 
 <footer>
-    <p>&copy; 2026 WILLARD GOLF ORGANIZATION & FRIENDS</p>
+    <p>&copy; WGOF | THE OFFICIAL TOUR SITE</p>
 </footer>
 
 </body>
