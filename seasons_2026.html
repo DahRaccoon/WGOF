@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Season | WGOF TOUR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables imported from index (27).html */
+        :root {
+            --pga-blue: #002d62;
+            --masters-green: #006747;
+            --neutral-bg: #f4f7f9;
+            --border-light: #e2e8f0;
+            --text-dark: #1a202c;
+            --gold: #b39a5f;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0; padding-top: 70px;
+            background-color: #ffffff;
+            color: var(--text-dark);
+        }
+
+        /* NAVIGATION - MATCHES INDEX */
+        #top-nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: #fff; z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 70px; padding: 0 20px;
+        }
+        .logo-text { color: var(--pga-blue); font-weight: 700; letter-spacing: 2px; text-decoration: none; font-size: 1.2rem; }
+        #top-nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+        #top-nav li { margin-left: 20px; }
+        #top-nav li a { text-decoration: none; color: var(--pga-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+
+        /* MASTERS THEME BANNER - Current Tournament Feature */
+        .masters-banner {
+            background-color: var(--masters-green);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 8px solid var(--gold);
+        }
+        .masters-banner .tagline {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .masters-banner h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 0;
+            font-weight: 700;
+        }
+        .masters-banner .sub-heading {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-top: 10px;
+        }
+
+        /* TOURNAMENT LETTER BUTTON & REDACTION STYLE */
+        .btn-letter {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-letter:hover { background: white; color: var(--masters-green); }
+
+        .letter-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 50px;
+            border: 1px solid var(--border-light);
+            display: none; /* Hidden until clicked */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .redacted {
+            background: #1a202c;
+            color: #1a202c;
+            display: inline-block;
+            min-width: 60px;
+            height: 1.2em;
+            vertical-align: middle;
+        }
+
+        /* TABLES - Using standard WGOF styling */
+        .content-container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--pga-blue);
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--masters-green);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .tour-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 60px;
+        }
+        .tour-table th {
+            text-align: left;
+            background: var(--neutral-bg);
+            padding: 15px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--border-light);
+        }
+        .tour-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.9rem;
+        }
+        .pts-cell { font-weight: 700; color: var(--masters-green); }
+
+        footer { padding: 40px 0; text-align: center; font-size: 0.7rem; color: #718096; border-top: 1px solid var(--border-light); }
+    </style>
+</head>
+<body>
+
+<nav id="top-nav">
+    <div class="nav-container">
+        <a href="index.html" class="logo-text">WGOF TOUR</a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="profiles.html">Profiles</a></li>
+            <li><a href="seasons_2025.html">2025 Season</a></li>
+            <li><a href="seasons_2026.html" style="color: var(--masters-green);">2026 Season</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="masters-banner">
+    <span class="tagline">A Tradition Unlike Any Other</span>
+    <h1>The Second Annual Weed Championship</h1>
+    <p class="sub-heading">A Tournament of Skill, Luck & Questionable Life Choices</
