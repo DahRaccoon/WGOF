@@ -51,17 +51,17 @@
         .grid-container {
             max-width: 1200px; margin: 0 auto;
             display: grid; grid-template-columns: 1fr 350px;
-            gap: 40px; padding: 0 20px 80px;
+            gap: 40px; padding: 0 20px 60px;
         }
 
         /* NEWS CARDS */
-        .news-section h3 { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: var(--masters-green); border-bottom: 2px solid var(--masters-green); display: inline-block; margin-bottom: 30px; }
+        .news-section h3, .gallery-section h3 { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: var(--masters-green); border-bottom: 2px solid var(--masters-green); display: inline-block; margin-bottom: 30px; }
         .story-card { background: #fff; border-radius: 4px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--border-light); }
         .story-content { padding: 25px; }
         .story-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--pga-blue); margin: 0 0 10px; text-decoration: none; display: block; }
         .story-tag { font-size: 0.7rem; font-weight: 700; color: var(--text-dark); opacity: 0.6; text-transform: uppercase; margin-bottom: 8px; display: block; }
 
-        /* LEADERBOARD (PGA STYLE) */
+        /* LEADERBOARD & RANKINGS */
         .sidebar-box { background: #fff; border: 1px solid var(--border-light); border-radius: 4px; margin-bottom: 30px; overflow: hidden; }
         .lb-header { background: var(--masters-green); color: white; padding: 20px; text-align: center; }
         .lb-header h4 { margin: 0; font-family: 'Playfair Display', serif; font-size: 1.4rem; }
@@ -70,15 +70,20 @@
         .lb-img { width: 45px; height: 45px; border-radius: 50%; background: #edf2f7; object-fit: cover; margin-right: 15px; border: 1px solid var(--border-light); }
         .lb-name { flex-grow: 1; font-weight: 600; font-size: 0.9rem; }
         .lb-score { font-weight: 700; font-size: 0.9rem; color: var(--masters-green); }
+        .rankings-header { background: var(--pga-blue); color: white; padding: 15px; text-align: center; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; }
+        .ai-note { font-size: 0.6rem; color: #718096; text-align: center; padding: 10px; font-style: italic; background: #fff; }
 
-        /* PROJECTED RANKINGS SECTION */
-        .rankings-header { background: var(--pga-blue); color: white; padding: 15px; text-align: center; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .ai-note { font-size: 0.6rem; color: #718096; text-align: center; padding: 10px; font-style: italic; background: #fff; border-top: 1px solid var(--border-light); }
+        /* GALLERY */
+        .gallery-section { max-width: 1200px; margin: 0 auto; padding: 0 20px 80px; }
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .photo-card { background: #fff; border: 1px solid var(--border-light); border-radius: 4px; overflow: hidden; }
+        .photo-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .photo-label { padding: 15px; text-align: center; font-weight: 700; font-size: 0.8rem; color: var(--pga-blue); text-transform: uppercase; }
 
         /* AD BOX */
-        .sidebar-ad { background: #1a202c; color: #fff; padding: 30px; border-radius: 4px; text-align: center; }
-        .ad-label { font-size: 0.6rem; color: #718096; letter-spacing: 1px; margin-bottom: 15px; display: block; }
-        .ad-cta { background: var(--gold); color: #000; padding: 10px 20px; text-decoration: none; font-weight: 700; font-size: 0.7rem; border-radius: 2px; }
+        .sidebar-ad { background: #ffffff; color: #1a202c; padding: 30px; border-radius: 4px; text-align: center; border: 1px solid var(--border-light); }
+        .ad-label { font-size: 0.6rem; color: #718096; letter-spacing: 1px; margin-bottom: 15px; display: block; text-transform: uppercase; }
+        .ad-cta { background: #000; color: #fff; padding: 10px 20px; text-decoration: none; font-weight: 700; font-size: 0.7rem; border-radius: 2px; display: inline-block; margin-top: 15px; }
 
         footer { background: #fff; border-top: 1px solid var(--border-light); padding: 40px 0; text-align: center; font-size: 0.7rem; color: #718096; }
     </style>
@@ -108,28 +113,24 @@
 <div class="grid-container">
     <section class="news-section">
         <h3>The Latest</h3>
-        
         <div class="story-card">
             <div class="story-content">
                 <span class="story-tag">Equipment</span>
                 <a href="#" class="story-title">Will Ryan Edwards' new grip be the difference?</a>
             </div>
         </div>
-
         <div class="story-card">
             <div class="story-content">
                 <span class="story-tag">Analysis</span>
                 <a href="#" class="story-title">Will Kyle Merkley overcome heartbreaking defeat?</a>
             </div>
         </div>
-
         <div class="story-card">
             <div class="story-content">
                 <span class="story-tag">Defending Champion</span>
                 <a href="#" class="story-title">Can Keith Flynn repeat as champion?</a>
             </div>
         </div>
-
         <div class="story-card">
             <div class="story-content">
                 <span class="story-tag">Player Watch</span>
@@ -145,69 +146,51 @@
                 <h4>The Weed Championship</h4>
                 <p style="font-size: 0.7rem; margin-top: 5px;">April 11 | TBD</p>
             </div>
-            
-            <div class="lb-row">
-                <div class="lb-pos">T1</div>
-                <img src="keith_image.png" class="lb-img">
-                <div class="lb-name">Keith Flynn</div>
-                <div class="lb-score">E</div>
-            </div>
-            <div class="lb-row">
-                <div class="lb-pos">T1</div>
-                <img src="kyle_image.png" class="lb-img">
-                <div class="lb-name">Kyle Merkley</div>
-                <div class="lb-score">E</div>
-            </div>
-            <div class="lb-row">
-                <div class="lb-pos">T1</div>
-                <img src="ryan_image.png" class="lb-img">
-                <div class="lb-name">Ryan Edwards</div>
-                <div class="lb-score">E</div>
-            </div>
-            <div class="lb-row">
-                <div class="lb-pos">T1</div>
-                <img src="devon_image.png" class="lb-img">
-                <div class="lb-name">Devon Jarvis</div>
-                <div class="lb-score">E</div>
-            </div>
-            <div class="lb-row">
-                <div class="lb-pos">T1</div>
-                <img src="sterling_image.png" class="lb-img">
-                <div class="lb-name">Sterling Weed</div>
-                <div class="lb-score">E</div>
-            </div>
+            <div class="lb-row"><div class="lb-pos">T1</div><img src="keith_image.png" class="lb-img"><div class="lb-name">Keith Flynn</div><div class="lb-score">E</div></div>
+            <div class="lb-row"><div class="lb-pos">T1</div><img src="kyle_image.png" class="lb-img"><div class="lb-name">Kyle Merkley</div><div class="lb-score">E</div></div>
+            <div class="lb-row"><div class="lb-pos">T1</div><img src="ryan_image.png" class="lb-img"><div class="lb-name">Ryan Edwards</div><div class="lb-score">E</div></div>
+            <div class="lb-row"><div class="lb-pos">T1</div><img src="devon_image.png" class="lb-img"><div class="lb-name">Devon Jarvis</div><div class="lb-score">E</div></div>
+            <div class="lb-row"><div class="lb-pos">T1</div><img src="sterling_image.png" class="lb-img"><div class="lb-name">Sterling Weed</div><div class="lb-score">E</div></div>
         </div>
 
         <div class="sidebar-box">
             <div class="rankings-header">Projected 2026 Standings</div>
-            <div class="lb-row">
-                <div class="lb-pos">1</div>
-                <div class="lb-name">Kyle Merkley</div>
-                <div class="lb-score">550 pts</div>
-            </div>
-            <div class="lb-row">
-                <div class="lb-pos">2</div>
-                <div class="lb-name">Keith Flynn</div>
-                <div class="lb-score">490 pts</div>
-            </div>
-            <div class="lb-row">
-                <div class="lb-pos">3</div>
-                <div class="lb-name">Devon Jarvis</div>
-                <div class="lb-score">310 pts</div>
-            </div>
+            <div class="lb-row"><div class="lb-pos">1</div><div class="lb-name">Kyle Merkley</div><div class="lb-score">550 pts</div></div>
+            <div class="lb-row"><div class="lb-pos">2</div><div class="lb-name">Keith Flynn</div><div class="lb-score">490 pts</div></div>
+            <div class="lb-row"><div class="lb-pos">3</div><div class="lb-name">Devon Jarvis</div><div class="lb-score">310 pts</div></div>
             <div class="ai-note">Powered by AI Prediction Models</div>
         </div>
 
         <div class="sidebar-ad">
-            <span class="ad-label">SPONSORED BY THE HOLE-FINDER 5000</span>
-            <p style="font-weight: 600; margin-bottom: 20px;">Ryan, the blades you deserve are finally here.</p>
-            <a href="#" class="ad-cta">FIX RYAN'S GAME</a>
+            <span class="ad-label">Official Equipment Sponsor</span>
+            <img src="https://via.placeholder.com/200x100?text=Titleist+T250" alt="Titleist T250" style="width:100%; margin-bottom:15px;">
+            <p style="font-weight: 700; font-size: 1.1rem; margin-bottom: 5px;">Titleist T250</p>
+            <p style="font-size: 0.8rem; color: var(--text-dark); line-height: 1.4;">The speed and distance Ryan needs to finally stop thinning those approach shots.</p>
+            <a href="#" class="ad-cta">UPGRADE RYAN'S BAG</a>
         </div>
     </aside>
 </div>
 
+<section class="gallery-section">
+    <h3>Tour Gallery</h3>
+    <div class="photo-grid">
+        <div class="photo-card">
+            <img src="group_2025.png" alt="2025 Gallery">
+            <div class="photo-label">2025 Season</div>
+        </div>
+        <div class="photo-card">
+            <img src="group_2024.png" alt="2024 Gallery">
+            <div class="photo-label">2024 Season</div>
+        </div>
+        <div class="photo-card">
+            <img src="group_2023.png" alt="2023 Gallery">
+            <div class="photo-label">2023 Season</div>
+        </div>
+    </div>
+</section>
+
 <footer>
-    <p>&copy; 2026 WGOF | THE OFFICIAL TOUR SITE</p>
+    <p>&copy; 2026 WILLARD GOLF ORGANIZATION & FRIENDS | THE OFFICIAL TOUR SITE</p>
 </footer>
 
 </body>
