@@ -3,397 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WGOF League - We Golf on Friday</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>WGOF | Official Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        /* BASE STYLES */
+        :root {
+            --pga-blue: #002d62;
+            --masters-green: #006747;
+            --neutral-gray: #f8f9fa;
+            --border-color: #e2e8f0;
+            --text-main: #1a202c;
+            --text-muted: #718096;
+            --gold-accent: #b39a5f;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding-top: 50px; /* IMPORTANT: Space for fixed top navbar */
-            color: #f0f0f0;
+            padding-top: 70px; 
+            color: var(--text-main);
             line-height: 1.6;
-            background-color: #1a1a1a;
+            background-color: #ffffff;
         }
-        
-        /* FIXED NAVIGATION BAR - CRITICAL STYLES INCLUDED HERE */
+
+        /* NAVIGATION */
         #top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #000000;
-            color: #ffffff;
-            z-index: 100;
-            border-bottom: 2px solid #ffd700;
+            position: fixed; top: 0; left: 0; width: 100%;
+            background-color: #ffffff; z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        #top-nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0 50px;
-            display: flex;
-            justify-content: flex-start; /* Links aligned to the left */
-            height: 48px;
-            align-items: center;
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 70px; padding: 0 20px;
         }
-        #top-nav li {
-            margin-right: 20px; /* THIS IS THE STYLE THAT ADDS HORIZONTAL SPACING */
-            margin-left: 0; 
-        }
+        .logo-area { display: flex; align-items: center; text-decoration: none; gap: 12px; }
+        .logo-img { height: 45px; width: auto; }
+        .logo-text { color: var(--pga-blue); font-weight: 700; font-size: 18px; letter-spacing: 2px; }
+
+        #top-nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
+        #top-nav li { margin-left: 25px; position: relative; }
         #top-nav li a {
-            text-decoration: none;
-            color: #b0b0b0; /* Softer link color */
-            font-weight: bold;
-            padding: 10px 0;
-            transition: color 0.3s;
-        }
-        #top-nav li a:hover {
-            color: #ffffff; /* White on hover */
+            text-decoration: none; color: var(--pga-blue);
+            font-weight: 600; font-size: 0.75em;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            padding: 24px 0; display: block;
         }
 
-
-        /* DEDICATED BACKGROUND PATTERN DIV */
-        #background-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; 
-            
-            background-image: 
-                url('merkley_logo.jpg'), 
-                url('edwards_logo.png'), 
-                url('jarvis_logo.png'), 
-                url('flynn_logo.png'), 
-                url('weed_logo.png');
-            
-            background-position: 
-                10% 10%, 
-                90% 40%, 
-                30% 85%, 
-                70% 20%, 
-                20% 60%;
-            
-            background-repeat: no-repeat;
-            background-size: 300px, 350px, 250px, 400px, 330px;
-            opacity: 0.15; 
-        }
-
-        /* CONTAINER STYLES */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto 40px;
-            background: transparent; 
-            padding: 30px 50px;
-            border-radius: 4px;
-            box-shadow: none; 
-            position: relative; 
-            z-index: 2;
-        }
-
-        /* HEADER & LEAGUE LOGO */
-        h1 {
-            color: #ffffff;
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            height: 60vh;
+            background: linear-gradient(rgba(0, 45, 98, 0.8), rgba(0, 45, 98, 0.8)), url('hero_golf_bg.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
             text-align: center;
-            padding: 15px 0;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #333333;
+        }
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4em;
+            margin: 0;
             letter-spacing: 2px;
-            font-size: 2.8em;
-            font-weight: 700;
+        }
+        .hero-content p {
+            font-size: 1.2em;
             text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-top: 10px;
+            opacity: 0.9;
         }
-        .logo {
-            height: 60px;
-            vertical-align: middle;
-            margin-right: 15px;
-        }
+
+        /* MAIN CONTENT */
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
         
-        /* SECTION HEADERS */
-        h2 {
-            color: #ffffff;
-            margin-top: 40px;
-            padding: 10px 0;
-            border-bottom: 2px solid #ffd700;
-            font-size: 1.6em;
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: var(--pga-blue);
+            margin-bottom: 10px;
+        }
+        .section-title .divider {
+            width: 60px;
+            height: 3px;
+            background-color: var(--masters-green);
+            margin: 0 auto;
+        }
+
+        /* FEATURE GRID */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            transform: translateY(-5px);
+            border-color: var(--masters-green);
+        }
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            color: var(--pga-blue);
+            margin-bottom: 15px;
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95em;
+            margin-bottom: 25px;
+        }
+        .btn-outline {
+            text-decoration: none;
+            color: var(--masters-green);
+            border: 1px solid var(--masters-green);
+            padding: 10px 25px;
+            font-size: 0.8em;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: all 0.2s;
         }
-        h3 {
-            color: #e0e0e0;
-            margin-top: 25px;
-            font-size: 1.3em;
+        .btn-outline:hover {
+            background-color: var(--masters-green);
+            color: white;
         }
 
-        /* INAUGURAL CHAMPION SECTION */
-        #champion-section {
-            background-color: #ffd700;
-            color: #1a1a1a;
-            padding: 30px;
-            border-radius: 4px;
+        /* FOOTER */
+        footer {
+            background-color: var(--pga-blue);
+            color: white;
+            padding: 60px 20px;
             text-align: center;
-            margin: 30px 0;
-            border: 3px solid #ffffff;
-            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.4);
-            position: relative; 
-        }
-        #champion-section h3 {
-            margin: 0;
-            font-size: 2.5em;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 700;
-            color: #1a1a1a;
-        }
-        #champion-section p {
-            font-size: 1.8em;
-            font-weight: 700;
-            margin-top: 10px;
-        }
-
-        /* SCROLLING/MARQUEE BANNER CSS */
-        #floating-banner {
-            background-color: rgba(18, 18, 18, 0.95); 
-            border-bottom: 3px solid #ffd700;
-            padding: 10px 0;
-            margin-bottom: 25px;
-            z-index: 9; 
-            position: sticky;
-            top: 50px; 
-            white-space: nowrap; /* Prevent content from wrapping */
-            overflow: hidden; /* Hide content that goes off screen */
-        }
-        
-        /* Content that will move horizontally */
-        .marquee-content {
-            display: inline-block;
-            padding-left: 100%; /* Start the content off-screen to the right */
-            animation: marquee 25s linear infinite; /* Adjust speed with 25s */
-        }
-        
-        #floating-banner h2 {
-            display: inline;
-            margin-right: 20px;
-            padding: 0;
-            border-bottom: none;
-            font-size: 1.4em;
-        }
-        #floating-banner ol {
-            display: inline;
-            list-style: none; 
-            padding: 0; 
-            margin: 0;
-        }
-        #floating-banner ol li {
-            display: inline;
-            margin-right: 40px; /* Spacing between the standings items */
-            font-size: 1.2em;
-        }
-        
-        /* The CSS animation that makes it move */
-        @keyframes marquee {
-            0%   { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
-        }
-
-
-        /* TABLES */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: transparent;
-        }
-        th, td {
-            border: 1px solid #444444;
-            padding: 15px;
-            text-align: left;
-        }
-        th {
-            background-color: rgba(0, 0, 0, 0.5); 
-            color: #ffd700;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.9em;
-        }
-        tr:nth-child(even) {
-            background-color: rgba(43, 43, 43, 0.7); 
-        }
-        .winner {
-            font-weight: 700;
-            color: #ffd700;
-        }
-        
-        /* General List Styling */
-        ul { padding-left: 20px; }
-        ol { padding-left: 20px; font-size: 1.1em; }
-        ul li { margin-bottom: 10px; }
-
-        .champion-list-item {
-            font-weight: 700;
-            color: #ffd700;
-        }
-        .schedule-note {
-            font-style: italic;
-            color: #aaaaaa;
-            display: block;
-            margin-top: 5px;
-            font-size: 0.85em;
-        }
-        .footer-note {
-            text-align: center; 
-            margin-top: 40px; 
-            border-top: 1px solid #333333; 
-            padding-top: 20px; 
-            color: #888888;
+            font-size: 0.8em;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
-    
-    <div id="background-pattern"></div>
-    
-    <nav id="top-nav">
+
+<nav id="top-nav">
+    <div class="nav-container">
+        <a href="index.html" class="logo-area">
+            <img src="wgof_logo.png" alt="WGOF" class="logo-img">
+            <span class="logo-text">WGOF</span>
+        </a>
         <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="token_challenge.html">TOKEN CHALLENGE</a></li>
-            <li><a href="hole_in_one.html">HOLE-IN-ONE</a></li>
-            <li><a href="profiles.html">PROFILES</a></li>
-            <li><a href="scramble_records.html">SCRAMBLE RECORDS</a></li>
-            <li><a href="group_photos.html">GROUP PHOTOS</a></li> 
+            <li><a href="index.html">Home</a></li>
+            <li><a href="profiles.html">Profiles</a></li>
+            <li><a href="scramble_records.html">Scramble</a></li>
+            <li><a href="token_challenge.html">Tokens</a></li>
+            <li><a href="hole_in_one.html">Hole In One</a></li>
         </ul>
-    </nav>
-
-
-    <div class="container">
-        
-        <h1>
-            <img src="wgof_logo.png" alt="WGOF League Logo" class="logo">
-            WGOF LEAGUE
-        </h1>
-
-        <div id="floating-banner">
-            <div class="marquee-content">
-                <h2>Final 2025 Standings</h2>
-                <ol>
-                    <li class="champion-list-item">1. Keith Flynn</li>
-                    <li>2. Kyle Merkley</li>
-                    <li>3. Ryan Edwards</li>
-                    <li>4. Sterling Weed</li>
-                    <li>5. Devon Jarvis</li>
-                </ol>
-                <h2>Final 2025 Standings</h2>
-                <ol>
-                    <li class="champion-list-item">1. Keith Flynn</li>
-                    <li>2. Kyle Merkley</li>
-                    <li>3. Ryan Edwards</li>
-                    <li>4. Sterling Weed</li>
-                    <li>5. Devon Jarvis</li>
-                </ol>
-            </div>
-        </div>
-        <div id="champion-section">
-            <h3>Inaugural WGOF Champion</h3>
-            <p>🏆 KEITH FLYNN 🏆</p>
-        </div>
-
-        <h2>2025 Inaugural Season - Major Tournament Results</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tournament</th>
-                    <th>Course</th>
-                    <th>Champion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Merkley Invitational</td>
-                    <td>Deer Lake</td>
-                    <td><span class="winner">Kyle Merkley</span></td>
-                </tr>
-                <tr>
-                    <td>Edwards Invitational</td>
-                    <td>Island Green</td>
-                    <td><span class="winner">Kyle Merkley</span></td>
-                </tr>
-                <tr>
-                    <td>Jarvis Open</td>
-                    <td>Par 3</td>
-                    <td><span class="winner">Keith Flynn</span></td>
-                </tr>
-                <tr>
-                    <td>Flynn Championship</td>
-                    <td>Green Hills</td>
-                    <td><span class="winner">Kyle Merkley</span></td>
-                </tr>
-                <tr>
-                    <td>Weed WGOF Championship</td>
-                    <td>Branson Hills</td>
-                    <td><span class="winner">Keith Flynn</span></td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <p class="schedule-note" style="text-align: center;">
-            *Kyle Merkley holds the league record with 3 Major wins in a single season.*
-        </p>
-        
-        
-        <h2>Proposed 2026 Season Schedule</h2>
-        
-        <h3>Major Tournaments</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Tournament</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>April 11</td>
-                    <td>Weed Championship</td>
-                </tr>
-                <tr>
-                    <td>May 2</td>
-                    <td>Jarvis Open</td>
-                </tr>
-                <tr>
-                    <td>June 1</td>
-                    <td>Flynnvitational 
-                        <span class="schedule-note">
-                            (Contingent on everyone potentially taking the day off following Stake Conference on May 30/31)
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>August 8</td>
-                    <td>Edwards Invitational</td>
-                </tr>
-                <tr>
-                    <td>November 9</td>
-                    <td>Merkley WGOF Championship 
-                        <span class="schedule-note">
-                            (Contingent on taking the day off following Stake Conference)
-                        </span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>Minor Tournaments & Events</h3>
-        <ul>
-            <li>**Minor Tournaments** are planned for Great Life courses in **March, September, and October**.</li>
-            <li>A potential **Par 3 Minor** is scheduled for **July**.</li>
-            <li>The league is actively planning the long-discussed **scramble trip to Osage** or a **Ryder Cup tournament** to fill the gap between the August and November majors.</li>
-        </ul>
-
-        <p class="footer-note">
-            WGOF League: We Golf on Friday. | For all rule and format discussions, please attend the annual WGOF lunch (date TBD).
-        </p>
     </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>The WGOF Tour</h1>
+        <p>Established 2025</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="section-title">
+        <h2>Tournament Central</h2>
+        <div class="divider"></div>
+    </div>
+
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>Player Profiles</h3>
+            <p>View stats, college affiliations, and the typical misses for the current WGOF roster.</p>
+            <a href="profiles.html" class="btn-outline">View Players</a>
+        </div>
+
+        <div class="feature-card">
+            <h3>Token Challenge</h3>
+            <p>Track the season-long birdie hunt at Greene Hills and see who currently holds the board.</p>
+            <a href="token_challenge.html" class="btn-outline">Leaderboard</a>
+        </div>
+
+        <div class="feature-card">
+            <h3>Scramble Records</h3>
+            <p>Relive the legendary rounds and all-time low scores from our team events.</p>
+            <a href="scramble_records.html" class="btn-outline">View Records</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; WGOF</p>
+    <p style="opacity: 0.5; margin-top: 10px;">For Official Use Only</p>
+</footer>
 
 </body>
 </html>
