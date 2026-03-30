@@ -61,12 +61,12 @@
 
         /* PGA STYLE NEWS GRID */
         .featured-story { margin-bottom: 40px; border-bottom: 1px solid var(--border-light); padding-bottom: 30px; }
-        .featured-img { width: 100%; height: auto; object-fit: cover; border-radius: 4px; margin-bottom: 20px; border: 1px solid var(--border-light); }
+        .featured-img { width: 100%; height: 400px; background: #eee; object-fit: cover; border-radius: 4px; margin-bottom: 20px; }
         .featured-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--pga-blue); margin: 10px 0; line-height: 1.1; text-decoration: none; display: block; }
         
         .news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         .news-item { border-bottom: 1px solid var(--border-light); padding-bottom: 20px; }
-        .news-thumb { width: 100%; height: 180px; object-fit: cover; border-radius: 4px; margin-bottom: 15px; border: 1px solid var(--border-light); }
+        .news-thumb { width: 100%; height: 180px; background: #f0f0f0; object-fit: cover; border-radius: 4px; margin-bottom: 15px; }
         .news-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--pga-blue); text-decoration: none; font-weight: 700; line-height: 1.3; display: block; }
         .story-tag { font-size: 0.65rem; font-weight: 700; color: var(--masters-green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
 
@@ -87,8 +87,7 @@
         .sidebar-ad { background: #f8f9fa; padding: 30px; border-radius: 4px; text-align: center; border: 1px solid var(--border-light); }
         .ad-brand { font-weight: 900; font-size: 1.2rem; letter-spacing: -1px; margin-bottom: 5px; color: #000; }
         .ad-product { color: #d00; font-weight: 700; font-size: 1.5rem; margin-bottom: 15px; }
-        .ad-cta { background: #000; color: #fff; padding: 12px 25px; text-decoration: none; font-weight: 700; font-size: 0.7rem; border-radius: 0; display: inline-block; transition: background 0.3s; }
-        .ad-cta:hover { background: #333; }
+        .ad-cta { background: #000; color: #fff; padding: 12px 25px; text-decoration: none; font-weight: 700; font-size: 0.7rem; border-radius: 0; display: inline-block; }
 
         /* GALLERY */
         .gallery-section { max-width: 1200px; margin: 0 auto; padding: 40px 20px 80px; border-top: 1px solid var(--border-light); }
@@ -107,7 +106,7 @@
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="profiles.html">Profiles</a></li>
-            <li><a href="token_challenge.html">Tokens</a></li>
+            <li><a href="scramble_records.html">Scrambles</a></li> <li><a href="token_challenge.html">Tokens</a></li>
             <li><a href="hole_in_one.html">Hole In One</a></li>
             <li class="has-dropdown">
                 <a href="#">Seasons ▾</a>
@@ -124,32 +123,32 @@
     
     <main class="news-section">
         <section class="featured-story">
-            <img src="image_7.png" class="featured-img" alt="Sterling Weed hosting The Weed Championship at Augusta-style course">
+            <img src="images/image_11.png" class="featured-img" alt="Sterling Weed hosting The Weed Championship">
             <span class="story-tag">Tour News</span>
             <a href="#" class="featured-title">Sterling Weed Set to Host WGOF's Masters Weekend</a>
-            <p style="color: #4a5568;">The 2026 season officially kicks off with a nod to tradition as Sterling Weed takes the hosting reigns for the highly anticipated April major, The Weed Championship.</p>
+            <p style="color: #4a5568;">The 2026 season officially kicks off with a nod to tradition as Sterling Weed takes the hosting reigns for the highly anticipated April major.</p>
         </section>
 
         <div class="news-grid">
             <div class="news-item">
-                <img src="ryan_image.png" class="news-thumb">
+                <img src="images/image_13.png" class="news-thumb" alt="Ryan Edwards Equipment Focus">
                 <span class="story-tag">Equipment</span>
-                <a href="#" class="news-title">Ryan Edwards Signs New Deal with Maxfli; Changes Grip</a>
+                <a href="#" class="news-title">Will Ryan Edwards' new grip be the difference?</a>
             </div>
             <div class="news-item">
-                <img src="kyle_image.png" class="news-thumb">
+                <img src="images/image_17.png" class="news-thumb" alt="Kyle Merkley Analysis">
                 <span class="story-tag">Analysis</span>
-                <a href="#" class="news-title">Heartbroken: Will Kyle Merkley Overcome 2025 Dominance & Defeat?</a>
+                <a href="#" class="news-title">Will Kyle Merkley overcome heartbreaking defeat?</a>
             </div>
             <div class="news-item">
-                <img src="keith_image.png" class="news-thumb">
+                <img src="images/image_22.png" class="news-thumb" alt="Keith Flynn Defending Champion">
                 <span class="story-tag">Defending Champion</span>
-                <a href="#" class="news-title">Back2Back: Can Keith Flynn Repeat as Champion?</a>
+                <a href="#" class="news-title">Can Keith Flynn repeat as champion?</a>
             </div>
             <div class="news-item">
-                <img src="devon_image.png" class="news-thumb">
+                <img src="images/image_23.png" class="news-thumb" alt="Devon Jarvis Player Watch">
                 <span class="story-tag">Player Watch</span>
-                <a href="#" class="news-title">What the Dr Ordered: Will Devon's newfound Consistency Off the Tee Flip the Standings?</a>
+                <a href="#" class="news-title">Will Devon's newfound consistency flip the standings?</a>
             </div>
         </div>
     </main>
@@ -181,9 +180,9 @@
         <div class="sidebar-ad">
             <span class="ad-label" style="font-size: 0.5rem; letter-spacing: 2px; color: #888; margin-bottom: 10px; display: block;">SPONSORED</span>
             <div class="ad-brand">Titleist</div>
-            <div class="ad-product">T-Series Irons</div>
-            <p style="font-size: 0.75rem; margin-bottom: 20px; font-weight: 500;">It is time.Ryan, buy some new irons.</p>
-            <a href="https://www.titleist.com/golf-clubs/irons" class="ad-cta" target="_blank">SHOP IRONS</a>
+            <div class="ad-product">T250</div>
+            <p style="font-size: 0.75rem; margin-bottom: 20px; font-weight: 500;">Precision distance for the dedicated player.</p>
+            <a href="#" class="ad-cta">UPGRADE NOW</a>
         </div>
     </aside>
 </div>
