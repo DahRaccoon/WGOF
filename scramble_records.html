@@ -62,7 +62,7 @@
         .dropdown-content li a { padding: 10px 20px; display: block; text-transform: none; font-size: 0.9em; }
 
         /* CONTENT */
-        .container { max-width: 1000px; margin: 0 auto 60px; padding: 40px 20px; }
+        .container { max-width: 1100px; margin: 0 auto 60px; padding: 40px 20px; }
         h1 { 
             font-family: 'Playfair Display', serif; font-size: 2.5em; color: var(--pga-blue);
             text-align: center; margin-bottom: 40px;
@@ -73,7 +73,7 @@
             font-size: 0.85em; letter-spacing: 2px; margin: 50px 0 20px;
         }
 
-        table { width: 100%; border-collapse: collapse; background: white; }
+        table { width: 100%; border-collapse: collapse; background: white; margin-bottom: 30px; }
         th {
             background-color: var(--neutral-gray); color: var(--text-muted);
             text-transform: uppercase; font-size: 0.65em;
@@ -81,9 +81,14 @@
             border-bottom: 2px solid var(--border-color);
         }
         td { padding: 15px; border-bottom: 1px solid var(--border-color); font-size: 0.9em; }
-        .result { font-weight: 600; color: var(--pga-blue); }
         
-        .winner-cell { font-weight: 600; color: var(--masters-green); }
+        .result-cell { font-weight: 600; color: var(--pga-blue); }
+        .winner-name { font-weight: 600; color: var(--masters-green); }
+        .note-cell { font-style: italic; color: var(--text-muted); font-size: 0.85em; }
+        
+        @media (max-width: 768px) {
+            table { display: block; overflow-x: auto; }
+        }
     </style>
 </head>
 <body>
@@ -114,7 +119,7 @@
 <div class="container">
     <h1>Scramble Records</h1>
 
-    <h2>2026 Match Results</h2>
+    <h2>Current 2026 Season Standings</h2>
     <table>
         <thead>
             <tr>
@@ -132,29 +137,30 @@
                 <td>Deer Lake</td>
                 <td>2-Man Scramble</td>
                 <td>Devon/Ryan vs Keith/Kyle</td>
-                <td class="result">TIE</td>
-                <td>Season opener</td>
+                <td class="result-cell">TIE</td>
+                <td class="note-cell">Season opener</td>
             </tr>
             <tr>
                 <td>2026-02-13</td>
                 <td>Greene Hills</td>
                 <td>2-Man Scramble</td>
                 <td>Devon/Ryan vs Keith/Kyle</td>
-                <td class="result">Kyle/Keith Win</td>
-                <td>"One of the most painful losses..." - Devon</td>
+                <td class="result-cell">Kyle and Keith win</td>
+                <td class="note-cell">"One of the most painful losses in my life" - Devon</td>
             </tr>
             <tr>
                 <td>2026-03-13</td>
                 <td>Deer Lake</td>
                 <td>2-Man Scramble</td>
                 <td>Devon/Ryan vs Keith/Kyle</td>
-                <td class="result">Kyle/Keith Win</td>
-                <td>Kyle made the putt to win on 9</td>
+                <td class="result-cell">Kyle and Keith win</td>
+                <td class="note-cell">Keith and Kyle tied it on 8 and Kyle made the putt to win on 9</td>
             </tr>
         </tbody>
     </table>
 
     <h2>🏆 Historical Scramble Champions</h2>
+    <p style="color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px;">The annual title for the winningest duo of the calendar year.</p>
     <table>
         <thead>
             <tr>
@@ -163,12 +169,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr><td>2025</td><td class="winner-cell">Devon Jarvis & Ryan Edwards</td></tr>
-            <tr><td>2024</td><td class="winner-cell">Keith Flynn & Kyle Merkley</td></tr>
-            <tr><td>2023</td><td class="winner-cell">Keith Flynn & Kyle Merkley</td></tr>
-            <tr><td>2022</td><td class="winner-cell">Keith Flynn & Kyle Merkley</td></tr>
-            <tr><td>2021</td><td class="winner-cell">Devon Jarvis & Ryan Edwards</td></tr>
-            <tr><td>2020</td><td class="winner-cell">Devon Jarvis & Ryan Edwards</td></tr>
+            <tr><td>2025</td><td class="winner-name">Devon Jarvis & Ryan Edwards</td></tr>
+            <tr><td>2024</td><td class="winner-name">Keith Flynn & Kyle Merkley</td></tr>
+            <tr><td>2023</td><td class="winner-name">Keith Flynn & Kyle Merkley</td></tr>
+            <tr><td>2022</td><td class="winner-name">Keith Flynn & Kyle Merkley</td></tr>
+            <tr><td>2021</td><td class="winner-name">Devon Jarvis & Ryan Edwards</td></tr>
+            <tr><td>2020</td><td class="winner-name">Devon Jarvis & Ryan Edwards</td></tr>
         </tbody>
     </table>
 </div>
