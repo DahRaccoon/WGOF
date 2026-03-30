@@ -3,161 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WGOF Birdie Token Challenge</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>WGOF | Birdie Token Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        /* Shared Dark Theme Styles */
+        :root {
+            --pga-blue: #002d62;
+            --masters-green: #006747;
+            --neutral-gray: #f8f9fa;
+            --border-color: #e2e8f0;
+            --text-main: #1a202c;
+            --text-muted: #718096;
+            --gold-accent: #b39a5f;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 0;
-            padding-top: 50px; /* CRITICAL: Space for fixed top navbar */
-            color: #f0f0f0;
-            line-height: 1.6;
-            background-color: #1a1a1a;
+            padding-top: 80px; 
+            color: var(--text-main);
+            line-height: 1.8;
+            background-color: #ffffff;
         }
-        
-        /* Fixed Navigation Bar */
+
+        /* NAVIGATION */
         #top-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #000000;
-            color: #ffffff;
-            z-index: 100;
-            border-bottom: 2px solid #ffd700;
+            position: fixed; top: 0; left: 0; width: 100%;
+            background-color: #ffffff; z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        #top-nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0 50px;
-            display: flex;
-            justify-content: flex-start;
-            height: 48px;
-            align-items: center;
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 70px; padding: 0 20px;
         }
-        #top-nav li {
-            margin-right: 20px; /* Ensures spacing between links */
-        }
+        .logo-area { display: flex; align-items: center; text-decoration: none; gap: 12px; }
+        .logo-img { height: 45px; width: auto; }
+        .logo-text { color: var(--pga-blue); font-weight: 700; font-size: 18px; letter-spacing: 2px; }
+
+        #top-nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
+        #top-nav li { margin-left: 25px; position: relative; }
         #top-nav li a {
-            text-decoration: none;
-            color: #b0b0b0;
-            font-weight: bold;
-            padding: 10px 0;
-            transition: color 0.3s;
-        }
-        #top-nav li a:hover {
-            color: #ffffff;
+            text-decoration: none; color: var(--pga-blue);
+            font-weight: 600; font-size: 0.75em;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            padding: 24px 0; display: block;
         }
 
-        #background-pattern { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background-image: url('merkley_logo.jpg'), url('edwards_logo.png'), url('jarvis_logo.png'), url('flynn_logo.png'), url('weed_logo.png');
-            background-position: 10% 10%, 90% 40%, 30% 85%, 70% 20%, 20% 60%;
-            background-repeat: no-repeat;
-            background-size: 300px, 350px, 250px, 400px, 330px;
-            opacity: 0.15;
+        /* SEASONS DROPDOWN */
+        .dropdown-content {
+            display: none; position: absolute; top: 100%; right: 0;
+            min-width: 180px; background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color); padding: 10px 0;
         }
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            background: rgba(34, 34, 34, 0.9);
-            padding: 30px 50px;
-            border-radius: 4px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            position: relative; z-index: 2;
-        }
-        h1 { color: #ffd700; text-align: center; padding: 15px 0; border-bottom: 2px solid #ffd700; font-size: 2.2em; }
-        h2 { color: #ffffff; margin-top: 40px; padding-bottom: 5px; border-bottom: 1px solid #333333; font-size: 1.6em; }
-        .back-link { display: block; margin-bottom: 20px; text-decoration: none; color: #ffd700; font-weight: bold; }
+        li.has-dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content li { margin: 0; width: 100%; }
+        .dropdown-content li a { padding: 10px 20px; display: block; text-transform: none; font-size: 0.9em; }
 
-        /* Challenge Specific Styles */
-        .token-summary { background: #333333; padding: 20px; border-radius: 4px; margin-bottom: 30px; }
-        .token-summary strong { color: #ffd700; }
-        .available { color: #10ff10; font-weight: bold; } /* Bright green for available */
-        
+        /* CONTENT */
+        .container { max-width: 1100px; margin: 0 auto 60px; padding: 40px 20px; }
+        h1 { 
+            font-family: 'Playfair Display', serif; font-size: 2.5em; color: var(--pga-blue);
+            text-align: center; margin-bottom: 10px;
+        }
+        .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 50px; font-style: italic; }
+
+        h2 {
+            color: var(--masters-green); border-left: 4px solid var(--pga-blue);
+            padding-left: 15px; text-transform: uppercase;
+            font-size: 0.85em; letter-spacing: 2px; margin: 50px 0 20px;
+        }
+
+        /* RULES SUMMARY */
+        .token-summary {
+            background-color: var(--neutral-gray);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        .token-summary ul { padding-left: 20px; }
+        .token-summary strong { color: var(--pga-blue); }
+        .highlight-green { color: var(--masters-green); font-weight: 700; }
+
+        /* LEADERBOARD BANNER */
+        .leader-banner {
+            background-color: var(--pga-blue);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .leader-banner span { color: var(--gold-accent); font-weight: 700; }
+
+        /* TOKEN GRID */
         .hole-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
         }
         .hole-card {
-            background: #2b2b2b;
-            padding: 15px;
-            border-radius: 4px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
             text-align: center;
-            border-left: 5px solid #10ff10; /* Green stripe for Available */
+            transition: transform 0.2s ease;
         }
-        .hole-card h3 { margin: 0; font-size: 1.2em; color: #ffffff; }
-        .hole-card p { margin: 5px 0 0; font-size: 0.9em; }
+        .hole-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .hole-card h3 { margin: 0 0 10px 0; font-family: 'Playfair Display', serif; font-size: 1.3em; }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
 
+        /* CLAIMED STATE */
+        .claimed { border-top: 5px solid var(--masters-green); }
+        .claimed .status-badge { background-color: var(--masters-green); color: white; }
+        .claimed h3 { color: var(--masters-green); }
+
+        /* AVAILABLE STATE */
+        .available { border-top: 5px solid var(--border-color); }
+        .available .status-badge { background-color: var(--border-color); color: var(--text-muted); }
+        .available h3 { color: var(--text-muted); }
     </style>
 </head>
 <body>
-    <div id="background-pattern"></div>
-    
-    <!-- FIXED NAVIGATION BAR -->
-    <nav id="top-nav">
+
+<nav id="top-nav">
+    <div class="nav-container">
+        <a href="index.html" class="logo-area">
+            <img src="wgof_logo.png" alt="WGOF" class="logo-img">
+            <span class="logo-text">WGOF</span>
+        </a>
         <ul>
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="token_challenge.html">TOKEN CHALLENGE</a></li>
-            <li><a href="hole_in_one.html">HOLE-IN-ONE</a></li>
-            <li><a href="profiles.html">PROFILES</a></li>
-            <li><a href="scramble_records.html">SCRAMBLE RECORDS</a></li>
-            <li><a href="group_photos.html">GROUP PHOTOS</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="profiles.html">Profiles</a></li>
+            <li><a href="scramble_records.html">Scramble</a></li>
+            <li><a href="token_challenge.html">Tokens</a></li>
+            <li><a href="hole_in_one.html">Hole In One</a></li>
+            <li class="has-dropdown">
+                <a href="#">Seasons ▾</a>
+                <ul class="dropdown-content">
+                    <li><a href="seasons_2025.html">2025 Season</a></li>
+                    <li><a href="#">2026 Season</a></li>
+                </ul>
+            </li>
         </ul>
-    </nav>
-    <!-- ---------------------- -->
-
-    <div class="container" style="margin-top: 80px;">
-        <a href="index.html" class="back-link">← Back to Home Page</a>
-
-        <h1>🏌️ Birdie Token Challenge: Greene Hills</h1>
-
-        <h2>Challenge Summary</h2>
-        <div class="token-summary">
-            <p>The WGOF Birdie Token Challenge is a season-long competition for bragging rights and a cash payout at the end of the year.</p>
-            <ul>
-                <li><strong>The Goal:</strong> Own the most tokens (one for each of the 18 holes at Green Hills) by the end of the year.</li>
-                <li><strong>The Buy-In:</strong> <span style="color:#10ff10; font-weight:bold;">$41.00</span> one-time fee.</li>
-                <li><strong>Earning Tokens:</strong> Score a <strong>Birdie or Better</strong> on any hole while playing your own ball with a WGOF member witness and report the winning to the WGOF text group to claim the hole. This action earns you the token for that hole, stealing it from the current owner if aready owned.</li>
-                <li><strong>The Payout:</strong> Winnings are based on your final ownership count:
-                    <ul>
-                        <li>You get <strong>$8.00</strong> for every token you own.</li>
-                        <li>The overall leader (most tokens owned) gets a <strong>$60.00 Bonus</strong>.</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-
-        <h2>Token Status: 7 Holes Claimed</h2>
-        <p>Current Payout Leader: <strong>Keith (5)</strong></p>
-
-        <div class="hole-grid">
-            <div class="hole-card"><h3 class="available">Hole 1</h3><p>Status: <span class="available">Available</span></p></div>
-            <div class="hole-card"><h3 class="claimed">Hole 2</h3><p>Status: <span class="claimed">Kyle</span></p></div>
-            <div class="hole-card"><h3 class="claimed">Hole 3</h3><p>Status: <span class="claimed">Keith</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 4</h3><p>Status: <span class="available">Available</span></p></div>
-            <div class="hole-card"><h3 class="claimed">Hole 5</h3><p>Status: <span class="claimed">Keith</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 6</h3><p>Status: <span class="available">Available</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 7</h3><p>Status: <span class="available">Available</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 8</h3><p>Status: <span class="available">Available</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 9</h3><p>Status: <span class="claimed">Kyle</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 10</h3><p>Status: <span class="available">Available</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 11</h3><p>Status: <span class="available">Available</span></p></div>
-            <div class="hole-card"><h3 class="claimed">Hole 12</h3><p>Status: <span class="claimed">Keith</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 13</h3><p>Status: <span class="available">Available</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 14</h3><p>Status: <span class="available">Available</span></p></div>
-            <div class="hole-card"><h3 class="claimed">Hole 15</h3><p>Status: <span class="claimed">Keith</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 16</h3><p>Status: <span class="available">Available</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 17</h3><p>Status: <span class="available">Available</span></p></div>
-            <div class="hole-card"><h3 class="available">Hole 18</h3><p>Status: <span class="claimed">Keith</span></p></div>
-        </div>
-
     </div>
-</body>
-</html>
+</nav>
+
+<div class="container">
+    <h1>Birdie Token Challenge</h1>
+    <p class="subtitle">Greene Hills Country Club - All-Time Birdie Tracking</p>
+
+    <h2>Challenge Summary</h2>
+    <div class="token-summary">
+        <p>The WGOF Birdie Token Challenge is a season-long competition for bragging rights and a cash payout at the end of the year.</p>
+        <ul>
+            <li><strong>The Goal:</strong> Own the most tokens (one for each of the 18 holes at Green Hills) by the end of the year.</li>
+            <li><strong>The Buy-In:</strong> <span class="highlight-green">$41.00</span> one-time fee.</li>
+            <li><strong>Earning Tokens:</strong> Score a <strong>Birdie or Better</strong> on any hole while playing your own ball with a WGOF member witness. Report to the text group to claim the hole. This earns you the token, stealing it from the current owner if already owned.</li>
+            <li><strong>The Payout:</strong> Winnings are based on final ownership:
+                <ul>
+                    <li><strong>$8.00</strong> for every token you own.</li>
+                    <li>The overall leader gets a <strong>$60.00 Bonus</strong>.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="leader-banner">
+        Current Payout Leader: <span>Keith (5 Tokens)</span>
+    </div>
+
+    <h2>Token Status: 8 Holes Claimed</h2>
+    <div class="hole-grid">
+        <div class="hole-card available"><h3>Hole 1</h3><span class="status-badge">Available</span></div>
+        <div class="hole-card claimed"><h3>Hole 2</h3><span class="status-badge">Kyle</span></div>
+        <div class="hole-card claimed"><h3>Hole 3</h3><span class="status-badge">Keith</span></div>
+        <div class="hole-card available"><h3>Hole 4</h3><span class="status-badge">Available</span></div>
+        <div class="hole-card claimed"><h3>Hole 5</h3><span class="status-badge">Keith</span></div>
+        <div class="hole-card available"><h3>Hole 6</h3><span class="status-badge">Available</span></div>
+        <div class="hole-card available"><h3>Hole 7</h3><span class="status-badge">Available</span></div>
+        <div class="hole-card available"><h3>Hole 8</h3><span class="status-badge">Available</span></div>
+        <div class="hole-card claimed"><h3>Hole 9</h3><span class="status-badge">Kyle</span></div>
+        <div class="hole-card claimed"><h3>Hole 10</h3><span class="status-badge">Ryan</span></div>
+        <div class="hole-card available"><h3>Hole 11</h3><span class="status-badge">Available</span></div>
+        <div class="hole-card claimed"><h3>Hole 12</h3><span class="status-badge">Keith</span></div>
+        <div class="hole-card available"><h3>Hole 13</h3><span class="status-badge">Available</span></div>
+        <div class="hole-card available"><h3>Hole 14</h3><span class="status-badge">Available</span></div>
+        <div class="hole-card claimed"><h3>Hole 15</h3><span class="status-badge">Keith</span></div>
+        <div class="hole-card available"><h3>Hole 16</h3><span class="status-badge">Available</span></div>
+        <div class="hole-card available"><h3>Hole 17</h3><span class="status-badge">Available</span></div>
+        <div class="hole-card claimed"><h3>Hole 18</h3><span class="status-badge">Keith</span></div>
+    </div>
+</div>
+
 </body>
 </html>
