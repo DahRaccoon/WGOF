@@ -13,7 +13,7 @@
             --border-light: #e2e8f0;
             --text-dark: #1a202c;
             --gold: #b39a5f;
-            --hole-shade: #e9ecef;
+            --hole-shade: #eef2f7;
         }
 
         body { font-family: 'Montserrat', sans-serif; margin: 0; padding-top: 70px; background-color: #ffffff; color: var(--text-dark); }
@@ -22,28 +22,23 @@
         #top-nav { position: fixed; top: 0; left: 0; width: 100%; background: #fff; z-index: 1000; border-bottom: 1px solid var(--border-light); }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 70px; padding: 0 20px; }
         .logo-img { height: 40px; display: block; }
-        #top-nav ul { list-style: none; display: flex; margin: 0; padding: 0; align-items: center; }
+        #top-nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
         #top-nav li { margin-left: 20px; }
         #top-nav li a { text-decoration: none; color: var(--pga-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-        /* HEADER & BANNER */
         .content-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+        /* BANNER */
         .wgoftour-ticker-container {
             display: flex; align-items: center; justify-content: space-between;
             background-color: #ffffff; border: 1px solid var(--border-light);
             border-radius: 8px; padding: 25px; margin-bottom: 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03); flex-wrap: wrap; gap: 20px;
         }
-        .ticker-logo-circle img { width: 100px; height: auto; display: block; }
-        .ticker-title { font-size: 2.2rem; font-weight: 700; color: var(--text-dark); margin: 0; line-height: 1.1; }
-        
-        .btn-letter-inline {
-            background: var(--masters-green); color: white; border: none;
-            padding: 8px 15px; font-size: 0.7rem; font-weight: 700;
-            text-transform: uppercase; cursor: pointer; border-radius: 4px; margin-top: 10px;
-        }
+        .ticker-logo-circle img { width: 100px; height: auto; }
+        .ticker-title { font-size: 2.2rem; font-weight: 700; color: var(--text-dark); margin: 0; }
 
-        /* ROLEX PANEL */
+        /* ROLEX */
         .rolex-panel { background-color: var(--masters-green); border-radius: 12px; padding: 15px; display: flex; align-items: center; color: white; gap: 15px; }
         .analog-clock { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--gold); background: white; position: relative; }
         .hand { position: absolute; bottom: 50%; left: 50%; transform-origin: 50% 100%; }
@@ -51,25 +46,22 @@
         .hand.minute { width: 2%; height: 35%; background: black; }
         .hand.second { width: 1%; height: 40%; background: red; }
 
-        /* TOURNAMENT LETTER */
-        .letter-container { max-width: 850px; margin: 20px auto; background: #fffdf6; padding: 40px; border: 1px solid var(--border-light); display: none; line-height: 1.6; }
-        .redacted { background: #000; color: #000; padding: 0 5px; }
-
-        /* TABLES & SCORECARDS */
+        /* TABLES */
         .section-header { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--pga-blue); margin: 40px 0 20px; border-bottom: 2px solid var(--masters-green); padding-bottom: 5px; }
-        .tour-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 0.85rem; }
+        .tour-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
         .tour-table th { text-align: left; background: var(--neutral-bg); padding: 12px; text-transform: uppercase; font-size: 0.7rem; border-bottom: 2px solid var(--border-light); }
-        .tour-table td { padding: 12px; border-bottom: 1px solid var(--border-light); }
+        .tour-table td { padding: 12px; border-bottom: 1px solid var(--border-light); font-size: 0.85rem; }
+        .clickable-row { cursor: pointer; transition: background 0.2s; }
+        .clickable-row:hover { background: #f0f7f4; }
         .pts-cell { font-weight: 700; color: var(--masters-green); }
 
-        .sc-card { border: 1px solid var(--border-light); border-radius: 8px; margin-bottom: 25px; overflow: hidden; background: #fff; }
-        .sc-head { background: var(--pga-blue); color: white; padding: 10px 15px; display: flex; justify-content: space-between; font-weight: 700; font-size: 0.9rem; }
-        .sc-grid { display: grid; grid-template-columns: 80px repeat(9, 1fr) 60px; text-align: center; }
-        .sc-cell { padding: 10px 2px; border-right: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 0.75rem; }
-        .sc-label { background: var(--hole-shade); font-weight: 700; text-transform: uppercase; }
+        /* SCORECARD DROPDOWN */
+        .scorecard-wrapper { display: none; background: #fff; padding: 15px; border-bottom: 2px solid var(--masters-green); }
+        .sc-grid { display: grid; grid-template-columns: 80px repeat(9, 1fr) 60px; text-align: center; margin-bottom: 5px; border: 1px solid #eee; }
+        .sc-cell { padding: 8px 2px; border-right: 1px solid #eee; font-size: 0.75rem; }
+        .sc-label { background: var(--hole-shade); font-weight: 700; text-transform: uppercase; font-size: 0.65rem; }
         .sc-total { background: #edf2f7; font-weight: 800; color: var(--pga-blue); }
-
-        @media (max-width: 768px) { .sc-grid { grid-template-columns: 50px repeat(9, 1fr) 40px; } }
+        .active-row { background: #e6f0eb !important; }
     </style>
 </head>
 <body>
@@ -86,15 +78,12 @@
 
 <div class="content-container">
     <div class="wgoftour-ticker-container">
-        <div class="ticker-logo-circle">
-            <img src="images/weed-championship-logo.png" alt="WGOF Logo">
-        </div>
+        <div class="ticker-logo-circle"><img src="weed-championship-logo.png" alt="WGOF Logo"></div>
         <div style="flex: 1;">
             <h2 class="ticker-title">The Weed Championship</h2>
             <div style="color: #718096; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-top: 5px;">
                 Bill & Payne Stewart GC | April 11, 2026
             </div>
-            <button class="btn-letter-inline" onclick="toggleLetter()">Read Tournament Letter</button>
         </div>
         <div class="rolex-panel">
             <div class="analog-clock">
@@ -106,31 +95,97 @@
         </div>
     </div>
 
-    <div id="tournament-letter" class="letter-container">
-        <p>Dear WGOF Member, I am sure that we are all eager to start a new, fresh season full of hope and possibilities...</p>
-        <p>The Weed Championship will be held at <span class="redacted">REDACTED</span>. Breakfast ball on 1 & 10. Fluff away on chips.</p>
-    </div>
-
-    <h2 class="section-header">Weed Championship Scoreboard</h2>
+    <h2 class="section-header">Tournament Standings & Scorecards</h2>
+    <p style="font-size: 0.75rem; color: #718096; margin-bottom: 10px;">*Click a golfer to view their full PGA scorecard</p>
+    
     <table class="tour-table">
         <thead>
-            <tr>
-                <th>Player</th>
-                <th>Front 9 (Out)</th>
-                <th>Back 9 (In)</th>
-                <th>Full 18</th>
-            </tr>
+            <tr><th>Player</th><th>OUT</th><th>IN</th><th>Total</th></tr>
         </thead>
         <tbody>
-            <tr><td>Devon Jarvis</td><td>46</td><td>43</td><td><strong>89</strong></td></tr>
-            <tr><td>Keith Flynn</td><td>47</td><td>43</td><td><strong>90</strong></td></tr>
-            <tr><td>Ryan Edwards</td><td>44</td><td>46</td><td><strong>90</strong></td></tr>
-            <tr><td>Kyle Merkley</td><td>42</td><td>50</td><td><strong>92</strong></td></tr>
-            <tr><td>Sterling Weed</td><td>47</td><td>45</td><td><strong>92</strong></td></tr>
+            <tr class="clickable-row" onclick="toggleScorecard('sc-devon', this)">
+                <td><strong>Devon Jarvis</strong> (1st)</td><td>46</td><td>43</td><td><strong>89</strong></td>
+            </tr>
+            <tr id="sc-devon" class="scorecard-wrapper">
+                <td colspan="4">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">7</div><div class="sc-cell sc-total">46</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">43</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-keith', this)">
+                <td><strong>Keith Flynn</strong> (T2)</td><td>47</td><td>43</td><td><strong>90</strong></td>
+            </tr>
+            <tr id="sc-keith" class="scorecard-wrapper">
+                <td colspan="4">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">6</div><div class="sc-cell">7</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell sc-total">47</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell sc-total">43</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-ryan', this)">
+                <td><strong>Ryan Edwards</strong> (T2)</td><td>44</td><td>46</td><td><strong>90</strong></td>
+            </tr>
+            <tr id="sc-ryan" class="scorecard-wrapper">
+                <td colspan="4">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">44</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">7</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">46</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-kyle', this)">
+                <td><strong>Kyle Merkley</strong> (T4)</td><td>42</td><td>50</td><td><strong>92</strong></td>
+            </tr>
+            <tr id="sc-kyle" class="scorecard-wrapper">
+                <td colspan="4">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell sc-total">42</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell sc-total">50</div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-sterling', this)">
+                <td><strong>Sterling Weed</strong> (T4)</td><td>47</td><td>45</td><td><strong>92</strong></td>
+            </tr>
+            <tr id="sc-sterling" class="scorecard-wrapper">
+                <td colspan="4">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell sc-total">47</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">45</div>
+                    </div>
+                </td>
+            </tr>
         </tbody>
     </table>
 
-    <h2 class="section-header">Full Season Standings</h2>
+    <h2 class="section-header">Season Standings</h2>
     <table class="tour-table">
         <thead>
             <tr><th>Rank</th><th>Player</th><th>F9 Pts</th><th>B9 Pts</th><th>Bonus</th><th class="pts-cell">Total</th></tr>
@@ -144,49 +199,34 @@
         </tbody>
     </table>
 
-    <h2 class="section-header">Official Scorecards</h2>
-
-    <div class="sc-card">
-        <div class="sc-head"><span>Kyle Merkley</span> <span>92 (+22)</span></div>
-        <div class="sc-grid"><div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div></div>
-        <div class="sc-grid"><div class="sc-cell">Score</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell sc-total">42</div></div>
-        <div class="sc-grid"><div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div></div>
-        <div class="sc-grid"><div class="sc-cell">Score</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell sc-total">50</div></div>
-    </div>
-
-    <div class="sc-card">
-        <div class="sc-head"><span>Ryan Edwards</span> <span>90 (+20)</span></div>
-        <div class="sc-grid"><div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div></div>
-        <div class="sc-grid"><div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">44</div></div>
-        <div class="sc-grid"><div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div></div>
-        <div class="sc-grid"><div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">7</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">46</div></div>
-    </div>
-
-    <div class="sc-card">
-        <div class="sc-head"><span>Sterling Weed</span> <span>92 (+22)</span></div>
-        <div class="sc-grid"><div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div></div>
-        <div class="sc-grid"><div class="sc-cell">Score</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell sc-total">47</div></div>
-        <div class="sc-grid"><div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div></div>
-        <div class="sc-grid"><div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">45</div></div>
-    </div>
-    
-    <h2 class="section-header">Season Schedule</h2>
+    <h2 class="section-header">Updated Schedule</h2>
     <table class="tour-table">
         <thead><tr><th>Date</th><th>Tournament</th><th>Host</th></tr></thead>
         <tbody>
             <tr><td>April 11</td><td>Weed Championship</td><td>Sterling Weed</td></tr>
-            <tr><td>May 2</td><td>Jarvis Open</td><td>Devon Jarvis</td></tr>
             <tr><td>June 1</td><td>Merkley Invitational</td><td>Kyle Merkley</td></tr>
+            <tr><td>August 8</td><td>Edwards Invitational</td><td>Ryan Edwards</td></tr>
             <tr><td>September 12</td><td>Flynnvitational</td><td>Keith Flynn</td></tr>
+            <tr><td>November 9</td><td>WGOF Championship</td><td>Board</td></tr>
         </tbody>
     </table>
 </div>
 
 <script>
-    function toggleLetter() {
-        var letter = document.getElementById("tournament-letter");
-        letter.style.display = (letter.style.display === "none" || letter.style.display === "") ? "block" : "none";
+    function toggleScorecard(id, row) {
+        var el = document.getElementById(id);
+        var isVisible = el.style.display === "table-row";
+        
+        // Hide all others
+        document.querySelectorAll('.scorecard-wrapper').forEach(sc => sc.style.display = 'none');
+        document.querySelectorAll('.clickable-row').forEach(r => r.classList.remove('active-row'));
+        
+        if (!isVisible) {
+            el.style.display = "table-row";
+            row.classList.add('active-row');
+        }
     }
+
     function updateClock() {
         const now = new Date();
         const hr = now.getHours(), min = now.getMinutes(), sec = now.getSeconds();
