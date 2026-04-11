@@ -55,12 +55,18 @@
         .clickable-row:hover { background: #f0f7f4; }
         .pts-cell { font-weight: 700; color: var(--masters-green); }
 
-        /* SCORECARD DROPDOWN */
+        /* SCORECARD STYLING */
         .scorecard-wrapper { display: none; background: #fff; padding: 15px; border-bottom: 2px solid var(--masters-green); }
         .sc-grid { display: grid; grid-template-columns: 80px repeat(9, 1fr) 60px; text-align: center; margin-bottom: 5px; border: 1px solid #eee; }
-        .sc-cell { padding: 8px 2px; border-right: 1px solid #eee; font-size: 0.75rem; }
+        .sc-cell { padding: 8px 2px; border-right: 1px solid #eee; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; min-height: 35px; }
         .sc-label { background: var(--hole-shade); font-weight: 700; text-transform: uppercase; font-size: 0.65rem; }
         .sc-total { background: #edf2f7; font-weight: 800; color: var(--pga-blue); }
+        
+        /* GOLF SHAPES */
+        .birdie { border: 1px solid var(--masters-green); border-radius: 50%; width: 24px; height: 24px; line-height: 24px; display: inline-block; }
+        .bogey { border: 1px solid #718096; width: 24px; height: 24px; line-height: 24px; display: inline-block; }
+        .double-bogey { border: 3px double #2d3748; width: 24px; height: 24px; line-height: 24px; display: inline-block; font-weight: 700; }
+        
         .active-row { background: #e6f0eb !important; }
     </style>
 </head>
@@ -110,11 +116,11 @@
                 <td colspan="4">
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
-                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">7</div><div class="sc-cell sc-total">46</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell sc-total">46</div>
                     </div>
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
-                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">43</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell sc-total">43</div>
                     </div>
                 </td>
             </tr>
@@ -126,11 +132,11 @@
                 <td colspan="4">
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
-                        <div class="sc-cell">Score</div><div class="sc-cell">6</div><div class="sc-cell">7</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell sc-total">47</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell sc-total">47</div>
                     </div>
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
-                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell sc-total">43</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell sc-total">43</div>
                     </div>
                 </td>
             </tr>
@@ -142,11 +148,11 @@
                 <td colspan="4">
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
-                        <div class="sc-cell">Score</div><div class="sc-cell">5</div><div class="sc-cell">7</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell sc-total">44</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="birdie">3</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="birdie">3</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell sc-total">44</div>
                     </div>
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
-                        <div class="sc-cell">Score</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">7</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell sc-total">46</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="birdie">3</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell sc-total">46</div>
                     </div>
                 </td>
             </tr>
@@ -158,11 +164,11 @@
                 <td colspan="4">
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
-                        <div class="sc-cell">Score</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">7</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell sc-total">42</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="birdie">3</span></div><div class="sc-cell sc-total">42</div>
                     </div>
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
-                        <div class="sc-cell">Score</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">9</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">7</div><div class="sc-cell sc-total">50</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="double-bogey">9</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell sc-total">50</div>
                     </div>
                 </td>
             </tr>
@@ -174,11 +180,11 @@
                 <td colspan="4">
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
-                        <div class="sc-cell">Score</div><div class="sc-cell">7</div><div class="sc-cell">6</div><div class="sc-cell">7</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell sc-total">47</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell sc-total">47</div>
                     </div>
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
-                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell sc-total">45</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell sc-total">45</div>
                     </div>
                 </td>
             </tr>
