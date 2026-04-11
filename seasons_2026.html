@@ -95,17 +95,17 @@
             flex-wrap: wrap;
             gap: 20px;
         }
-     .ticker-logo-circle {
-    width: 120px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffffff; /* Matches the ticker background perfectly */
-    border: none;              /* Removes the gray ring entirely */
-    margin-right: 15px;
-    flex-shrink: 0;            /* Prevents the logo from getting squished on mobile */
-}
+        .ticker-logo-circle {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            border: none;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
         .ticker-logo-circle img { width: 95%; height: auto; display: block; }
         
         .official-tag {
@@ -170,30 +170,24 @@
         }
         .tour-table td { padding: 12px; border-bottom: 1px solid var(--border-light); }
         
-        /* SPONSOR STYLING */
-        .sponsor-box {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .sponsor-logo {
-            font-size: 0.7rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            color: #718096;
-            font-style: italic;
-            letter-spacing: -0.5px;
-        }
-        .titleist-style { color: #000; font-family: serif; font-weight: 900; font-style: italic; font-size: 0.9rem; }
-        .mizuno-style { color: #002d62; font-weight: 700; letter-spacing: 1px; }
+        /* SCORECARD SPECIFIC STYLES */
+        .sc-card { border: 1px solid var(--border-light); border-radius: 8px; margin-bottom: 25px; overflow: hidden; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .sc-head { background: var(--pga-blue); color: white; padding: 10px 20px; display: flex; justify-content: space-between; font-weight: 700; }
+        .sc-grid { display: grid; grid-template-columns: 100px repeat(9, 1fr) 60px; text-align: center; border-bottom: 1px solid #eee; }
+        .sc-cell { padding: 10px 2px; border-right: 1px solid #eee; font-size: 0.8rem; }
+        .sc-label { background: var(--neutral-bg); font-weight: 700; text-transform: uppercase; font-size: 0.65rem; }
+        .sc-total { background: #edf2f7; font-weight: 800; color: var(--pga-blue); }
 
         .pts-cell { font-weight: 700; color: var(--masters-green); }
+        .sponsor-box { display: flex; align-items: center; gap: 10px; }
+        .titleist-style { color: #000; font-family: serif; font-weight: 900; font-style: italic; font-size: 0.8rem; }
 
         footer { padding: 40px 0; text-align: center; font-size: 0.7rem; color: #718096; border-top: 1px solid var(--border-light); }
 
         @media (max-width: 768px) {
             .wgoftour-ticker-container { flex-direction: column; text-align: center; }
             .ticker-meta { justify-content: center; }
+            .sc-grid { grid-template-columns: 60px repeat(9, 1fr) 40px; font-size: 0.6rem; }
         }
     </style>
 </head>
@@ -206,9 +200,6 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="profiles.html">Profiles</a></li>
             <li><a href="scramble_records.html">Scrambles</a></li>
-            <li><a href="token_challenge.html">Tokens</a></li>
-            <li><a href="hole_in_one.html">Hole In One</a></li>
-            <li><a href="seasons_2025.html">2025 Season</a></li>
             <li><a href="seasons_2026.html" style="color: var(--masters-green);">2026 Season</a></li>
         </ul>
     </div>
@@ -217,57 +208,43 @@
 <header class="masters-banner">
     <span class="tagline">A Tradition Unlike Any Other</span>
     <h1>The Second Annual Weed Championship</h1>
-    <span class="sub-tag">A Tournament of Skill, Luck & Questionable Life Choices</span>
-    <button class="btn-letter" onclick="toggleLetter()">Read Tournament Letter</button>
+    <span class="sub-tag">Official Results & Season Standings</span>
+    <button class="btn-letter" onclick="toggleLetter()">View Original Invite</button>
 </header>
 
 <div id="tournament-letter" class="letter-container">
     <div class="letter-sep">♦ ♦ ♦</div>
     <p>Dear WGOF Member,</p>
-    <p>It is with pride that we invite you to this year's tournament.</p>
-    <p>It seems like only yesterday that we wrapped up the WGOF season at the infuriatingly fun, Branson Hills Golf Club. Last season featured many memorable moments such as Ryan throwing his wedge into the trees on Hole 15 at Deer Lake, Devon shanking the opening tee shot in front of the wives, or Keith thinking that rule 9.4 doesn't apply to his practice swings.</p>
     <p>I am sure that we are all eager to start a new, fresh season full of hope and possibilities (Kyle is probably the most eager judging by the fact that he wants to punch Keith in the face everytime he mentions the last championship).</p>
-    <p>What new memories and rule modifications will this season bring? Will Ryan finally get his fist fight? Will someone finally hit that elusive hole-in-one?</p>
-    <p>The Weed Championship will be held at <span class="redacted">REDACTED</span>. Located in <span class="redacted">REDACTED</span>, the <span class="redacted">REDACTED</span> is a <span class="redacted">REDACTED</span> yard par <span class="redacted">REDACTED</span>. We will most likely be playing from the <span class="redacted">REDACTED</span> tees, which will make the actual length of the course <span class="redacted">REDACTED</span> yards.</p>
-    <p>The course was opened in <span class="redacted">REDACTED</span> and designed by noted architect <span class="redacted">REDACTED</span>. The course will require accurate <span class="redacted">REDACTED</span> and places a premium on <span class="redacted">REDACTED</span>.</p>
-    <p>Highlights of the course include the infamous <span class="redacted">REDACTED</span>th hole — a par-<span class="redacted">REDACTED</span> that plays directly <span class="redacted">REDACTED</span>, over a <span class="redacted">REDACTED</span>, onto a green that <span class="redacted">REDACTED</span>. The hole's unofficial nickname, "<span class="redacted">REDACTED</span>," is not suitable for printed materials.</p>
+    <p>The Weed Championship will be held at **Bill & Payne Stewart Golf Course**. Designed by noted architects, the course will require accurate play and places a premium on putting.</p>
     
     <div style="background: #fdfdfd; padding: 20px; border: 1px solid #eee; margin: 30px 0;">
         <h4 style="margin-top: 0; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px;">Tournament Details</h4>
-        <p><strong>DATE:</strong> April 11, 2026 <span style="background: #006747; color: #fff; padding: 2px 8px; font-size: 0.6rem; border-radius: 2px; margin-left: 10px;">DAY 3 OF THE MASTERS</span></p>
-        <p><strong>TEE TIME:</strong> <span class="redacted">REDACTED</span> AM</p>
-        <p><strong>COURSE:</strong> <span class="redacted">REDACTED</span></p>
+        <p><strong>DATE:</strong> April 11, 2026 <span style="background: #006747; color: #fff; padding: 2px 8px; font-size: 0.6rem; border-radius: 2px; margin-left: 10px;">MASTERS SATURDAY</span></p>
+        <p><strong>COURSE:</strong> Bill & Payne Stewart GC</p>
         <p><strong>ENTRY FEE:</strong> $20 per player</p>
     </div>
 
     <h4 style="text-align: center; text-transform: uppercase; color: var(--masters-green);">Rule Modifications</h4>
-    <p>The Weed Championship will be played with the following rule modifications:</p>
-    <p><strong>Standard Friday WGOF Rules</strong><br>What does that mean you ask? Let me explain:</p>
     <ul>
-        <li>Your drive finds a bare spot of grass in the fairway -- Improved lies are allowed</li>
-        <li>You want to fluff the lie of your chip -- Fluff away</li>
-        <li>You want to line up your putt on the fringe -- Line that ball up</li>
-        <li>You want a breakfast ball -- Hit that breakfast ball. In fact let's hit another on 10</li>
-        <li>You hit your ball in the sand -- We are men, play the sand</li>
+        <li>Improved lies in fairways</li>
+        <li>Fluff away on chips</li>
+        <li>Breakfast ball on 1 & 10</li>
     </ul>
-    <p>Let us enjoy this competition. If you find yourself with a rule dilemma, just FaceTime the group and we will agree on the ruling*.</p>
     <p style="font-size: 0.7rem; border-top: 1px solid #eee; padding-top: 10px; font-style: italic;">*If you have an Android phone, assume the ruling is a one stroke penalty and move on.</p>
-    <p style="text-align: center; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; color: #a0aec0; margin-top: 30px;">All Redactions Reviewed & Approved by the Weed Championship Committee</p>
 </div>
 
 <div class="content-container">
     
     <div class="wgoftour-ticker-container">
-     <div class="ticker-logo-circle">
-    <img src="images/weed-championship-logo.png" alt="WGOF Logo" 
-         style="max-width: 95%; height: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));">
-</div>
+        <div class="ticker-logo-circle">
+            <img src="images/weed-championship-logo.png" alt="WGOF Logo">
+        </div>
         <div style="flex: 1; min-width: 300px;">
-            <div class="official-tag">Official</div>
-            <h2 class="ticker-title">The Second Annual Weed Championship</h2>
+            <div class="official-tag">Final Results</div>
+            <h2 class="ticker-title">Weed Championship</h2>
             <div class="ticker-meta">
-                <span>Course: TBD</span>
-                <span>Location: [REDACTED], Missouri</span>
+                <span>Course: Bill & Payne Stewart</span>
                 <span>APR 11, 2026</span>
             </div>
         </div>
@@ -283,52 +260,11 @@
                 <div class="hand second" id="sec"></div>
             </div>
             <div class="time-data">
-                <div class="time-row">
-                    <span>MISSOURI</span>
-                    <span class="time-val" id="digital-local">--:--</span>
-                </div>
-                <div class="time-row" style="color: var(--gold);">
-                    <span>YOUR TIME</span>
-                    <span class="time-val" id="digital-user">--:--</span>
-                </div>
+                <div class="time-row"><span>MISSOURI</span><span class="time-val" id="digital-local">--:--</span></div>
+                <div class="time-row" style="color: var(--gold);"><span>USER TIME</span><span class="time-val" id="digital-user">--:--</span></div>
             </div>
         </div>
     </div>
-
-    <h2 class="section-header">Weed Championship Standings</h2>
-    <table class="tour-table">
-        <thead>
-            <tr>
-                <th>Player</th>
-                <th>Front 9</th>
-                <th>Back 9</th>
-                <th>Full 18</th>
-                <th>Points</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><div class="sponsor-box">Kyle Merkley <span class="titleist-style">Titleist</span></div></td>
-                <td>-</td><td>-</td><td>-</td><td>-</td>
-            </tr>
-            <tr>
-                <td><div class="sponsor-box">Keith Flynn <span class="sponsor-logo" style="color: #b39a5f;">"Cow Field Ball"</span></div></td>
-                <td>-</td><td>-</td><td>-</td><td>-</td>
-            </tr>
-            <tr>
-                <td><div class="sponsor-box">Devon Jarvis <span class="sponsor-logo" style="color: #333;">VICE</span></div></td>
-                <td>-</td><td>-</td><td>-</td><td>-</td>
-            </tr>
-            <tr>
-                <td><div class="sponsor-box">Sterling Weed <span class="sponsor-logo" style="color: #b39a5f;">"Cow Field Ball"</span></div></td>
-                <td>-</td><td>-</td><td>-</td><td>-</td>
-            </tr>
-            <tr>
-                <td><div class="sponsor-box">Ryan Edwards <span class="sponsor-logo" style="color: #d00;">MAXFLI</span></div></td>
-                <td>-</td><td>-</td><td>-</td><td>-</td>
-            </tr>
-        </tbody>
-    </table>
 
     <h2 class="section-header">2026 Full Season Standings</h2>
     <table class="tour-table">
@@ -337,32 +273,51 @@
                 <th>Rank</th>
                 <th>Player</th>
                 <th>Events</th>
+                <th>F9 Pts</th>
+                <th>B9 Pts</th>
+                <th>Bonus</th>
                 <th class="pts-cell">Total Points</th>
             </tr>
         </thead>
         <tbody>
-            <tr><td>1</td><td>Kyle Merkley</td><td>0</td><td class="pts-cell">0</td></tr>
-            <tr><td>2</td><td>Keith Flynn</td><td>0</td><td class="pts-cell">0</td></tr>
-            <tr><td>3</td><td>Devon Jarvis</td><td>0</td><td class="pts-cell">0</td></tr>
-            <tr><td>4</td><td>Sterling Weed</td><td>0</td><td class="pts-cell">0</td></tr>
-            <tr><td>5</td><td>Ryan Edwards</td><td>0</td><td class="pts-cell">0</td></tr>
+            <tr><td>1</td><td>Devon Jarvis</td><td>1</td><td>400</td><td>475</td><td>200</td><td class="pts-cell">1075</td></tr>
+            <tr><td>T2</td><td>Keith Flynn</td><td>1</td><td>325</td><td>475</td><td>50</td><td class="pts-cell">850</td></tr>
+            <tr><td>T2</td><td>Ryan Edwards</td><td>1</td><td>450</td><td>350</td><td>50</td><td class="pts-cell">850</td></tr>
+            <tr><td>T4</td><td>Kyle Merkley</td><td>1</td><td>500</td><td>300</td><td>0</td><td class="pts-cell">800</td></tr>
+            <tr><td>T4</td><td>Sterling Weed</td><td>1</td><td>325</td><td>400</td><td>0</td><td class="pts-cell">725</td></tr>
         </tbody>
     </table>
+
+    <h2 class="section-header">Official Tournament Scorecards</h2>
+
+    <div class="sc-card">
+        <div class="sc-head"><span>Devon Jarvis</span> <span>89 (+19) - 1st Place</span></div>
+        <div class="sc-grid"><div class="sc-cell sc-label">Hole</div><div class="sc-cell">1</div><div class="sc-cell">2</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">7</div><div class="sc-cell">8</div><div class="sc-cell">9</div><div class="sc-cell sc-total">OUT</div></div>
+        <div class="sc-grid"><div class="sc-cell sc-label">Score</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">7</div><div class="sc-cell sc-total">46</div></div>
+        <div class="sc-grid"><div class="sc-cell sc-label">Hole</div><div class="sc-cell">10</div><div class="sc-cell">11</div><div class="sc-cell">12</div><div class="sc-cell">13</div><div class="sc-cell">14</div><div class="sc-cell">15</div><div class="sc-cell">16</div><div class="sc-cell">17</div><div class="sc-cell">18</div><div class="sc-cell sc-total">IN</div></div>
+        <div class="sc-grid"><div class="sc-cell sc-label">Score</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">6</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">43</div></div>
+    </div>
+
+    <div class="sc-card">
+        <div class="sc-head"><span>Keith Flynn</span> <span>90 (+20) - T2 Place</span></div>
+        <div class="sc-grid"><div class="sc-cell sc-label">Hole</div><div class="sc-cell">1</div><div class="sc-cell">2</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">7</div><div class="sc-cell">8</div><div class="sc-cell">9</div><div class="sc-cell sc-total">OUT</div></div>
+        <div class="sc-grid"><div class="sc-cell sc-label">Score</div><div class="sc-cell">6</div><div class="sc-cell">7</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">6</div><div class="sc-cell">4</div><div class="sc-cell sc-total">47</div></div>
+        <div class="sc-grid"><div class="sc-cell sc-label">Hole</div><div class="sc-cell">10</div><div class="sc-cell">11</div><div class="sc-cell">12</div><div class="sc-cell">13</div><div class="sc-cell">14</div><div class="sc-cell">15</div><div class="sc-cell">16</div><div class="sc-cell">17</div><div class="sc-cell">18</div><div class="sc-cell sc-total">IN</div></div>
+        <div class="sc-grid"><div class="sc-cell sc-label">Score</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">6</div><div class="sc-cell sc-total">43</div></div>
+    </div>
 
     <h2 class="section-header">2026 Season Schedule</h2>
     <table class="tour-table">
         <thead>
-            <tr>
-                <th>Date</th>
-                <th>Tournament</th>
-            </tr>
+            <tr><th>Date</th><th>Tournament</th><th>Host</th></tr>
         </thead>
         <tbody>
-            <tr><td>April 11</td><td>Weed Championship</td></tr>
-            <tr><td>May 2</td><td>Jarvis Open</td></tr>
-            <tr><td>June 1</td><td>Flynnvitational</td></tr>
-            <tr><td>August 8</td><td>Edwards Invitational</td></tr>
-            <tr><td>November 9</td><td>WGOF Championship</td></tr>
+            <tr><td>April 11</td><td>Weed Championship</td><td>Sterling Weed</td></tr>
+            <tr><td>May 2</td><td>Jarvis Open</td><td>Devon Jarvis</td></tr>
+            <tr><td>June 1</td><td>Merkley Invitational</td><td>Kyle Merkley</td></tr>
+            <tr><td>August 8</td><td>Edwards Invitational</td><td>Ryan Edwards</td></tr>
+            <tr><td>September 12</td><td>Flynnvitational</td><td>Keith Flynn</td></tr>
+            <tr><td>November 9</td><td>WGOF Championship</td><td>WGOF Board</td></tr>
         </tbody>
     </table>
 </div>
@@ -374,11 +329,7 @@
 <script>
     function toggleLetter() {
         var letter = document.getElementById("tournament-letter");
-        if (letter.style.display === "none" || letter.style.display === "") {
-            letter.style.display = "block";
-        } else {
-            letter.style.display = "none";
-        }
+        letter.style.display = (letter.style.display === "none" || letter.style.display === "") ? "block" : "none";
     }
 
     function updateClock() {
@@ -386,13 +337,9 @@
         const hr = now.getHours();
         const min = now.getMinutes();
         const sec = now.getSeconds();
-
-        // Analog Hands
         document.getElementById('hr').style.transform = `translateX(-50%) rotate(${30 * hr + min / 2}deg)`;
         document.getElementById('min').style.transform = `translateX(-50%) rotate(${6 * min}deg)`;
         document.getElementById('sec').style.transform = `translateX(-50%) rotate(${6 * sec}deg)`;
-
-        // Digital Display
         const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
         document.getElementById('digital-local').innerText = timeStr;
         document.getElementById('digital-user').innerText = timeStr;
