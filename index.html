@@ -183,15 +183,18 @@
     </div>
 </nav>
 
-<div class="wgoftour-ticker-container">
-    <div class="ticker-logo-circle" style="display: flex; align-items: center; justify-content: center; background: transparent; border: none;">
-    <img src="images/weed-championship-logo.png" alt="The Weed Championship Logo" style="max-width: 100%; height: auto; border-radius: 50%; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));">
-</div>
-    <div style="flex: 1; min-width: 300px;">
-        <div class="official-tag">Official</div>
-        <div class="official-tag" style="background-color: var(--gold); color: #000;">Champion: Devon Jarvis (+19)</div>
-        <h2 class="ticker-title">The Second Annual Weed Championship</h2>
+<div class="wgoftour-ticker-container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap;">
+    
+    <div class="ticker-logo-circle" style="flex-shrink: 0; width: 110px; height: 110px;">
+        <img src="images/weed-championship-logo.png" alt="Logo" style="width: 100%; height: auto;">
+    </div>
+
+    <div style="flex: 1; padding: 0 30px; min-width: 0;">
+        <div style="display: flex; gap: 10px; margin-bottom: 5px;">
+            <div class="official-tag">Official</div>
+            <div class="official-tag" style="background-color: var(--gold); color: #000;">Champion: Devon Jarvis (+19)</div>
         </div>
+        <h2 class="ticker-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">The Second Annual Weed Championship</h2>
         <div class="ticker-meta">
             <span>Course: Payne Stewart GC</span>
             <span>Location: Springfield, Missouri</span>
@@ -199,12 +202,12 @@
         </div>
     </div>
     
-    <div class="rolex-panel">
+    <div class="rolex-panel" style="flex-shrink: 0; width: 320px; box-sizing: border-box;">
         <div class="rolex-branding">
             <div class="rolex-crown">♛</div>
             <div class="rolex-text">ROLEX</div>
         </div>
-        <div class="analog-clock">
+        <div class="analog-clock" style="width: 50px; height: 50px; flex-shrink: 0;">
             <div class="hand hour" id="hr"></div>
             <div class="hand minute" id="min"></div>
             <div class="hand second" id="sec"></div>
@@ -221,7 +224,6 @@
         </div>
     </div>
 </div>
-
 <div class="grid-container">
     
     <main class="news-section">
@@ -254,7 +256,7 @@
         <p style="font-size: 0.85rem; color: #718096; margin-top: 5px;">Keith forgot his shoes...That's the Story</p>
     </div>
     <div class="news-item">
-        <img src="images/sterling-weed-2026.png" class="news-thumb" alt="Sterling Weed Host Story">
+        <img src="images/sterling-weed-2026" class="news-thumb" alt="Sterling Weed Host Story">
         <span class="story-tag">Host Report</span>
         <a href="https://www.tiktok.com/@emmanuel.pearl6/video/7595157962289696013" class="news-title">Rained on His Parade</a>
         <p style="font-size: 0.85rem; color: #718096; margin-top: 5px;">A washout on the opening holes sinks the host's chances in his own tournament.</p>
