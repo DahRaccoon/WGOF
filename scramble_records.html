@@ -129,7 +129,32 @@
         </ul>
     </div>
 </nav>
+<div style="text-align: center; margin: 40px 0; padding: 25px; background: #f1f8e9; border-radius: 12px; border: 2px solid var(--masters-green);">
+    <h3 style="font-family: 'Playfair Display', serif; color: var(--pga-blue); margin-top: 0;">WGOF 5-Man Scramble Generator</h3>
+    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 20px;">Generate randomized pairings for any 9 or 18 hole round.</p>
+    
+    <div style="margin-bottom: 20px;">
+        <label style="font-weight: 600; font-size: 0.8em; text-transform: uppercase; margin-right: 10px;">Round Length:</label>
+        <select id="hole-count" style="padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);">
+            <option value="18">18 Holes</option>
+            <option value="9">9 Holes</option>
+        </select>
+    </div>
 
+    <button onclick="generateUniversalPentad()" style="background-color: var(--masters-green); color: white; padding: 14px 30px; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">
+        🎲 Generate Pairings
+    </button>
+
+    <div id="pentad-results" style="display:none; margin-top:30px; text-align: left;">
+        <div style="background: white; border: 1px solid var(--masters-green); border-radius: 8px; overflow: hidden;">
+            <div style="background: var(--masters-green); color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center;">
+                <span id="results-title" style="font-weight: 700; font-size: 0.8em;">SCRAMBLE ROTATION</span>
+                <button onclick="copyUniversalResults()" style="background: white; color: var(--masters-green); border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.7em; font-weight: 700; cursor: pointer;">COPY TEXT</button>
+            </div>
+            <pre id="copy-area" style="white-space: pre-wrap; margin: 0; padding: 20px; font-family: monospace; font-size: 0.95em; color: #333; line-height: 1.6;"></pre>
+        </div>
+    </div>
+</div>
 <div class="container">
     <h1>Scramble Records</h1>
 
@@ -186,32 +211,7 @@
             </tr>
         </tbody>
     </table>
-<div style="text-align: center; margin: 40px 0; padding: 25px; background: #f1f8e9; border-radius: 12px; border: 2px solid var(--masters-green);">
-    <h3 style="font-family: 'Playfair Display', serif; color: var(--pga-blue); margin-top: 0;">WGOF Pentad Generator</h3>
-    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 20px;">Generate randomized pairings for any 9 or 18 hole round.</p>
-    
-    <div style="margin-bottom: 20px;">
-        <label style="font-weight: 600; font-size: 0.8em; text-transform: uppercase; margin-right: 10px;">Round Length:</label>
-        <select id="hole-count" style="padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);">
-            <option value="18">18 Holes</option>
-            <option value="9">9 Holes</option>
-        </select>
-    </div>
 
-    <button onclick="generateUniversalPentad()" style="background-color: var(--masters-green); color: white; padding: 14px 30px; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">
-        🎲 Generate Pairings
-    </button>
-
-    <div id="pentad-results" style="display:none; margin-top:30px; text-align: left;">
-        <div style="background: white; border: 1px solid var(--masters-green); border-radius: 8px; overflow: hidden;">
-            <div style="background: var(--masters-green); color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center;">
-                <span id="results-title" style="font-weight: 700; font-size: 0.8em;">SCRAMBLE ROTATION</span>
-                <button onclick="copyUniversalResults()" style="background: white; color: var(--masters-green); border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.7em; font-weight: 700; cursor: pointer;">COPY TEXT</button>
-            </div>
-            <pre id="copy-area" style="white-space: pre-wrap; margin: 0; padding: 20px; font-family: monospace; font-size: 0.95em; color: #333; line-height: 1.6;"></pre>
-        </div>
-    </div>
-</div>
     
     <h2>🏆 Historical Scramble Champions</h2>
     <table>
