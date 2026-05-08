@@ -186,16 +186,31 @@
             </tr>
         </tbody>
     </table>
-<div style="text-align: center; margin: 30px 0;">
-    <button onclick="generatePentad()" style="background-color: var(--masters-green); color: white; padding: 12px 25px; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">
-        🎲 Randomize Pentad Rotation
-    </button>
-</div>
+<div style="text-align: center; margin: 40px 0; padding: 25px; background: #f1f8e9; border-radius: 12px; border: 2px solid var(--masters-green);">
+    <h3 style="font-family: 'Playfair Display', serif; color: var(--pga-blue); margin-top: 0;">WGOF Pentad Generator</h3>
+    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 20px;">Generate randomized pairings for any 9 or 18 hole round.</p>
+    
+    <div style="margin-bottom: 20px;">
+        <label style="font-weight: 600; font-size: 0.8em; text-transform: uppercase; margin-right: 10px;">Round Length:</label>
+        <select id="hole-count" style="padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);">
+            <option value="18">18 Holes</option>
+            <option value="9">9 Holes</option>
+        </select>
+    </div>
 
-<div id="pentad-results" style="display:none; background: #f1f8e9; border: 2px dashed var(--masters-green); padding: 20px; border-radius: 8px; margin-bottom: 40px;">
-    <h3 style="margin-top:0; color: var(--masters-green);">5-Man Scramble Order</h3>
-    <pre id="copy-area" style="white-space: pre-wrap; background: white; padding: 15px; border-radius: 4px; font-family: monospace; font-size: 0.9em;"></pre>
-    <p style="font-size: 0.8em; color: var(--text-muted);">Copy the text above to share with the group.</p>
+    <button onclick="generateUniversalPentad()" style="background-color: var(--masters-green); color: white; padding: 14px 30px; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">
+        🎲 Generate Pairings
+    </button>
+
+    <div id="pentad-results" style="display:none; margin-top:30px; text-align: left;">
+        <div style="background: white; border: 1px solid var(--masters-green); border-radius: 8px; overflow: hidden;">
+            <div style="background: var(--masters-green); color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center;">
+                <span id="results-title" style="font-weight: 700; font-size: 0.8em;">SCRAMBLE ROTATION</span>
+                <button onclick="copyUniversalResults()" style="background: white; color: var(--masters-green); border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.7em; font-weight: 700; cursor: pointer;">COPY TEXT</button>
+            </div>
+            <pre id="copy-area" style="white-space: pre-wrap; margin: 0; padding: 20px; font-family: monospace; font-size: 0.95em; color: #333; line-height: 1.6;"></pre>
+        </div>
+    </div>
 </div>
     
     <h2>🏆 Historical Scramble Champions</h2>
@@ -217,38 +232,55 @@
     </table>
 </div>
 <script>
-function generatePentad() {
+function generateUniversalPentad() {
     const golfers = ["Keith", "Sterling", "Devon", "Kyle", "Ryan"];
+    const holes = document.getElementById('hole-count').value;
     
-    // Shuffle the golfers
+    // Shuffle golfers
     for (let i = golfers.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [golfers[i], golfers[j]] = [golfers[j], golfers[i]];
     }
 
-    // Assign IDs based on shuffle
-    const p1 = golfers[0];
-    const p2 = golfers[1];
-    const p3 = golfers[2];
-    const p4 = golfers[3];
-    const p5 = golfers[4];
+    const p1 = golfers[0]; const p2 = golfers[1]; const p3 = golfers[2];
+    const p4 = golfers[3]; const p5 = golfers[4];
 
-    // Build the text summary
-    const resultsText = `Scramble Rotation Results\n` +
-        `------------------------------\n` +
-        `Pairing 1: (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
-        `Pairing 2: (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
-        `Pairing 3: (${p2} & ${p4}) vs (${p3} & ${p5}) | ${p1} Solo\n` +
-        `Pairing 4: (${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
-        `SOLO FINISH | ${p1} Solo 2-Ball Advantage\n` +
-        `------------------------------\n` +
-        `Scoring: Eagle 5 | Birdie 3 | Par 1 | Bogey 0 | Dbl+ -1\n` +
+    let resultsText = "";
+    
+    if (holes === "18") {
+        resultsText = `🏆 WGOF 18-HOLE PENTAD\n` +
+            `--------------------------\n` +
+            `Holes 1-3:  (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
+            `Holes 4-6:  (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
+            `Holes 7-9:  (${p2} & ${p4}) vs (${p1} & ${p5}) | ${p3} Solo\n` +
+            `Holes 10-12:(${p2} & ${p3}) vs (${p4} & ${p5}) | ${p1} Solo\n` +
+            `Holes 13-15:(${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
+            `Holes 16-18: INDIVIDUAL SPRINT\n` +
+            `--------------------------\n` +
+            `Solo Scrambler: Hit 2, take best.`;
+    } else {
+        resultsText = `🏆 WGOF 9-HOLE PENTAD\n` +
+            `--------------------------\n` +
+            `Holes 1-2: (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
+            `Holes 3-4: (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
+            `Holes 5-6: (${p2} & ${p4}) vs (${p1} & ${p5}) | ${p3} Solo\n` +
+            `Holes 7-8: (${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
+            `Hole 9:    INDIVIDUAL SPRINT\n` +
+            `--------------------------\n` +
+            `Solo Scrambler: Hit 2, take best.`;
+    }
 
+    document.getElementById('results-title').innerText = holes + "-HOLE ROTATION";
     document.getElementById('copy-area').innerText = resultsText;
     document.getElementById('pentad-results').style.display = 'block';
-    
-    // Auto-scroll to results
     document.getElementById('pentad-results').scrollIntoView({ behavior: 'smooth' });
+}
+
+function copyUniversalResults() {
+    const text = document.getElementById('copy-area').innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        alert("Rotation copied to clipboard!");
+    });
 }
 </script>
 </body>
