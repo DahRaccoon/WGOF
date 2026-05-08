@@ -186,7 +186,18 @@
             </tr>
         </tbody>
     </table>
+<div style="text-align: center; margin: 30px 0;">
+    <button onclick="generatePentad()" style="background-color: var(--masters-green); color: white; padding: 12px 25px; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">
+        🎲 Randomize Pentad Rotation
+    </button>
+</div>
 
+<div id="pentad-results" style="display:none; background: #f1f8e9; border: 2px dashed var(--masters-green); padding: 20px; border-radius: 8px; margin-bottom: 40px;">
+    <h3 style="margin-top:0; color: var(--masters-green);">5-Man Scramble Order</h3>
+    <pre id="copy-area" style="white-space: pre-wrap; background: white; padding: 15px; border-radius: 4px; font-family: monospace; font-size: 0.9em;"></pre>
+    <p style="font-size: 0.8em; color: var(--text-muted);">Copy the text above to share with the group.</p>
+</div>
+    
     <h2>🏆 Historical Scramble Champions</h2>
     <table>
         <thead>
@@ -205,6 +216,40 @@
         </tbody>
     </table>
 </div>
+<script>
+function generatePentad() {
+    const golfers = ["Keith", "Sterling", "Devon", "Kyle", "Ryan"];
+    
+    // Shuffle the golfers
+    for (let i = golfers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [golfers[i], golfers[j]] = [golfers[j], golfers[i]];
+    }
 
+    // Assign IDs based on shuffle
+    const p1 = golfers[0];
+    const p2 = golfers[1];
+    const p3 = golfers[2];
+    const p4 = golfers[3];
+    const p5 = golfers[4];
+
+    // Build the text summary
+    const resultsText = `Scramble Rotation Results\n` +
+        `------------------------------\n` +
+        `Pairing 1: (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
+        `Pairing 2: (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
+        `Pairing 3: (${p2} & ${p4}) vs (${p3} & ${p5}) | ${p1} Solo\n` +
+        `Pairing 4: (${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
+        `SOLO FINISH | ${p1} Solo 2-Ball Advantage\n` +
+        `------------------------------\n` +
+        `Scoring: Eagle 5 | Birdie 3 | Par 1 | Bogey 0 | Dbl+ -1\n` +
+
+    document.getElementById('copy-area').innerText = resultsText;
+    document.getElementById('pentad-results').style.display = 'block';
+    
+    // Auto-scroll to results
+    document.getElementById('pentad-results').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
 </body>
 </html>
