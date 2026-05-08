@@ -103,6 +103,80 @@
         @media (max-width: 768px) {
             table { display: block; overflow-x: auto; }
         }
+        /* Premium Generator Styling */
+.generator-card {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    background: linear-gradient(145deg, #ffffff, #f0f4f1);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,103,71,0.1);
+    text-align: center;
+}
+
+.gen-button {
+    background: var(--masters-green);
+    color: white;
+    padding: 16px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,103,71,0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.gen-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,103,71,0.4);
+    background: #004d35;
+}
+
+.gen-button:active { transform: translateY(0); }
+
+/* The Reveal Animation */
+#pentad-results {
+    margin-top: 30px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#pentad-results.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.results-header {
+    background: var(--masters-green);
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Spinner for the button */
+.spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -129,32 +203,31 @@
         </ul>
     </div>
 </nav>
-<div style="text-align: center; margin: 40px 0; padding: 25px; background: #f1f8e9; border-radius: 12px; border: 2px solid var(--masters-green);">
-    <h3 style="font-family: 'Playfair Display', serif; color: var(--pga-blue); margin-top: 0;">WGOF 5-Man Scramble Generator</h3>
-    <p style="font-size: 0.9em; color: var(--text-muted); margin-bottom: 20px;">Generate randomized pairings for any 9 or 18 hole round.</p>
+<div class="generator-card">
+    <h3 style="font-family: 'Playfair Display', serif; color: var(--pga-blue); font-size: 1.8rem; margin-bottom: 10px;">The WGOF Randomized Pentad</h3>
+    <p style="color: var(--text-muted); margin-bottom: 30px;">Assemble the rotation for your next scramble round.</p>
     
-    <div style="margin-bottom: 20px;">
-        <label style="font-weight: 600; font-size: 0.8em; text-transform: uppercase; margin-right: 10px;">Round Length:</label>
-        <select id="hole-count" style="padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);">
-            <option value="18">18 Holes</option>
-            <option value="9">9 Holes</option>
+    <div style="margin-bottom: 30px;">
+        <select id="hole-count" style="padding: 12px 20px; border-radius: 8px; border: 2px solid #eee; font-weight: 600; outline: none;">
+            <option value="18">18-Hole Rotation</option>
+            <option value="9">9-Hole Rotation</option>
         </select>
     </div>
 
-    <button onclick="generateUniversalPentad()" style="background-color: var(--masters-green); color: white; padding: 14px 30px; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;">
-        🎲 Generate Pairings
+    <button onclick="generateUniversalPentad()" id="gen-btn" class="gen-button">
+        <span class="spinner" id="btn-spinner"></span>
+        <span id="btn-text">🎲 GENERATE PAIRINGS</span>
     </button>
 
-    <div id="pentad-results" style="display:none; margin-top:30px; text-align: left;">
-        <div style="background: white; border: 1px solid var(--masters-green); border-radius: 8px; overflow: hidden;">
-            <div style="background: var(--masters-green); color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center;">
-                <span id="results-title" style="font-weight: 700; font-size: 0.8em;">SCRAMBLE ROTATION</span>
-                <button onclick="copyUniversalResults()" style="background: white; color: var(--masters-green); border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.7em; font-weight: 700; cursor: pointer;">COPY TEXT</button>
-            </div>
-            <pre id="copy-area" style="white-space: pre-wrap; margin: 0; padding: 20px; font-family: monospace; font-size: 0.95em; color: #333; line-height: 1.6;"></pre>
+    <div id="pentad-results">
+        <div class="results-header">
+            <span id="results-title" style="font-size: 0.75rem; letter-spacing: 2px; font-weight: 800;">ROTATION READY</span>
+            <button onclick="copyUniversalResults()" style="background: white; color: var(--masters-green); border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; cursor: pointer;">COPY FOR TEXT</button>
         </div>
+        <pre id="copy-area" style="white-space: pre-wrap; margin: 0; padding: 25px; font-family: 'Courier New', monospace; font-size: 1rem; color: #2d3748; line-height: 1.8; text-align: left;"></pre>
     </div>
 </div>
+
 <div class="container">
     <h1>Scramble Records</h1>
 
@@ -233,53 +306,78 @@
 </div>
 <script>
 function generateUniversalPentad() {
-    const golfers = ["Keith", "Sterling", "Devon", "Kyle", "Ryan"];
-    const holes = document.getElementById('hole-count').value;
+    const btn = document.getElementById('gen-btn');
+    const spinner = document.getElementById('btn-spinner');
+    const btnText = document.getElementById('btn-text');
+    const resultsBox = document.getElementById('pentad-results');
     
-    // Shuffle golfers
-    for (let i = golfers.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [golfers[i], golfers[j]] = [golfers[j], golfers[i]];
-    }
+    // 1. Start the "Shuffling" animation
+    btnText.innerText = "SHUFFLING...";
+    spinner.style.display = "block";
+    resultsBox.classList.remove('visible');
 
-    const p1 = golfers[0]; const p2 = golfers[1]; const p3 = golfers[2];
-    const p4 = golfers[3]; const p5 = golfers[4];
+    // 2. Short delay to build suspense (1 second)
+    setTimeout(() => {
+        const golfers = ["Keith", "Sterling", "Devon", "Kyle", "Ryan"];
+        const holes = document.getElementById('hole-count').value;
+        
+        for (let i = golfers.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [golfers[i], golfers[j]] = [golfers[j], golfers[i]];
+        }
 
-    let resultsText = "";
-    
-    if (holes === "18") {
-        resultsText = `🏆 WGOF 18-HOLE PENTAD\n` +
-            `--------------------------\n` +
-            `Holes 1-3:  (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
-            `Holes 4-6:  (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
-            `Holes 7-9:  (${p2} & ${p4}) vs (${p1} & ${p5}) | ${p3} Solo\n` +
-            `Holes 10-12:(${p2} & ${p3}) vs (${p4} & ${p5}) | ${p1} Solo\n` +
-            `Holes 13-15:(${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
-            `Holes 16-18: INDIVIDUAL SPRINT\n` +
-            `--------------------------\n` +
-            `Solo Scrambler: Hit 2, take best.`;
-    } else {
-        resultsText = `🏆 WGOF 9-HOLE PENTAD\n` +
-            `--------------------------\n` +
-            `Holes 1-2: (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
-            `Holes 3-4: (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
-            `Holes 5-6: (${p2} & ${p4}) vs (${p1} & ${p5}) | ${p3} Solo\n` +
-            `Holes 7-8: (${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
-            `Hole 9:    INDIVIDUAL SPRINT\n` +
-            `--------------------------\n` +
-            `Solo Scrambler: Hit 2, take best.`;
-    }
+        const p1 = golfers[0]; const p2 = golfers[1]; const p3 = golfers[2];
+        const p4 = golfers[3]; const p5 = golfers[4];
 
-    document.getElementById('results-title').innerText = holes + "-HOLE ROTATION";
-    document.getElementById('copy-area').innerText = resultsText;
-    document.getElementById('pentad-results').style.display = 'block';
-    document.getElementById('pentad-results').scrollIntoView({ behavior: 'smooth' });
+        let resultsText = "";
+        if (holes === "18") {
+            resultsText = `⛳️ WGOF 18-HOLE PENTAD\n` +
+                `━━━━━━━━━━━━━━━━━━━━━━\n` +
+                `Holes 1-3:  (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
+                `Holes 4-6:  (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
+                `Holes 7-9:  (${p2} & ${p4}) vs (${p1} & ${p5}) | ${p3} Solo\n` +
+                `Holes 10-12:(${p2} & ${p3}) vs (${p4} & ${p5}) | ${p1} Solo\n` +
+                `Holes 13-15:(${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
+                `Holes 16-18: INDIVIDUAL SPRINT\n` +
+                `━━━━━━━━━━━━━━━━━━━━━━\n` +
+                `Solo Scrambler: Hit 2 balls, take best.`;
+        } else {
+            resultsText = `⛳️ WGOF 9-HOLE PENTAD\n` +
+                `━━━━━━━━━━━━━━━━━━━━━━\n` +
+                `Holes 1-2: (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
+                `Holes 3-4: (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
+                `Holes 5-6: (${p2} & ${p4}) vs (${p1} & ${p5}) | ${p3} Solo\n` +
+                `Holes 7-8: (${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
+                `Hole 9:    INDIVIDUAL SPRINT\n` +
+                `━━━━━━━━━━━━━━━━━━━━━━\n` +
+                `Solo Scrambler: Hit 2 balls, take best.`;
+        }
+
+        // 3. Reveal the results
+        document.getElementById('copy-area').innerText = resultsText;
+        resultsBox.style.display = 'block';
+        setTimeout(() => resultsBox.classList.add('visible'), 50);
+        
+        // Reset Button
+        btnText.innerText = "🎲 GENERATE PAIRINGS";
+        spinner.style.display = "none";
+        
+        resultsBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 1000);
 }
 
 function copyUniversalResults() {
     const text = document.getElementById('copy-area').innerText;
     navigator.clipboard.writeText(text).then(() => {
-        alert("Rotation copied to clipboard!");
+        const btn = document.querySelector('.results-header button');
+        btn.innerText = "COPIED!";
+        btn.style.background = "#b39a5f";
+        btn.style.color = "white";
+        setTimeout(() => {
+            btn.innerText = "COPY FOR TEXT";
+            btn.style.background = "white";
+            btn.style.color = "var(--masters-green)";
+        }, 2000);
     });
 }
 </script>
