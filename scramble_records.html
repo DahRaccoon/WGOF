@@ -204,13 +204,14 @@
     </div>
 </nav>
 <div class="generator-card">
-    <h3 style="font-family: 'Playfair Display', serif; color: var(--pga-blue); font-size: 1.8rem; margin-bottom: 10px;">The WGOF Randomized Scramble Partners</h3>
+    <h3 style="font-family: 'Playfair Display', serif; color: var(--pga-blue); font-size: 1.8rem; margin-bottom: 10px;">The WGOF Randomized Pentad</h3>
     <p style="color: var(--text-muted); margin-bottom: 30px;">Assemble the rotation for your next scramble round.</p>
     
     <div style="margin-bottom: 30px;">
         <select id="hole-count" style="padding: 12px 20px; border-radius: 8px; border: 2px solid #eee; font-weight: 600; outline: none;">
             <option value="18">18-Hole Rotation</option>
-            <option value="9">9-Hole Rotation</option>
+            <option value="12">12-Hole Rotation</option>
+            <option value="9">9-Hole (Incomplete Solo)</option>
         </select>
     </div>
 
@@ -329,29 +330,43 @@ function generateUniversalPentad() {
         const p1 = golfers[0]; const p2 = golfers[1]; const p3 = golfers[2];
         const p4 = golfers[3]; const p5 = golfers[4];
 
-        let resultsText = "";
-        if (holes === "18") {
-            resultsText = `⛳️ WGOF 18-HOLE Scramble\n` +
-                `━━━━━━━━━━━━━━━━━━━━━━\n` +
-                `Holes 1-3:  (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
-                `Holes 4-6:  (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
-                `Holes 7-9:  (${p2} & ${p4}) vs (${p1} & ${p5}) | ${p3} Solo\n` +
-                `Holes 10-12:(${p2} & ${p3}) vs (${p4} & ${p5}) | ${p1} Solo\n` +
-                `Holes 13-15:(${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
-                `Holes 16-18: INDIVIDUAL SPRINT\n` +
-                `━━━━━━━━━━━━━━━━━━━━━━\n` +
-                `Solo Scrambler: Hit 2 balls, take best.`;
-        } else {
-            resultsText = `⛳️ WGOF 9-HOLE Scramble\n` +
-                `━━━━━━━━━━━━━━━━━━━━━━\n` +
-                `Holes 1-2: (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
-                `Holes 3-4: (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
-                `Holes 5-6: (${p2} & ${p4}) vs (${p1} & ${p5}) | ${p3} Solo\n` +
-                `Holes 7-8: (${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
-                `Hole 9:    INDIVIDUAL SPRINT\n` +
-                `━━━━━━━━━━━━━━━━━━━━━━\n` +
-                `Solo Scrambler: Hit 2 balls, take best.`;
-        }
+       let resultsText = "";
+    
+    if (holes === "18") {
+        resultsText = `⛳️ WGOF 18-HOLE PENTAD\n` +
+            `━━━━━━━━━━━━━━━━━━━━━━\n` +
+            `Holes 1-3:  (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
+            `Holes 4-6:  (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
+            `Holes 7-9:  (${p2} & ${p4}) vs (${p1} & ${p5}) | ${p3} Solo\n` +
+            `Holes 10-12:(${p2} & ${p3}) vs (${p4} & ${p5}) | ${p1} Solo\n` +
+            `Holes 13-15:(${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
+            `Holes 16-18: INDIVIDUAL SPRINT\n` +
+            `━━━━━━━━━━━━━━━━━━━━━━\n` +
+            `Solo Scrambler: Hit 2 balls, take best.`;
+    } 
+    else if (holes === "12") {
+        resultsText = `⛳️ WGOF 12-HOLE PENTAD\n` +
+            `━━━━━━━━━━━━━━━━━━━━━━\n` +
+            `Holes 1-2:  (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
+            `Holes 3-4:  (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
+            `Holes 5-6:  (${p2} & ${p4}) vs (${p1} & ${p5}) | ${p3} Solo\n` +
+            `Holes 7-8:  (${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
+            `Holes 9-10: (${p4} & ${p5}) vs (${p2} & ${p3}) | ${p1} Solo\n` +
+            `Holes 11-12: INDIVIDUAL SPRINT\n` +
+            `━━━━━━━━━━━━━━━━━━━━━━\n` +
+            `Solo Scrambler: Hit 2 balls, take best.`;
+    } 
+    else {
+        resultsText = `⛳️ WGOF 9-HOLE (SHORT)\n` +
+            `━━━━━━━━━━━━━━━━━━━━━━\n` +
+            `Holes 1-2: (${p1} & ${p2}) vs (${p3} & ${p4}) | ${p5} Solo\n` +
+            `Holes 3-4: (${p3} & ${p5}) vs (${p1} & ${p4}) | ${p2} Solo\n` +
+            `Holes 5-6: (${p2} & ${p4}) vs (${p1} & ${p5}) | ${p3} Solo\n` +
+            `Holes 7-8: (${p1} & ${p3}) vs (${p2} & ${p5}) | ${p4} Solo\n` +
+            `Hole 9:    INDIVIDUAL SPRINT\n` +
+            `━━━━━━━━━━━━━━━━━━━━━━\n` +
+            `*Note: ${p1} misses solo rotation at 9 holes.`;
+    }
 
         // 3. Reveal the results
         document.getElementById('copy-area').innerText = resultsText;
