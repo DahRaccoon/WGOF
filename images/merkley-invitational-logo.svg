@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Seattle Sports Palette: Seahawks Navy & Action Green + Mariners Aqua/Silver -->
+    <linearGradient id="seahawksNavy" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#002244" />
+      <stop offset="100%" stop-color="#001428" />
+    </linearGradient>
+    
+    <linearGradient id="actionGreenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#69BE28" />
+      <stop offset="100%" stop-color="#4B8B1A" />
+    </linearGradient>
+
+    <linearGradient id="marinersAqua" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#005C5C" />
+      <stop offset="50%" stop-color="#008585" />
+      <stop offset="100%" stop-color="#002244" />
+    </linearGradient>
+
+    <linearGradient id="silverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A5ACAF" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#70777A" />
+    </linearGradient>
+
+    <!-- Text Paths for Circular Typography -->
+    <path id="textPathTop" d="M 75,250 A 175,175 0 1,1 425,250" fill="none" />
+    <path id="textPathBottom" d="M 415,250 A 165,165 0 0,1 85,250" fill="none" />
+  </defs>
+
+  <!-- Background Base Badge (Seahawks Navy Core) -->
+  <circle cx="250" cy="250" r="210" fill="url(#seahawksNavy)" stroke="url(#actionGreenGrad)" stroke-width="6" />
+  <circle cx="250" cy="250" r="195" fill="none" stroke="url(#silverGrad)" stroke-width="1.5" stroke-dasharray="6,4" />
+
+  <!-- Crossed Golf Clubs (Action Green/Silver Accent) -->
+  <g stroke="url(#silverGrad)" stroke-width="4" stroke-linecap="round" opacity="0.25">
+    <!-- Club 1 -->
+    <line x1="130" y1="130" x2="370" y2="370" />
+    <path d="M 365,365 Q 375,375 385,365 L 375,355 Z" fill="url(#silverGrad)" />
+    <!-- Club 2 -->
+    <line x1="370" y1="130" x2="130" y2="370" />
+    <path d="M 135,365 Q 125,375 115,365 L 125,355 Z" fill="url(#silverGrad)" />
+  </g>
+
+  <!-- Inner Crest Ring -->
+  <circle cx="250" cy="250" r="130" fill="#ffffff" stroke="url(#actionGreenGrad)" stroke-width="4" />
+
+  <!-- The "River Cut" Shape split across the center shield -->
+  <g>
+    <!-- Background of the Inner Cutout (Deep Navy backdrop) -->
+    <circle cx="250" cy="250" r="126" fill="#002244" />
+    
+    <!-- The S-Curve River cutting dynamically through the center (Mariners Aqua) -->
+    <path d="M 122,230 
+             C 180,210 200,290 280,210 
+             C 320,170 340,260 378,245
+             L 374,285
+             C 330,295 310,210 260,280
+             C 200,340 170,250 122,270 Z" 
+          fill="url(#marinersAqua)" 
+          stroke="url(#actionGreenGrad)" 
+          stroke-width="2.5" />
+          
+    <!-- Subtle Action Green Water Flow Lines inside the River -->
+    <path d="M 140,243 C 185,230 200,285 270,225 C 300,200 330,260 360,255" fill="none" stroke="#69BE28" stroke-width="1.5" opacity="0.7" />
+  </g>
+
+  <!-- Central Golf Ball on the River Horizon -->
+  <circle cx="250" cy="215" r="22" fill="#ffffff" stroke="#002244" stroke-width="2" />
+  <!-- Dimple Accents -->
+  <circle cx="242" cy="205" r="1.5" fill="#cbd5e0" />
+  <circle cx="250" cy="202" r="1.5" fill="#cbd5e0" />
+  <circle cx="258" cy="207" r="1.5" fill="#cbd5e0" />
+  <circle cx="236" cy="215" r="1.5" fill="#cbd5e0" />
+  <circle cx="246" cy="214" r="1.5" fill="#cbd5e0" />
+  <circle cx="254" cy="216" r="1.5" fill="#cbd5e0" />
+  <circle cx="264" cy="214" r="1.5" fill="#cbd5e0" />
+  <circle cx="244" cy="225" r="1.5" fill="#cbd5e0" />
+  <circle cx="252" cy="226" r="1.5" fill="#cbd5e0" />
+  <circle cx="260" cy="223" r="1.5" fill="#cbd5e0" />
+
+  <!-- Center Typography (Tournament Name Anchor with corrected year) -->
+  <text x="250" y="340" font-family="'Montserrat', sans-serif" font-size="26" font-weight="800" fill="url(#actionGreenGrad)" text-anchor="middle" letter-spacing="2">EST. 2025</text>
+
+  <!-- Circular Outer Typography -->
+  <text font-family="'Montserrat', sans-serif" font-size="21" font-weight="700" fill="url(#actionGreenGrad)" letter-spacing="4">
+    <!-- Top Text -->
+    <textPath href="#textPathTop" startOffset="50%" text-anchor="middle">THE MERKLEY INVITATIONAL</textPath>
+  </text>
+
+  <text font-family="'Montserrat', sans-serif" font-size="18" font-weight="600" fill="url(#silverGrad)" letter-spacing="6">
+    <!-- Bottom Text -->
+    <textPath href="#textPathBottom" startOffset="50%" text-anchor="middle">RIVERCUT GOLF COURSE</textPath>
+  </text>
+
+  <!-- Little Compass/Star Icons separating top and bottom text (Mariners style) -->
+  <path d="M 72,245 L 75,252 L 82,252 L 77,256 L 79,263 L 72,259 L 65,263 L 67,256 L 62,252 L 69,252 Z" fill="url(#silverGrad)" />
+  <path d="M 428,245 L 431,252 L 438,252 L 433,256 L 435,263 L 428,259 L 421,263 L 423,256 L 418,252 L 425,252 Z" fill="url(#silverGrad)" />
+</svg>
