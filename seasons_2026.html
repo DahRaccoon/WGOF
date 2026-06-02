@@ -64,7 +64,7 @@
         .sc-total { background: #edf2f7; font-weight: 800; color: var(--pga-blue); }
         
         /* SHAPES */
-        .birdie { border: 1px solid var(--masters-green); border-radius: 50%; width: 24px; height: 24px; line-height: 24px; display: inline-block; }
+        .birdie { border: 1px solid var(--masters-green); border-radius: 50%; width: 24px; height: 24px; line-height: 24px; display: inline-block; background: #e6f4ea; }
         .bogey { border: 1px solid #718096; width: 24px; height: 24px; line-height: 24px; display: inline-block; }
         .double-bogey { border: 3px double #2d3748; width: 24px; height: 24px; line-height: 24px; display: inline-block; font-weight: 700; }
 
@@ -84,12 +84,13 @@
 </nav>
 
 <div class="content-container">
+    <!-- LATEST TOURNAMENT TICKER BANNER -->
     <div class="wgoftour-ticker-container">
-        <div class="ticker-logo-circle"><img src="images/weed-championship-logo.png" alt="WGOF Logo"></div>
+        <div class="ticker-logo-circle"><img src="images/merkley-invitational-logo.png" alt="WGOF Logo"></div>
         <div style="flex: 1;">
-            <h2 class="ticker-title">The Weed Championship</h2>
+            <h2 class="ticker-title">The Merkley Invitational</h2>
             <div style="color: #718096; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-top: 5px;">
-                Bill & Payne Stewart GC | April 11, 2026
+                Rivercut Golf Course | June 1, 2026
             </div>
         </div>
         <div class="rolex-panel">
@@ -102,16 +103,131 @@
         </div>
     </div>
 
-    <h2 class="section-header">Weed Championship Leaderboard</h2>
+    <!-- LATEST TOURNAMENT LEADERBOARD -->
+    <h2 class="section-header">Merkley Invitational Leaderboard</h2>
     <table class="tour-table">
         <thead>
             <tr><th>Pos</th><th>Player</th><th>Out</th><th>In</th><th>Total</th></tr>
         </thead>
         <tbody>
-            <tr class="clickable-row" onclick="toggleScorecard('sc-devon', this)">
+            <tr class="clickable-row" onclick="toggleScorecard('sc-merk-kyle', this)">
+                <td>1</td><td>Kyle Merkley</td><td>42</td><td>45</td><td>87</td>
+            </tr>
+            <tr id="sc-merk-kyle" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell sc-total">42</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell sc-total">45</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-merk-devon', this)">
+                <td>2</td><td>Devon Jarvis</td><td>44</td><td>44</td><td>88</td>
+            </tr>
+            <tr id="sc-merk-devon" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell sc-total">44</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="birdie">3</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">5</div><div class="sc-cell sc-total">44</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-merk-ryan', this)">
+                <td>T3</td><td>Ryan Edwards</td><td>43</td><td>46</td><td>89</td>
+            </tr>
+            <tr id="sc-merk-ryan" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="birdie">3</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell sc-total">43</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">3</div><div class="sc-cell"><span class="double-bogey">8</span></div><div class="sc-cell sc-total">46</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-merk-keith', this)">
+                <td>T3</td><td>Keith Flynn</td><td>43</td><td>46</td><td>89</td>
+            </tr>
+            <tr id="sc-merk-keith" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">3</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell sc-total">43</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">9</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">46</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-merk-sterling', this)">
+                <td>5</td><td>Sterling Weed</td><td>50</td><td>45</td><td>95</td>
+            </tr>
+            <tr id="sc-merk-sterling" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="double-bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell sc-total">50</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">5</div><div class="sc-cell sc-total">45</div>
+                    </div>
+                </div>
+            </td></tr>
+        </tbody>
+    </table>
+
+    <!-- OFFICIAL SEASON STANDINGS (UPDATED CUMULATIVE LOGIC) -->
+    <h2 class="section-header">2026 Season Standings</h2>
+    <table class="tour-table">
+        <thead>
+            <tr><th>Rank</th><th>Player</th><th>F9 Pts</th><th>B9 Pts</th><th>Bonus</th><th class="pts-cell">Total</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Devon Jarvis</td><td>750</td><td>975</td><td>300</td><td class="pts-cell">2025</td></tr>
+            <tr><td>2</td><td>Kyle Merkley</td><td>1000</td><td>725</td><td>200</td><td class="pts-cell">1925</td></tr>
+            <tr><td>T3</td><td>Keith Flynn</td><td>750</td><td>800</td><td>50</td><td class="pts-cell">1600</td></tr>
+            <tr><td>T3</td><td>Ryan Edwards</td><td>875</td><td>675</td><td>50</td><td class="pts-cell">1600</td></tr>
+            <tr><td>5</td><td>Sterling Weed</td><td>625</td><td>825</td><td>0</td><td class="pts-cell">1450</td></tr>
+        </tbody>
+    </table>
+
+    <!-- MINIMIZED ARCHIVED TOURNAMENT -->
+    <h2 class="section-header">Historical Results: The Weed Championship</h2>
+    <table class="tour-table">
+        <thead>
+            <tr><th>Pos</th><th>Player</th><th>Out</th><th>In</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+            <tr class="clickable-row" onclick="toggleScorecard('sc-weed-devon', this)">
                 <td>1</td><td>Devon Jarvis</td><td>46</td><td>43</td><td>89</td>
             </tr>
-            <tr id="sc-devon" class="scorecard-wrapper"><td colspan="5">
+            <tr id="sc-weed-devon" class="scorecard-wrapper"><td colspan="5">
                 <div class="sc-inner-container">
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
@@ -126,10 +242,10 @@
                 </div>
             </td></tr>
 
-            <tr class="clickable-row" onclick="toggleScorecard('sc-keith', this)">
+            <tr class="clickable-row" onclick="toggleScorecard('sc-weed-keith', this)">
                 <td>T2</td><td>Keith Flynn</td><td>47</td><td>43</td><td>90</td>
             </tr>
-            <tr id="sc-keith" class="scorecard-wrapper"><td colspan="5">
+            <tr id="sc-weed-keith" class="scorecard-wrapper"><td colspan="5">
                 <div class="sc-inner-container">
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
@@ -144,10 +260,10 @@
                 </div>
             </td></tr>
 
-            <tr class="clickable-row" onclick="toggleScorecard('sc-ryan', this)">
+            <tr class="clickable-row" onclick="toggleScorecard('sc-weed-ryan', this)">
                 <td>T2</td><td>Ryan Edwards</td><td>44</td><td>46</td><td>90</td>
             </tr>
-            <tr id="sc-ryan" class="scorecard-wrapper"><td colspan="5">
+            <tr id="sc-weed-ryan" class="scorecard-wrapper"><td colspan="5">
                 <div class="sc-inner-container">
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
@@ -162,10 +278,10 @@
                 </div>
             </td></tr>
 
-            <tr class="clickable-row" onclick="toggleScorecard('sc-kyle', this)">
+            <tr class="clickable-row" onclick="toggleScorecard('sc-weed-kyle', this)">
                 <td>T4</td><td>Kyle Merkley</td><td>42</td><td>50</td><td>92</td>
             </tr>
-            <tr id="sc-kyle" class="scorecard-wrapper"><td colspan="5">
+            <tr id="sc-weed-kyle" class="scorecard-wrapper"><td colspan="5">
                 <div class="sc-inner-container">
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
@@ -180,10 +296,10 @@
                 </div>
             </td></tr>
 
-            <tr class="clickable-row" onclick="toggleScorecard('sc-sterling', this)">
+            <tr class="clickable-row" onclick="toggleScorecard('sc-weed-sterling', this)">
                 <td>T4</td><td>Sterling Weed</td><td>47</td><td>45</td><td>92</td>
             </tr>
-            <tr id="sc-sterling" class="scorecard-wrapper"><td colspan="5">
+            <tr id="sc-weed-sterling" class="scorecard-wrapper"><td colspan="5">
                 <div class="sc-inner-container">
                     <div class="sc-grid">
                         <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
@@ -200,20 +316,7 @@
         </tbody>
     </table>
 
-    <h2 class="section-header">2026 Season Standings</h2>
-    <table class="tour-table">
-        <thead>
-            <tr><th>Rank</th><th>Player</th><th>F9 Pts</th><th>B9 Pts</th><th>Bonus</th><th class="pts-cell">Total</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>1</td><td>Devon Jarvis</td><td>400</td><td>475</td><td>200</td><td class="pts-cell">1075</td></tr>
-            <tr><td>T2</td><td>Keith Flynn</td><td>325</td><td>475</td><td>50</td><td class="pts-cell">850</td></tr>
-            <tr><td>T2</td><td>Ryan Edwards</td><td>450</td><td>350</td><td>50</td><td class="pts-cell">850</td></tr>
-            <tr><td>T4</td><td>Kyle Merkley</td><td>500</td><td>300</td><td>0</td><td class="pts-cell">800</td></tr>
-            <tr><td>T4</td><td>Sterling Weed</td><td>325</td><td>400</td><td>0</td><td class="pts-cell">725</td></tr>
-        </tbody>
-    </table>
-
+    <!-- SEASON SCHEDULE -->
     <h2 class="section-header">2026 Season Schedule</h2>
     <table class="tour-table">
         <thead>
@@ -252,5 +355,4 @@
     setInterval(updateClock, 1000); updateClock();
 </script>
 </body>
-</html>
 </html>
