@@ -145,6 +145,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
             transform: scale(1);
             transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
         }
@@ -159,6 +160,7 @@
             height: 60%;
             background: linear-gradient(to top, rgba(0,34,68,0.85), transparent);
             z-index: 2;
+            pointer-events: none;
         }
 
         .hero-badge-logo {
@@ -179,6 +181,7 @@
             bottom: 25px; left: 25px; right: 25px;
             z-index: 3;
             color: #ffffff;
+            pointer-events: none;
         }
         .hero-text-overlay h3 {
             font-family: 'Playfair Display', serif;
@@ -320,7 +323,7 @@
     <!-- MAIN NEWS CONTENT -->
     <main class="news-section">
         <section class="featured-story">
-            <a href="seasons_2026.html" style="text-decoration: none;">
+            <a href="seasons_2026.html" style="text-decoration: none; display: block;">
                 <div class="hero-zoom-container">
                     <!-- WGOF Logo Watermark Badge -->
                     <div class="hero-badge-logo">
@@ -434,7 +437,7 @@
 </div>
 
 <section class="gallery-section">
-    <h3 style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; color: var(--mariners-aqua); margin-bottom: 30px; border-bottom: 2px solid var(--mariners-aqua); display: inline-block;">Tour Gallery</h3>
+    <h3 style="text-transform: uppercase; font-size: 0.80rem; letter-spacing: 2px; color: var(--mariners-aqua); margin-bottom: 30px; border-bottom: 2px solid var(--mariners-aqua); display: inline-block;">Tour Gallery</h3>
     <div class="photo-grid">
         <div class="photo-card"><img src="group_2025.png"><div class="photo-label">2025 Season Archive</div></div>
         <div class="photo-card"><img src="group_2024.png"><div class="photo-label">2024 Historical Highlights</div></div>
