@@ -129,7 +129,72 @@
 
         /* PGA STYLE NEWS GRID */
         .featured-story { margin-bottom: 40px; border-bottom: 1px solid var(--border-light); padding-bottom: 30px; }
-        .featured-img { width: 100%; height: 400px; background: #eee; object-fit: cover; border-radius: 4px; margin-bottom: 20px; }
+        
+        /* DRAMATIC ZOOM HERO CONTAINER */
+        .hero-zoom-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .hero-zoom-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1);
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .hero-zoom-container:hover .hero-zoom-img {
+            transform: scale(1.18);
+        }
+
+        .hero-overlay-gradient {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,34,68,0.85), transparent);
+            z-index: 2;
+        }
+
+        .hero-badge-logo {
+            position: absolute;
+            top: 20px; left: 20px;
+            width: 55px; height: 55px;
+            background: rgba(0, 34, 68, 0.85);
+            border: 2px solid var(--action-green);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 3;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .hero-badge-logo img { width: 35px; height: auto; }
+
+        .hero-text-overlay {
+            position: absolute;
+            bottom: 25px; left: 25px; right: 25px;
+            z-index: 3;
+            color: #ffffff;
+        }
+        .hero-text-overlay h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin: 0 0 5px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero-text-overlay p {
+            margin: 0;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--action-green);
+            font-weight: 700;
+        }
+
         .featured-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--seahawks-navy); margin: 10px 0; line-height: 1.1; text-decoration: none; display: block; }
         
         .news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
@@ -255,9 +320,26 @@
     <!-- MAIN NEWS CONTENT -->
     <main class="news-section">
         <section class="featured-story">
-            <a href="seasons_2026.html">
-                <img src="images/ryan-edwards-2026.png" class="featured-img" alt="Ryan Edwards preparing for the Edwards Invitational">
+            <a href="seasons_2026.html" style="text-decoration: none;">
+                <div class="hero-zoom-container">
+                    <!-- WGOF Logo Watermark Badge -->
+                    <div class="hero-badge-logo">
+                        <img src="wgof_logo.png" alt="WGOF">
+                    </div>
+                    
+                    <!-- Course Photo with Zoom Effect -->
+                    <img src="images/ryan-edwards-2026.png" class="hero-zoom-img" alt="Dream Valley Golf Course">
+                    
+                    <div class="hero-overlay-gradient"></div>
+                    
+                    <!-- Title Overlay -->
+                    <div class="hero-text-overlay">
+                        <p>The 2026 Edwards Invitational • Dream Valley Golf Course</p>
+                        <h3>Awaiting the Challenge at Buffalo</h3>
+                    </div>
+                </div>
             </a>
+            
             <span class="story-tag">Tournament Preview</span>
             <a href="seasons_2026.html" class="featured-title">Heading to Dream Valley: The Stage is Set for Ryan's Showcase</a>
             <p style="color: #4a5568;">As the tour rolls into Buffalo, Missouri, all eyes are locked on Ryan Edwards as he takes the reins to host the 2026 Edwards Invitational at Dream Valley Golf Course. Following consecutive heartbreaking finishes on the final hole, Ryan looks to harness home-course advantage, conquer the tricky Ozarks layout, and finally break through for an elusive statement victory.</p>
