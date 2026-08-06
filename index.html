@@ -44,14 +44,21 @@
         #top-nav li { margin-left: 20px; position: relative; }
         #top-nav li a { text-decoration: none; color: var(--pga-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 25px 0; display: block; }
 
-        /* SEASONS DROPDOWN */
+        /* SEASONS DROPDOWN (Fixed to show ONLY on hover) */
         .dropdown-content {
-            display: none; position: absolute; top: 100%; right: 0;
-            min-width: 160px; background-color: #ffffff;
+            display: none; 
+            position: absolute; 
+            top: 100%; 
+            right: 0;
+            min-width: 160px; 
+            background-color: #ffffff;
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            border: 1px solid var(--border-light); z-index: 1001;
+            border: 1px solid var(--border-light); 
+            z-index: 1001;
         }
-        li.has-dropdown:hover .dropdown-content { display: block; }
+        .has-dropdown:hover .dropdown-content { 
+            display: block; 
+        }
         .dropdown-content li { margin: 0; width: 100%; border-bottom: 1px solid var(--border-light); }
         .dropdown-content li a { padding: 12px 20px; display: block; text-transform: none; font-size: 0.85rem; font-weight: 500; color: var(--text-dark); }
 
