@@ -1,4 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Season | WGOF TOUR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pga-blue: #002d62;
+            --masters-green: #006747;
+            --neutral-bg: #f4f7f9;
+            --border-light: #e2e8f0;
+            --text-dark: #1a202c;
+            --gold: #b39a5f;
+        }
 
+        body { font-family: 'Montserrat', sans-serif; margin: 0; padding-top: 70px; background-color: #ffffff; color: var(--text-dark); }
+
+        /* NAVIGATION */
+        #top-nav { position: fixed; top: 0; left: 0; width: 100%; background: #fff; z-index: 1000; border-bottom: 1px solid var(--border-light); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 70px; padding: 0 20px; }
+        .logo-img { height: 40px; display: block; }
+        #top-nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+        #top-nav li { margin-left: 20px; }
+        #top-nav li a { text-decoration: none; color: var(--pga-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+
+        .content-container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+        /* TICKER */
+        .wgoftour-ticker-container {
+            display: flex; align-items: center; justify-content: space-between;
+            background-color: #ffffff; border: 1px solid var(--border-light);
+            border-radius: 8px; padding: 25px; margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); flex-wrap: wrap; gap: 20px;
+        }
+        .ticker-logo-circle img { width: 100px; height: auto; }
+        .ticker-title { font-size: 2.2rem; font-weight: 700; color: var(--text-dark); margin: 0; }
+
+        /* ROLEX */
+        .rolex-panel { background-color: var(--masters-green); border-radius: 12px; padding: 15px; display: flex; align-items: center; color: white; gap: 15px; }
+        .analog-clock { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--gold); background: white; position: relative; }
+        .hand { position: absolute; bottom: 50%; left: 50%; transform-origin: 50% 100%; }
+        .hand.hour { width: 3%; height: 25%; background: black; }
+        .hand.minute { width: 2%; height: 35%; background: black; }
+        .hand.second { width: 1%; height: 40%; background: red; }
+
+        /* TABLES */
+        .section-header { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--pga-blue); margin: 40px 0 20px; border-bottom: 2px solid var(--masters-green); padding-bottom: 5px; }
+        .tour-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        .tour-table th { text-align: left; background: var(--neutral-bg); padding: 12px; text-transform: uppercase; font-size: 0.7rem; border-bottom: 2px solid var(--border-light); }
+        .tour-table td { padding: 12px; border-bottom: 1px solid var(--border-light); font-size: 0.85rem; }
+        
+        .clickable-row { cursor: pointer; transition: background 0.2s; }
+        .clickable-row:hover { background: #f8fafc; }
+        .active-row { background: #edf2f7 !important; }
+
+        /* SCORECARD */
+        .scorecard-wrapper { display: none; background: #fff; }
+        .sc-inner-container { padding: 15px; border: 1px solid #e2e8f0; border-top: none; background: #fcfcfc; }
+        .sc-grid { display: grid; grid-template-columns: 80px repeat(9, 1fr) 60px; text-align: center; border: 1px solid #ddd; margin-bottom: 10px; }
+        .sc-cell { padding: 8px 2px; border-right: 1px solid #ddd; display: flex; align-items: center; justify-content: center; min-height: 35px; font-size: 0.75rem; }
+        .sc-label { background: #f4f7f9; font-weight: 700; text-transform: uppercase; font-size: 0.65rem; }
+        .sc-total { background: #edf2f7; font-weight: 800; color: var(--pga-blue); }
+        
+        /* SHAPES */
+        .birdie { border: 1px solid var(--masters-green); border-radius: 50%; width: 24px; height: 24px; line-height: 24px; display: inline-block; background: #e6f4ea; }
+        .bogey { border: 1px solid #718096; width: 24px; height: 24px; line-height: 24px; display: inline-block; }
+        .double-bogey { border: 3px double #2d3748; width: 24px; height: 24px; line-height: 24px; display: inline-block; font-weight: 700; }
+
+        .pts-cell { font-weight: 700; color: var(--masters-green); }
+
+        /* PLAYER STATISTICS */
+        .stats-note { margin:-8px 0 20px; padding:12px 15px; background:var(--neutral-bg); border-left:4px solid var(--masters-green); border-radius:4px; font-size:.78rem; line-height:1.55; color:#4a5568; }
+        .stats-leaders { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-bottom:18px; }
+        .leader-chip { border:1px solid var(--border-light); border-radius:8px; padding:13px 14px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.025); }
+        .leader-label { display:block; font-size:.62rem; text-transform:uppercase; letter-spacing:.08em; color:#718096; font-weight:700; margin-bottom:4px; }
+        .leader-value { font-size:.92rem; font-weight:800; color:var(--pga-blue); }
+        .player-stats-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-bottom:35px; }
+        .player-stat-card { border:1px solid var(--border-light); border-radius:10px; background:#fff; overflow:hidden; box-shadow:0 3px 12px rgba(0,0,0,.035); }
+        .player-stat-header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:15px 17px; background:var(--neutral-bg); border-bottom:1px solid var(--border-light); }
+        .player-stat-title { display:flex; align-items:center; gap:10px; min-width:0; }
+        .rank-badge { width:28px; height:28px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; background:var(--pga-blue); color:#fff; font-size:.72rem; font-weight:800; flex:0 0 auto; }
+        .player-stat-name { font-weight:800; color:var(--text-dark); font-size:.98rem; }
+        .player-stat-points { white-space:nowrap; font-size:.72rem; color:#4a5568; font-weight:700; }
+        .player-stat-points strong { color:var(--masters-green); font-size:.9rem; }
+        .stat-metric-grid { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--border-light); }
+        .stat-metric { padding:12px 10px; text-align:center; border-right:1px solid var(--border-light); border-bottom:1px solid var(--border-light); }
+        .stat-metric:nth-child(3n) { border-right:none; }
+        .stat-metric:nth-last-child(-n+3) { border-bottom:none; }
+        .stat-metric-label { display:block; font-size:.57rem; text-transform:uppercase; letter-spacing:.07em; color:#718096; font-weight:700; margin-bottom:4px; }
+        .stat-metric-value { font-size:1rem; font-weight:800; color:var(--pga-blue); }
+        .stat-subsection { padding:13px 15px 15px; }
+        .stat-subsection-title { font-size:.64rem; text-transform:uppercase; letter-spacing:.08em; color:#718096; font-weight:800; margin-bottom:9px; }
+        .score-breakdown { display:grid; grid-template-columns:repeat(6,1fr); gap:6px; }
+        .score-type { text-align:center; background:var(--neutral-bg); border-radius:6px; padding:8px 3px; }
+        .score-type strong { display:block; color:var(--text-dark); font-size:.9rem; }
+        .score-type span { display:block; margin-top:2px; font-size:.52rem; text-transform:uppercase; letter-spacing:.04em; color:#718096; font-weight:700; }
+        .stat-footer { display:flex; justify-content:space-between; flex-wrap:wrap; gap:6px 12px; padding:11px 15px; border-top:1px solid var(--border-light); background:#fcfcfc; font-size:.66rem; color:#4a5568; }
+        .stat-footer strong { color:var(--text-dark); }
+        @media(max-width:800px){ .stats-leaders{grid-template-columns:repeat(2,minmax(0,1fr));} .player-stats-grid{grid-template-columns:1fr;} }
+        @media(max-width:520px){ .score-breakdown{grid-template-columns:repeat(3,1fr);} }
+
+    </style>
+</head>
+<body>
+
+<nav id="top-nav">
+    <div class="nav-container">
+        <a href="index.html"><img src="wgof_logo.png" class="logo-img" alt="WGOF Logo"></a>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="seasons_2026.html" style="color: var(--masters-green);">2026 Season</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="content-container">
+    <!-- LATEST TOURNAMENT TICKER BANNER -->
+    <div class="wgoftour-ticker-container">
+        <div class="ticker-logo-circle"><img src="wgof_logo.png" alt="WGOF Tour Logo"></div>
+        <div style="flex: 1;">
+            <h2 class="ticker-title">The Edwards Invitational</h2>
+            <div style="color: #718096; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-top: 5px;">
+                Dream Valley Golf Course | August 8, 2026
+            </div>
+        </div>
+        <div class="rolex-panel">
+            <div class="analog-clock">
+                <div class="hand hour" id="hr"></div>
+                <div class="hand minute" id="min"></div>
+                <div class="hand second" id="sec"></div>
+            </div>
+            <div style="font-size: 0.6rem; letter-spacing: 1px;">ROLEX<br><span id="digital-local" style="font-weight:700">--:--</span></div>
+        </div>
+    </div>
+
+    <!-- LATEST TOURNAMENT LEADERBOARD -->
+    <h2 class="section-header">Edwards Invitational Leaderboard</h2>
+    <div style="margin: -8px 0 18px; color: #4a5568; font-size: 0.85rem; line-height: 1.5;">
+        <strong>Official result:</strong> Ryan Edwards won on a playoff hole after his stroke advantage produced an adjusted 18-hole tie with Kyle Merkley. Kyle recorded the low gross score at 83. Dream Valley Golf Course played to par 72: OUT 36, IN 36.
+    </div>
+    <table class="tour-table">
+        <thead>
+            <tr><th>Pos</th><th>Player</th><th>Out</th><th>In</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+            <tr class="clickable-row" onclick="toggleScorecard('sc-edwards-ryan', this)">
+                <td>1</td><td>Ryan Edwards</td><td>38</td><td>46</td><td>84</td>
+            </tr>
+            <tr id="sc-edwards-ryan" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">5</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">5</div><div class="sc-cell"><span class="birdie">3</span></div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell sc-total">38</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">3</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="birdie">3</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">8</span></div><div class="sc-cell sc-total">46</div>
+                    </div>
+                </div>
+            </td></tr>
+            <tr class="clickable-row" onclick="toggleScorecard('sc-edwards-kyle', this)">
+                <td>2</td><td>Kyle Merkley</td><td>44</td><td>39</td><td>83</td>
+            </tr>
+            <tr id="sc-edwards-kyle" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">5</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell sc-total">44</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">5</div><div class="sc-cell"><span class="birdie">2</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="birdie">4</span></div><div class="sc-cell sc-total">39</div>
+                    </div>
+                </div>
+            </td></tr>
+            <tr class="clickable-row" onclick="toggleScorecard('sc-edwards-devon', this)">
+                <td>T3</td><td>Devon Jarvis</td><td>44</td><td>45</td><td>89</td>
+            </tr>
+            <tr id="sc-edwards-devon" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell sc-total">44</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">8</span></div><div class="sc-cell sc-total">45</div>
+                    </div>
+                </div>
+            </td></tr>
+            <tr class="clickable-row" onclick="toggleScorecard('sc-edwards-keith', this)">
+                <td>T3</td><td>Keith Flynn</td><td>40</td><td>49</td><td>89</td>
+            </tr>
+            <tr id="sc-edwards-keith" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">3</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell sc-total">40</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">8</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">8</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">5</div><div class="sc-cell sc-total">49</div>
+                    </div>
+                </div>
+            </td></tr>
+            <tr class="clickable-row" onclick="toggleScorecard('sc-edwards-sterling', this)">
+                <td>5</td><td>Sterling Weed</td><td>45</td><td>46</td><td>91</td>
+            </tr>
+            <tr id="sc-edwards-sterling" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell sc-total">45</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">5</div><div class="sc-cell sc-total">46</div>
+                    </div>
+                </div>
+            </td></tr>
+        </tbody>
+    </table>
+
+    <!-- OFFICIAL SEASON STANDINGS (AUDITED THROUGH EDWARDS INVITATIONAL) -->
+    <h2 class="section-header">2026 Season Standings</h2>
+    <table class="tour-table">
+        <thead>
+            <tr><th>Rank</th><th>Player</th><th>F9 Pts</th><th>B9 Pts</th><th>5-Man Scramble</th><th>Bonus</th><th class="pts-cell">Total</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Kyle Merkley</td><td>1375</td><td>1225</td><td>250</td><td>300</td><td class="pts-cell">3150</td></tr>
+            <tr><td>2</td><td>Devon Jarvis</td><td>1125</td><td>1425</td><td>200</td><td>300</td><td class="pts-cell">3050</td></tr>
+            <tr><td>3</td><td>Ryan Edwards</td><td>1375</td><td>1050</td><td>225</td><td>250</td><td class="pts-cell">2900</td></tr>
+            <tr><td>4</td><td>Keith Flynn</td><td>1200</td><td>1100</td><td>150</td><td>50</td><td class="pts-cell">2500</td></tr>
+            <tr><td>5</td><td>Sterling Weed</td><td>925</td><td>1200</td><td>175</td><td>0</td><td class="pts-cell">2300</td></tr>
+        </tbody>
+    </table>
+
+
+    <!-- PLAYER STATISTICS -->
+    <h2 class="section-header">2026 Player Statistics</h2>
+    <div class="stats-note">
+        Gross stroke-play statistics were audited directly from the complete hole-by-hole scorecards for the Weed Championship,
+        Merkley Invitational, and Edwards Invitational (3 events / 54 holes per player). The 5-Man Scramble remains part
+        of the season points standings, but it is excluded from pars, birdies, bogeys and scoring averages because no
+        individual scramble scorecards are present. Official wins and Top-3 finishes use the leaderboard result, so
+        Ryan's Edwards Invitational playoff victory counts as a win even though Kyle posted the lower gross 18-hole score.
+    </div>
+    <div id="stats-leaders" class="stats-leaders">
+        <div class="leader-chip">
+            <span class="leader-label">Low Scoring Average</span>
+            <span class="leader-value">Kyle Merkley · 87.33</span>
+        </div>
+        <div class="leader-chip">
+            <span class="leader-label">Most Birdies</span>
+            <span class="leader-value">Ryan Edwards · 3</span>
+        </div>
+        <div class="leader-chip">
+            <span class="leader-label">Most Pars</span>
+            <span class="leader-value">Kyle Merkley · 18</span>
+        </div>
+        <div class="leader-chip">
+            <span class="leader-label">Bogey-or-Better Rate</span>
+            <span class="leader-value">Keith Flynn · 81.5%</span>
+        </div>
+</div>
+    <div id="player-stats-grid" class="player-stats-grid">
+        <article class="player-stat-card">
+            <div class="player-stat-header">
+                <div class="player-stat-title">
+                    <span class="rank-badge">1</span>
+                    <span class="player-stat-name">Kyle Merkley</span>
+                </div>
+                <div class="player-stat-points"><strong>3150</strong> season pts</div>
+            </div>
+
+            <div class="stat-metric-grid">
+                <div class="stat-metric">
+                    <span class="stat-metric-label">18-Hole Avg</span>
+                    <span class="stat-metric-value">87.33</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Avg vs Par</span>
+                    <span class="stat-metric-value">+16.0</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Best 18</span>
+                    <span class="stat-metric-value">83</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Wins</span>
+                    <span class="stat-metric-value">1</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Top-3s</span>
+                    <span class="stat-metric-value">2</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Season to Par</span>
+                    <span class="stat-metric-value">+48</span>
+                </div>
+            </div>
+
+            <div class="stat-subsection">
+                <div class="stat-subsection-title">Hole-by-Hole Scoring — 54 holes</div>
+                <div class="score-breakdown">
+                    <div class="score-type"><strong>0</strong><span>Eagle+</span></div>
+                    <div class="score-type"><strong>2</strong><span>Birdies</span></div>
+                    <div class="score-type"><strong>18</strong><span>Pars</span></div>
+                    <div class="score-type"><strong>22</strong><span>Bogeys</span></div>
+                    <div class="score-type"><strong>10</strong><span>Doubles</span></div>
+                    <div class="score-type"><strong>2</strong><span>Triple+</span></div>
+                </div>
+            </div>
+
+            <div class="stat-footer">
+                <span>F9 avg <strong>42.7</strong></span>
+                <span>B9 avg <strong>44.7</strong></span>
+                <span>Best 9 <strong>39 (Edwards Invitational B9)</strong></span>
+                <span>Par or better <strong>37.0%</strong></span>
+                <span>Bogey or better <strong>77.8%</strong></span>
+                <span>Best 18 event <strong>Edwards Invitational</strong></span>
+            </div>
+        </article>
+    
+
+        <article class="player-stat-card">
+            <div class="player-stat-header">
+                <div class="player-stat-title">
+                    <span class="rank-badge">2</span>
+                    <span class="player-stat-name">Devon Jarvis</span>
+                </div>
+                <div class="player-stat-points"><strong>3050</strong> season pts</div>
+            </div>
+
+            <div class="stat-metric-grid">
+                <div class="stat-metric">
+                    <span class="stat-metric-label">18-Hole Avg</span>
+                    <span class="stat-metric-value">88.67</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Avg vs Par</span>
+                    <span class="stat-metric-value">+17.3</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Best 18</span>
+                    <span class="stat-metric-value">88</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Wins</span>
+                    <span class="stat-metric-value">1</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Top-3s</span>
+                    <span class="stat-metric-value">3</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Season to Par</span>
+                    <span class="stat-metric-value">+52</span>
+                </div>
+            </div>
+
+            <div class="stat-subsection">
+                <div class="stat-subsection-title">Hole-by-Hole Scoring — 54 holes</div>
+                <div class="score-breakdown">
+                    <div class="score-type"><strong>0</strong><span>Eagle+</span></div>
+                    <div class="score-type"><strong>1</strong><span>Birdies</span></div>
+                    <div class="score-type"><strong>17</strong><span>Pars</span></div>
+                    <div class="score-type"><strong>23</strong><span>Bogeys</span></div>
+                    <div class="score-type"><strong>10</strong><span>Doubles</span></div>
+                    <div class="score-type"><strong>3</strong><span>Triple+</span></div>
+                </div>
+            </div>
+
+            <div class="stat-footer">
+                <span>F9 avg <strong>44.7</strong></span>
+                <span>B9 avg <strong>44.0</strong></span>
+                <span>Best 9 <strong>43 (Weed Championship B9)</strong></span>
+                <span>Par or better <strong>33.3%</strong></span>
+                <span>Bogey or better <strong>75.9%</strong></span>
+                <span>Best 18 event <strong>Merkley Invitational</strong></span>
+            </div>
+        </article>
+    
+
+        <article class="player-stat-card">
+            <div class="player-stat-header">
+                <div class="player-stat-title">
+                    <span class="rank-badge">3</span>
+                    <span class="player-stat-name">Ryan Edwards</span>
+                </div>
+                <div class="player-stat-points"><strong>2900</strong> season pts</div>
+            </div>
+
+            <div class="stat-metric-grid">
+                <div class="stat-metric">
+                    <span class="stat-metric-label">18-Hole Avg</span>
+                    <span class="stat-metric-value">87.67</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Avg vs Par</span>
+                    <span class="stat-metric-value">+16.3</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Best 18</span>
+                    <span class="stat-metric-value">84</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Wins</span>
+                    <span class="stat-metric-value">1</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Top-3s</span>
+                    <span class="stat-metric-value">3</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Season to Par</span>
+                    <span class="stat-metric-value">+49</span>
+                </div>
+            </div>
+
+            <div class="stat-subsection">
+                <div class="stat-subsection-title">Hole-by-Hole Scoring — 54 holes</div>
+                <div class="score-breakdown">
+                    <div class="score-type"><strong>0</strong><span>Eagle+</span></div>
+                    <div class="score-type"><strong>3</strong><span>Birdies</span></div>
+                    <div class="score-type"><strong>16</strong><span>Pars</span></div>
+                    <div class="score-type"><strong>21</strong><span>Bogeys</span></div>
+                    <div class="score-type"><strong>11</strong><span>Doubles</span></div>
+                    <div class="score-type"><strong>3</strong><span>Triple+</span></div>
+                </div>
+            </div>
+
+            <div class="stat-footer">
+                <span>F9 avg <strong>41.7</strong></span>
+                <span>B9 avg <strong>46.0</strong></span>
+                <span>Best 9 <strong>38 (Edwards Invitational F9)</strong></span>
+                <span>Par or better <strong>35.2%</strong></span>
+                <span>Bogey or better <strong>74.1%</strong></span>
+                <span>Best 18 event <strong>Edwards Invitational</strong></span>
+            </div>
+        </article>
+    
+
+        <article class="player-stat-card">
+            <div class="player-stat-header">
+                <div class="player-stat-title">
+                    <span class="rank-badge">4</span>
+                    <span class="player-stat-name">Keith Flynn</span>
+                </div>
+                <div class="player-stat-points"><strong>2500</strong> season pts</div>
+            </div>
+
+            <div class="stat-metric-grid">
+                <div class="stat-metric">
+                    <span class="stat-metric-label">18-Hole Avg</span>
+                    <span class="stat-metric-value">89.33</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Avg vs Par</span>
+                    <span class="stat-metric-value">+18.0</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Best 18</span>
+                    <span class="stat-metric-value">89</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Wins</span>
+                    <span class="stat-metric-value">0</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Top-3s</span>
+                    <span class="stat-metric-value">3</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Season to Par</span>
+                    <span class="stat-metric-value">+54</span>
+                </div>
+            </div>
+
+            <div class="stat-subsection">
+                <div class="stat-subsection-title">Hole-by-Hole Scoring — 54 holes</div>
+                <div class="score-breakdown">
+                    <div class="score-type"><strong>0</strong><span>Eagle+</span></div>
+                    <div class="score-type"><strong>0</strong><span>Birdies</span></div>
+                    <div class="score-type"><strong>15</strong><span>Pars</span></div>
+                    <div class="score-type"><strong>29</strong><span>Bogeys</span></div>
+                    <div class="score-type"><strong>7</strong><span>Doubles</span></div>
+                    <div class="score-type"><strong>3</strong><span>Triple+</span></div>
+                </div>
+            </div>
+
+            <div class="stat-footer">
+                <span>F9 avg <strong>43.3</strong></span>
+                <span>B9 avg <strong>46.0</strong></span>
+                <span>Best 9 <strong>40 (Edwards Invitational F9)</strong></span>
+                <span>Par or better <strong>27.8%</strong></span>
+                <span>Bogey or better <strong>81.5%</strong></span>
+                <span>Best 18 event <strong>Edwards Invitational / Merkley Invitational</strong></span>
+            </div>
+        </article>
+    
+
+        <article class="player-stat-card">
+            <div class="player-stat-header">
+                <div class="player-stat-title">
+                    <span class="rank-badge">5</span>
+                    <span class="player-stat-name">Sterling Weed</span>
+                </div>
+                <div class="player-stat-points"><strong>2300</strong> season pts</div>
+            </div>
+
+            <div class="stat-metric-grid">
+                <div class="stat-metric">
+                    <span class="stat-metric-label">18-Hole Avg</span>
+                    <span class="stat-metric-value">92.67</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Avg vs Par</span>
+                    <span class="stat-metric-value">+21.3</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Best 18</span>
+                    <span class="stat-metric-value">91</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Wins</span>
+                    <span class="stat-metric-value">0</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Top-3s</span>
+                    <span class="stat-metric-value">0</span>
+                </div>
+                <div class="stat-metric">
+                    <span class="stat-metric-label">Season to Par</span>
+                    <span class="stat-metric-value">+64</span>
+                </div>
+            </div>
+
+            <div class="stat-subsection">
+                <div class="stat-subsection-title">Hole-by-Hole Scoring — 54 holes</div>
+                <div class="score-breakdown">
+                    <div class="score-type"><strong>0</strong><span>Eagle+</span></div>
+                    <div class="score-type"><strong>0</strong><span>Birdies</span></div>
+                    <div class="score-type"><strong>7</strong><span>Pars</span></div>
+                    <div class="score-type"><strong>34</strong><span>Bogeys</span></div>
+                    <div class="score-type"><strong>9</strong><span>Doubles</span></div>
+                    <div class="score-type"><strong>4</strong><span>Triple+</span></div>
+                </div>
+            </div>
+
+            <div class="stat-footer">
+                <span>F9 avg <strong>47.3</strong></span>
+                <span>B9 avg <strong>45.3</strong></span>
+                <span>Best 9 <strong>45 (Edwards Invitational F9, Merkley Invitational B9, Weed Championship B9)</strong></span>
+                <span>Par or better <strong>13.0%</strong></span>
+                <span>Bogey or better <strong>75.9%</strong></span>
+                <span>Best 18 event <strong>Edwards Invitational</strong></span>
+            </div>
+        </article>
+    </div>
+
+    <!-- HISTORICAL TOURNAMENT: MERKLEY INVITATIONAL -->
+    <h2 class="section-header">Historical Results: The Merkley Invitational</h2>
+    <table class="tour-table">
+        <thead>
+            <tr><th>Pos</th><th>Player</th><th>Out</th><th>In</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+            <tr class="clickable-row" onclick="toggleScorecard('sc-merk-kyle', this)">
+                <td>1</td><td>Kyle Merkley</td><td>42</td><td>45</td><td>87</td>
+            </tr>
+            <tr id="sc-merk-kyle" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell sc-total">42</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell sc-total">45</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-merk-devon', this)">
+                <td>2</td><td>Devon Jarvis</td><td>44</td><td>44</td><td>88</td>
+            </tr>
+            <tr id="sc-merk-devon" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell sc-total">44</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="birdie">3</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">5</div><div class="sc-cell sc-total">44</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-merk-ryan', this)">
+                <td>T3</td><td>Ryan Edwards</td><td>43</td><td>46</td><td>89</td>
+            </tr>
+            <tr id="sc-merk-ryan" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="birdie">3</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell sc-total">43</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">3</div><div class="sc-cell"><span class="double-bogey">8</span></div><div class="sc-cell sc-total">46</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-merk-keith', this)">
+                <td>T3</td><td>Keith Flynn</td><td>43</td><td>46</td><td>89</td>
+            </tr>
+            <tr id="sc-merk-keith" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">3</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell sc-total">43</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">9</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">46</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-merk-sterling', this)">
+                <td>5</td><td>Sterling Weed</td><td>50</td><td>45</td><td>95</td>
+            </tr>
+            <tr id="sc-merk-sterling" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="double-bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell sc-total">50</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">5</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">36</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">5</div><div class="sc-cell sc-total">45</div>
+                    </div>
+                </div>
+            </td></tr>
+        </tbody>
+    </table>
+
+    <!-- HISTORICAL TOURNAMENT: WEED CHAMPIONSHIP -->
+    <h2 class="section-header">Historical Results: The Weed Championship</h2>
+    <table class="tour-table">
+        <thead>
+            <tr><th>Pos</th><th>Player</th><th>Out</th><th>In</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+            <tr class="clickable-row" onclick="toggleScorecard('sc-weed-devon', this)">
+                <td>1</td><td>Devon Jarvis</td><td>46</td><td>43</td><td>89</td>
+            </tr>
+            <tr id="sc-weed-devon" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell sc-total">35</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell sc-total">46</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">35</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">5</div><div class="sc-cell sc-total">43</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-weed-keith', this)">
+                <td>T2</td><td>Keith Flynn</td><td>47</td><td>43</td><td>90</td>
+            </tr>
+            <tr id="sc-weed-keith" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell sc-total">35</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell sc-total">47</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">35</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell sc-total">43</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-weed-ryan', this)">
+                <td>T2</td><td>Ryan Edwards</td><td>44</td><td>46</td><td>90</td>
+            </tr>
+            <tr id="sc-weed-ryan" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell sc-total">35</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell">5</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="double-bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell sc-total">44</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">35</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell">3</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="double-bogey">5</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell sc-total">46</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-weed-kyle', this)">
+                <td>T4</td><td>Kyle Merkley</td><td>42</td><td>50</td><td>92</td>
+            </tr>
+            <tr id="sc-weed-kyle" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell sc-total">35</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell sc-total">42</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">35</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="double-bogey">9</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">5</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell sc-total">50</div>
+                    </div>
+                </div>
+            </td></tr>
+
+            <tr class="clickable-row" onclick="toggleScorecard('sc-weed-sterling', this)">
+                <td>T4</td><td>Sterling Weed</td><td>47</td><td>45</td><td>92</td>
+            </tr>
+            <tr id="sc-weed-sterling" class="scorecard-wrapper"><td colspan="5">
+                <div class="sc-inner-container">
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">1</div><div class="sc-cell sc-label">2</div><div class="sc-cell sc-label">3</div><div class="sc-cell sc-label">4</div><div class="sc-cell sc-label">5</div><div class="sc-cell sc-label">6</div><div class="sc-cell sc-label">7</div><div class="sc-cell sc-label">8</div><div class="sc-cell sc-label">9</div><div class="sc-cell sc-total sc-label">OUT</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">4</div><div class="sc-cell">5</div><div class="sc-cell">5</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell sc-total">35</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell"><span class="double-bogey">7</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell sc-total">47</div>
+                    </div>
+                    <div class="sc-grid">
+                        <div class="sc-cell sc-label">Hole</div><div class="sc-cell sc-label">10</div><div class="sc-cell sc-label">11</div><div class="sc-cell sc-label">12</div><div class="sc-cell sc-label">13</div><div class="sc-cell sc-label">14</div><div class="sc-cell sc-label">15</div><div class="sc-cell sc-label">16</div><div class="sc-cell sc-label">17</div><div class="sc-cell sc-label">18</div><div class="sc-cell sc-total sc-label">IN</div>
+                        <div class="sc-cell sc-label">Par</div><div class="sc-cell">3</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">4</div><div class="sc-cell">3</div><div class="sc-cell">5</div><div class="sc-cell sc-total">35</div>
+                        <div class="sc-cell">Score</div><div class="sc-cell"><span class="bogey">4</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell">4</div><div class="sc-cell"><span class="bogey">5</span></div><div class="sc-cell"><span class="double-bogey">6</span></div><div class="sc-cell"><span class="double-bogey">5</span></div><div class="sc-cell"><span class="bogey">6</span></div><div class="sc-cell sc-total">45</div>
+                    </div>
+                </div>
+            </td></tr>
+        </tbody>
     </table>
 
     <!-- SEASON SCHEDULE -->
@@ -10,7 +779,7 @@
         <tbody>
             <tr><td>April 11</td><td>The Weed Championship</td><td>Sterling Weed</td></tr>
             <tr><td>June 1</td><td>Merkley Invitational</td><td>Kyle Merkley</td></tr>
-            <tr><td>August 14</td><td>Edwards Invitational</td><td>Ryan Edwards</td></tr>
+            <tr><td>August 8</td><td>Edwards Invitational</td><td>Ryan Edwards</td></tr>
             <tr><td>September 12</td><td>Flynnvitational</td><td>Keith Flynn</td></tr>
             <tr><td>November 9</td><td>WGOF Championship</td><td>Devon Jarvis</td></tr>
         </tbody>
@@ -29,6 +798,157 @@
         }
     }
 
+
+    function buildPlayerStats() {
+        const stats = {};
+        const getPlayer = name => stats[name] || (stats[name] = {
+            name, events:0, holes:0, strokes:0, parTotal:0, outStrokes:0, inStrokes:0,
+            eagles:0, birdies:0, pars:0, bogeys:0, doubles:0, triplePlus:0,
+            wins:0, top3s:0, best18:null, best18Event:'', best9:null, best9Event:'', best9Side:''
+        });
+
+        const eventHeaders = Array.from(document.querySelectorAll('.section-header')).filter(h => {
+            const t = h.textContent.trim();
+            return t.endsWith('Leaderboard') || t.startsWith('Historical Results:');
+        });
+
+        eventHeaders.forEach(header => {
+            const eventName = header.textContent.trim()
+                .replace(' Leaderboard','')
+                .replace('Historical Results: The ','')
+                .replace('Historical Results: ','');
+            const table = header.nextElementSibling;
+            if (!table || !table.classList.contains('tour-table')) return;
+
+            const rows = Array.from(table.querySelectorAll('tbody > tr'));
+            for (let i=0; i<rows.length; i++) {
+                const row = rows[i];
+                if (!row.classList.contains('clickable-row')) continue;
+                const scorecard = rows[i+1];
+                if (!scorecard || !scorecard.classList.contains('scorecard-wrapper')) continue;
+
+                const name = row.cells[1].textContent.trim();
+                const pos = row.cells[0].textContent.trim();
+                const out = Number(row.cells[2].textContent.trim());
+                const inn = Number(row.cells[3].textContent.trim());
+                const total = Number(row.cells[4].textContent.trim());
+                const p = getPlayer(name);
+
+                p.events++; p.outStrokes += out; p.inStrokes += inn; p.strokes += total;
+                if (pos === '1') p.wins++;
+                const posNum = Number((pos.match(/\d+/) || ['99'])[0]);
+                if (posNum <= 3) p.top3s++;
+
+                if (p.best18 === null || total < p.best18) { p.best18 = total; p.best18Event = eventName; }
+                if (p.best9 === null || out < p.best9) { p.best9 = out; p.best9Event = eventName; p.best9Side = 'F9'; }
+                if (p.best9 === null || inn < p.best9) { p.best9 = inn; p.best9Event = eventName; p.best9Side = 'B9'; }
+
+                scorecard.querySelectorAll('.sc-grid').forEach(grid => {
+                    const values = Array.from(grid.children).map(c => c.textContent.trim());
+                    const parIndex = values.indexOf('Par');
+                    const scoreIndex = values.indexOf('Score');
+                    if (parIndex < 0 || scoreIndex < 0) return;
+                    const pars = values.slice(parIndex+1, parIndex+10).map(Number);
+                    const scores = values.slice(scoreIndex+1, scoreIndex+10).map(Number);
+
+                    pars.forEach((par, idx) => {
+                        const score = scores[idx];
+                        if (!Number.isFinite(par) || !Number.isFinite(score)) return;
+                        p.holes++; p.parTotal += par;
+                        const d = score - par;
+                        if (d <= -2) p.eagles++;
+                        else if (d === -1) p.birdies++;
+                        else if (d === 0) p.pars++;
+                        else if (d === 1) p.bogeys++;
+                        else if (d === 2) p.doubles++;
+                        else p.triplePlus++;
+                    });
+                });
+            }
+        });
+
+        const standings = {};
+        const standingHeader = Array.from(document.querySelectorAll('.section-header'))
+            .find(h => h.textContent.trim() === '2026 Season Standings');
+        if (standingHeader && standingHeader.nextElementSibling) {
+            standingHeader.nextElementSibling.querySelectorAll('tbody > tr').forEach(row => {
+                if (row.cells.length >= 7) standings[row.cells[1].textContent.trim()] = {
+                    rank:Number(row.cells[0].textContent.trim()),
+                    points:Number(row.cells[row.cells.length-1].textContent.trim())
+                };
+            });
+        }
+
+        const players = Object.values(stats).map(p => {
+            p.rank = standings[p.name]?.rank ?? 99;
+            p.points = standings[p.name]?.points ?? 0;
+            p.avg18 = p.strokes / p.events;
+            p.avgToPar = (p.strokes - p.parTotal) / p.events;
+            p.seasonToPar = p.strokes - p.parTotal;
+            p.f9Avg = p.outStrokes / p.events;
+            p.b9Avg = p.inStrokes / p.events;
+            p.parOrBetter = 100 * (p.eagles+p.birdies+p.pars) / p.holes;
+            p.bogeyOrBetter = 100 * (p.eagles+p.birdies+p.pars+p.bogeys) / p.holes;
+            return p;
+        }).sort((a,b) => a.rank-b.rank || a.avg18-b.avg18);
+
+        const one = n => Number(n).toFixed(1);
+        const signed1 = n => `${n>=0?'+':''}${Number(n).toFixed(1)}`;
+        const signed0 = n => `${n>=0?'+':''}${n}`;
+
+        const grid = document.getElementById('player-stats-grid');
+        if (!grid) return;
+        grid.innerHTML = players.map(p => `
+            <article class="player-stat-card">
+                <div class="player-stat-header">
+                    <div class="player-stat-title"><span class="rank-badge">${p.rank}</span><span class="player-stat-name">${p.name}</span></div>
+                    <div class="player-stat-points"><strong>${p.points}</strong> season pts</div>
+                </div>
+                <div class="stat-metric-grid">
+                    <div class="stat-metric"><span class="stat-metric-label">18-Hole Avg</span><span class="stat-metric-value">${p.avg18.toFixed(2)}</span></div>
+                    <div class="stat-metric"><span class="stat-metric-label">Avg vs Par</span><span class="stat-metric-value">${signed1(p.avgToPar)}</span></div>
+                    <div class="stat-metric"><span class="stat-metric-label">Best 18</span><span class="stat-metric-value">${p.best18}</span></div>
+                    <div class="stat-metric"><span class="stat-metric-label">Wins</span><span class="stat-metric-value">${p.wins}</span></div>
+                    <div class="stat-metric"><span class="stat-metric-label">Top-3s</span><span class="stat-metric-value">${p.top3s}</span></div>
+                    <div class="stat-metric"><span class="stat-metric-label">Season to Par</span><span class="stat-metric-value">${signed0(p.seasonToPar)}</span></div>
+                </div>
+                <div class="stat-subsection">
+                    <div class="stat-subsection-title">Hole-by-Hole Scoring — ${p.holes} holes</div>
+                    <div class="score-breakdown">
+                        <div class="score-type"><strong>${p.eagles}</strong><span>Eagle+</span></div>
+                        <div class="score-type"><strong>${p.birdies}</strong><span>Birdies</span></div>
+                        <div class="score-type"><strong>${p.pars}</strong><span>Pars</span></div>
+                        <div class="score-type"><strong>${p.bogeys}</strong><span>Bogeys</span></div>
+                        <div class="score-type"><strong>${p.doubles}</strong><span>Doubles</span></div>
+                        <div class="score-type"><strong>${p.triplePlus}</strong><span>Triple+</span></div>
+                    </div>
+                </div>
+                <div class="stat-footer">
+                    <span>F9 avg <strong>${one(p.f9Avg)}</strong></span>
+                    <span>B9 avg <strong>${one(p.b9Avg)}</strong></span>
+                    <span>Best 9 <strong>${p.best9}</strong> (${p.best9Side}, ${p.best9Event})</span>
+                    <span>Par or better <strong>${one(p.parOrBetter)}%</strong></span>
+                    <span>Bogey or better <strong>${one(p.bogeyOrBetter)}%</strong></span>
+                    <span>Best 18 event <strong>${p.best18Event}</strong></span>
+                </div>
+            </article>
+        `).join('');
+
+        const leaders = document.getElementById('stats-leaders');
+        if (leaders && players.length) {
+            const lowAvg = [...players].sort((a,b)=>a.avg18-b.avg18)[0];
+            const mostBirdies = [...players].sort((a,b)=>b.birdies-a.birdies || a.avg18-b.avg18)[0];
+            const mostPars = [...players].sort((a,b)=>b.pars-a.pars || a.avg18-b.avg18)[0];
+            const bogeyBest = [...players].sort((a,b)=>b.bogeyOrBetter-a.bogeyOrBetter || a.avg18-b.avg18)[0];
+            leaders.innerHTML = `
+                <div class="leader-chip"><span class="leader-label">Low Scoring Average</span><span class="leader-value">${lowAvg.name} · ${lowAvg.avg18.toFixed(2)}</span></div>
+                <div class="leader-chip"><span class="leader-label">Most Birdies</span><span class="leader-value">${mostBirdies.name} · ${mostBirdies.birdies}</span></div>
+                <div class="leader-chip"><span class="leader-label">Most Pars</span><span class="leader-value">${mostPars.name} · ${mostPars.pars}</span></div>
+                <div class="leader-chip"><span class="leader-label">Bogey-or-Better Rate</span><span class="leader-value">${bogeyBest.name} · ${bogeyBest.bogeyOrBetter.toFixed(1)}%</span></div>`;
+        }
+    }
+
+
     function updateClock() {
         const now = new Date();
         const hr = now.getHours(), min = now.getMinutes(), sec = now.getSeconds();
@@ -36,6 +956,11 @@
         document.getElementById('min').style.transform = `translateX(-50%) rotate(${6 * min}deg)`;
         document.getElementById('sec').style.transform = `translateX(-50%) rotate(${6 * sec}deg)`;
         document.getElementById('digital-local').innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+    }
+    setInterval(updateClock, 1000); updateClock();
+</script>
+</body>
+</html>
     }
     setInterval(updateClock, 1000); updateClock();
 </script>
